@@ -1,15 +1,29 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import styles from "./SurroundWall.module.css";
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect("http://192.168.1.3:3001");
+
+let data = Array.from({ length: 75 }, (_, index) => ({
+  isDrawn: false,
+  ballIndex: index,
+}));
+
 function SurroundWall() {
-  const data = Array.from({ length: 75 }, (_, index) => `${index + 1}`);
   const elementsPerRow = 15;
 
   var rows = data
-    .map(function (data) {
+    .map((item, index) => {
       // map content to html elements
-      return <div className={styles.ballContainer}>{data}</div>;
+      return (
+        <div
+          key={index}
+          className={`${styles.ballContainer} ${
+            item.isDrawn ? styles.drawn : ""
+          }`}
+        >
+          {index + 1}
+        </div>
+      );
     })
     .reduce(function (r, element, index) {
       // create element groups with size 3, result looks like:
@@ -26,17 +40,19 @@ function SurroundWall() {
         </div>
       );
     });
-
+  const randomizeNumber = () => {
+    // Filter data to get only objects with value 0
+    const dataNotDrawn = data.filter((item) => item.isDrawn === false);
+    const randomIndex = Math.floor(Math.random() * dataNotDrawn.length);
+    const randomObject = dataNotDrawn[randomIndex];
+    // Set the number you want to send
+    return randomObject.ballIndex + 1;
+  };
   const [usersReceived, setUsersReceived] = useState([]);
-  const [numberToSend, setNumberToSend] = useState(0);
+  const [numberToSend, setNumberToSend] = useState(randomizeNumber);
 
   useEffect(() => {
-    // Emit the number when the component mounts or when numberToSend changes
-    socket.emit("sendNumber", numberToSend);
-  }, [numberToSend]);
-
-  useEffect(() => {
-    socket.on("receive_message", (data) => {
+    socket.on("receiveUsers", (data) => {
       setUsersReceived(data);
     });
 
@@ -51,16 +67,22 @@ function SurroundWall() {
   };
 
   const sendNumberOnce = () => {
-    // Set the number you want to send
-    const number = 42; // Change this to the desired number
-
+    data[numberToSend - 1].isDrawn = true;
     // Send the number to the backend
-    setNumberToSend(number);
+    const randnumber = randomizeNumber();
+    setNumberToSend(randnumber);
+    console.log("number to send next" + randnumber);
+    socket.emit("sendNumber", numberToSend);
+    console.log("After emit");
   };
+
+  const nextRound = () => {};
+
+  const endGame = () => {};
 
   return (
     <div>
-      {usersReceived === "" ? (
+      {usersReceived.length === 0 ? (
         <p>Waiting for Players...</p>
       ) : (
         <div>
@@ -69,6 +91,8 @@ function SurroundWall() {
           ))}
           <button onClick={clearNames}>Clear Names</button>
           <button onClick={sendNumberOnce}>Send Number Once</button>
+          <button onClick={nextRound}>Next Round</button>
+          <button onClick={endGame}>End Game</button>
         </div>
       )}
       <div className={styles.bingoBoard}>{rows}</div>

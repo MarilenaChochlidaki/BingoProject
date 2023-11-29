@@ -1,20 +1,25 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import io from "socket.io-client";
 import styles from "./AmlTV.module.css";
+const socket = io.connect("http://192.168.1.3:3001");
+
 export const AmlTV = () => {
-  const navigate = useNavigate();
+  const [winnerUser, setWinnerUser] = useState("");
+
+  useEffect(() => {
+    socket.on("receive_winner_name", (data) => {
+      console.log(data);
+      setWinnerUser(data);
+    });
+  }, []);
+
   return (
     <div>
       <h1 className={styles.homeTitle}>About asdasdasdasdasdasd</h1>
       <p className={styles.slogan}>This is the about page.</p>
-      <div className={styles.pageButtons}>
-        <button onClick={() => navigate("/mobile")}> go Mobile </button>
-        <button onClick={() => navigate("/mobile")}> go Mobile </button>
-        <button onClick={() => navigate("/mobile")}> go Mobile </button>
-        <button onClick={() => navigate("/mobile")}> go Mobile </button>
-        <button onClick={() => navigate("/mobile")}> go Mobile </button>
-        <button onClick={() => navigate("/mobile")}> go Mobile </button>
-      </div>
+      {winnerUser && winnerUser.length > 1
+        ? winnerUser + " is the winner!"
+        : ""}
     </div>
   );
 };

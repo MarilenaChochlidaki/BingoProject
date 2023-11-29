@@ -1,17 +1,15 @@
 .homeTitle {
-    width: 100%;
-    text-align: center;
-    background: aqua;
+  width: 100%;
+  text-align: center;
+  background: aqua;
 }
 
 .slogan {
-    height: 50vh;
 }
 
 .pageButtons {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
 }
-

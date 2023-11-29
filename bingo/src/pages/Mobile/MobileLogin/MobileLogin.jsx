@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import io from "socket.io-client";
 
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect("http://192.168.1.3:3001");
 
-function MobileLogin() {
+function MobileLogin({ loginNameButtonClick }) {
   const [user, setUser] = useState("");
 
   const logIn = () => {
     socket.emit("send_login_name", { loginUser: user });
+    loginNameButtonClick(user);
   };
 
   return (
