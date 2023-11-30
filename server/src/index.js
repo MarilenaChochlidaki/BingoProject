@@ -35,6 +35,10 @@ io.on("connection", (socket) => {
     io.emit("namesCleared");
   });
 
+  socket.on("resetCards", () => {
+    io.emit("receive_resetCards");
+  });
+
   socket.on("send_winner_name", (data) => {
     winnerName = data.winnerName;
     socket.broadcast.emit("receive_winner_name", winnerName);

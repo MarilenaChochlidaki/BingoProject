@@ -16,6 +16,10 @@ const AugmentedTable = () => {
       console.log(data);
       setNumberActive(data); // Clear names on the client side
     });
+
+    socket.on("namesCleared", () => {
+      setUsers(["", "", "", "", ""]); // Clear names on the client side
+    });
   }, []);
 
   const handleLogin = (playerName, index) => {

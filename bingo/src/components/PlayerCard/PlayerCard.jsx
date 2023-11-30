@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./PlayerCard.module.css";
+import io from "socket.io-client";
+
+const socket = io.connect("http://192.168.1.3:3001");
 
 const generateBallColumn = (startIndex) => {
   return Array.from({ length: 15 }, (_, index) => ({
@@ -19,7 +22,7 @@ export const PlayerCard = ({
     transform: `rotate(${rotation}deg)`,
   };
 
-  useEffect(() => {
+  const initialBallColumns = () => {
     const newColumns = [];
 
     for (let i = 0; i < 5; i++) {
@@ -49,7 +52,15 @@ export const PlayerCard = ({
       column.sort((a, b) => a.ballIndex - b.ballIndex);
     });
 
-    setBallColumns(newColumns);
+    return newColumns;
+  };
+
+  useEffect(() => {
+    setBallColumns(initialBallColumns());
+
+    socket.on("receive_resetCards", () => {
+      setBallColumns(initialBallColumns());
+    });
   }, []);
 
   const checkBingo = () => {

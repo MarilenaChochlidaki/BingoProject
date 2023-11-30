@@ -3,14 +3,14 @@ import io from "socket.io-client";
 import styles from "./SurroundWall.module.css";
 const socket = io.connect("http://192.168.1.3:3001");
 
-let data = Array.from({ length: 75 }, (_, index) => ({
-  isDrawn: false,
-  ballIndex: index,
-}));
-
 function SurroundWall() {
   const elementsPerRow = 15;
-
+  const [data, setData] = useState(
+    Array.from({ length: 75 }, (_, index) => ({
+      isDrawn: false,
+      ballIndex: index,
+    }))
+  );
   var rows = data
     .map((item, index) => {
       // map content to html elements
@@ -66,6 +66,15 @@ function SurroundWall() {
     socket.emit("clearNames");
   };
 
+  const clearBalls = () => {
+    setData(
+      Array.from({ length: 75 }, (_, index) => ({
+        isDrawn: false,
+        ballIndex: index,
+      }))
+    );
+  };
+
   const sendNumberOnce = () => {
     data[numberToSend - 1].isDrawn = true;
     // Send the number to the backend
@@ -76,9 +85,19 @@ function SurroundWall() {
     console.log("After emit");
   };
 
-  const nextRound = () => {};
+  const resetCards = () => {
+    socket.emit("resetCards");
+  };
 
-  const endGame = () => {};
+  const nextRound = () => {
+    clearBalls();
+    resetCards();
+  };
+
+  const endGame = () => {
+    clearNames();
+    clearBalls();
+  };
 
   return (
     <div>
