@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 
 const socket = io.connect("http://192.168.1.3:3001");
-
-function MobileLogin({ loginNameButtonClick }) {
+export const PlayerTableLogin = ({ loginNameButtonClick }) => {
   const [user, setUser] = useState("");
 
   const logIn = () => {
@@ -23,6 +22,4 @@ function MobileLogin({ loginNameButtonClick }) {
       <button onClick={logIn}>Login</button>
     </div>
   );
-}
-
-export default MobileLogin;
+};

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./PlayerTableCard.module.css";
+import styles from "./PlayerCard.module.css";
 
 const generateBallColumn = (startIndex) => {
   return Array.from({ length: 15 }, (_, index) => ({
@@ -8,7 +8,7 @@ const generateBallColumn = (startIndex) => {
   }));
 };
 
-export const PlayerTableCard = ({
+export const PlayerCard = ({
   rotation = 0,
   cardNumberActive = 0,
   bingoActivate,
@@ -97,7 +97,7 @@ export const PlayerTableCard = ({
 
   return (
     <div>
-      playerTableCard
+      PlayerCard
       {cardNumberActive}
       <div className={styles.cardContainer} style={cardStyle}>
         {ballColumns.map((column, columnIndex) => (

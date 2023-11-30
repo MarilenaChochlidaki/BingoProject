@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { PlayerTableCard } from "../../../components/PlayerTableCard/PlayerTableCard";
+import { PlayerCard } from "../../../components/PlayerCard/PlayerCard";
 import io from "socket.io-client";
 import styles from "./MobileMain.module.css";
 import BingoButton from "../../../components/BingoButton/BingoButton";
@@ -36,10 +36,10 @@ function MobileMain({ loginName }) {
     <div>
       {loginName && loginName.name + "---------"}
       {numberActive}
-      <PlayerTableCard
+      <PlayerCard
         cardNumberActive={numberActive}
         bingoActivate={handleBingoButton}
-      ></PlayerTableCard>
+      ></PlayerCard>
       <BingoButton isActive={bingoActive} userName={loginName.name} />
       {winnerUser && winnerUser.length > 1
         ? winnerUser + " is the winner!"
