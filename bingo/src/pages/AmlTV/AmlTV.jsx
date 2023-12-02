@@ -8,8 +8,11 @@ export const AmlTV = () => {
 
   useEffect(() => {
     socket.on("receive_winner_name", (data) => {
-      console.log(data);
       setWinnerUser(data);
+    });
+
+    socket.on("receive_resetCards", () => {
+      setWinnerUser("");
     });
   }, []);
 

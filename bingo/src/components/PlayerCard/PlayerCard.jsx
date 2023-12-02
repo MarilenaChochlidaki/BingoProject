@@ -64,7 +64,6 @@ export const PlayerCard = ({
   }, []);
 
   const checkBingo = () => {
-    console.log(ballColumns);
     for (let i = 0; i < 5; i++) {
       if (
         ballColumns[i].every((ball) => ball.isMarked) ||
@@ -89,7 +88,6 @@ export const PlayerCard = ({
 
   const handleButtonClick = (ballIndex, columnIndex) => {
     // Handle button click logic here
-    console.log(`Button ${ballIndex} clicked`);
     setBallColumns((prevColumns) => {
       const newColumns = [...prevColumns];
       const ball = newColumns[columnIndex].find(
@@ -99,7 +97,6 @@ export const PlayerCard = ({
       if (ball) {
         ball.isMarked = true; // Toggle the isMarked property
         setWin(checkBingo());
-        console.log(win);
       }
 
       return newColumns;

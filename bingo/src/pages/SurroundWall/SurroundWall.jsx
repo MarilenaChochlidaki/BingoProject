@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import styles from "./SurroundWall.module.css";
+import { UserWallCard } from "../../components/UserWallCard/UserWallCard";
 const socket = io.connect("http://192.168.1.3:3001");
 
 function SurroundWall() {
@@ -48,6 +49,16 @@ function SurroundWall() {
     // Set the number you want to send
     return randomObject.ballIndex + 1;
   };
+
+  const clearBalls = () => {
+    setData(
+      Array.from({ length: 75 }, (_, index) => ({
+        isDrawn: false,
+        ballIndex: index,
+      }))
+    );
+  };
+
   const [usersReceived, setUsersReceived] = useState([]);
   const [numberToSend, setNumberToSend] = useState(randomizeNumber);
 
@@ -60,43 +71,18 @@ function SurroundWall() {
     socket.on("namesCleared", () => {
       setUsersReceived([]); // Clear names on the client side
     });
+
+    socket.on("receive_clearBalls", () => {
+      clearBalls(); // Clear names on the client side
+    });
   }, []);
-
-  const clearNames = () => {
-    socket.emit("clearNames");
-  };
-
-  const clearBalls = () => {
-    setData(
-      Array.from({ length: 75 }, (_, index) => ({
-        isDrawn: false,
-        ballIndex: index,
-      }))
-    );
-  };
 
   const sendNumberOnce = () => {
     data[numberToSend - 1].isDrawn = true;
     // Send the number to the backend
     const randnumber = randomizeNumber();
     setNumberToSend(randnumber);
-    console.log("number to send next" + randnumber);
     socket.emit("sendNumber", numberToSend);
-    console.log("After emit");
-  };
-
-  const resetCards = () => {
-    socket.emit("resetCards");
-  };
-
-  const nextRound = () => {
-    clearBalls();
-    resetCards();
-  };
-
-  const endGame = () => {
-    clearNames();
-    clearBalls();
   };
 
   return (
@@ -105,13 +91,10 @@ function SurroundWall() {
         <p>Waiting for Players...</p>
       ) : (
         <div>
-          {usersReceived.map((user, index) => (
-            <div key={index}>{user.name}</div>
+          {usersReceived.map((wall_user) => (
+            <UserWallCard key={wall_user.name} user={wall_user} />
           ))}
-          <button onClick={clearNames}>Clear Names</button>
           <button onClick={sendNumberOnce}>Send Number Once</button>
-          <button onClick={nextRound}>Next Round</button>
-          <button onClick={endGame}>End Game</button>
         </div>
       )}
       <div className={styles.bingoBoard}>{rows}</div>

@@ -14,17 +14,17 @@ export const Mobile = () => {
     });
   }, []);
 
-  const handleLogin = (playerName) => {
-    setUser(playerName);
+  const handleLogin = (loginUser) => {
+    setUser(loginUser);
   };
 
   return (
     <div>
       <h1>Mobile</h1>
       {user.length <= 1 ? (
-        <MobileLogin loginNameButtonClick={handleLogin} />
+        <MobileLogin loginUserButtonClick={handleLogin} />
       ) : (
-        <MobileMain loginName={user} />
+        <MobileMain loginUser={user} />
       )}
     </div>
   );

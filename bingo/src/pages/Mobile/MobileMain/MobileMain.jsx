@@ -5,7 +5,7 @@ import styles from "./MobileMain.module.css";
 import BingoButton from "../../../components/BingoButton/BingoButton";
 const socket = io.connect("http://192.168.1.3:3001");
 
-function MobileMain({ loginName }) {
+function MobileMain({ loginUser }) {
   const [numberActive, setNumberActive] = useState(0);
   const [bingoActive, setBingoActive] = useState(false);
   const [winnerUser, setWinnerUser] = useState("");
@@ -13,12 +13,13 @@ function MobileMain({ loginName }) {
   useEffect(() => {
     // Listen for the "namesCleared" event
     socket.on("receiveNumber", (data) => {
-      console.log(data);
       setNumberActive(data); // Clear names on the client side
     });
     socket.on("receive_winner_name", (data) => {
-      console.log(data);
       setWinnerUser(data);
+    });
+    socket.on("receive_resetCards", () => {
+      setWinnerUser("");
     });
   }, []);
 
@@ -34,16 +35,17 @@ function MobileMain({ loginName }) {
 
   return (
     <div>
-      {loginName && loginName.name + "---------"}
+      {loginUser && loginUser.name + "---------"}
       {numberActive}
       <PlayerCard
         cardNumberActive={numberActive}
         bingoActivate={handleBingoButton}
       ></PlayerCard>
-      <BingoButton isActive={bingoActive} userName={loginName.name} />
+      <BingoButton isActive={bingoActive} userName={loginUser.name} />
       {winnerUser && winnerUser.length > 1
         ? winnerUser + " is the winner!"
         : ""}
+      {loginUser.color}
     </div>
   );
 }

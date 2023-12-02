@@ -7,7 +7,7 @@ import BingoButton from "../BingoButton/BingoButton";
 const socket = io.connect("http://192.168.1.3:3001");
 
 export const PlayerTableMain = ({
-  loginName = { name: "" },
+  loginUser = { name: "", color: "" },
   rotation = 0,
   cardNumberActive = 0,
 }) => {
@@ -16,8 +16,11 @@ export const PlayerTableMain = ({
 
   useEffect(() => {
     socket.on("receive_winner_name", (data) => {
-      console.log(data);
       setWinnerUser(data);
+    });
+
+    socket.on("receive_resetCards", () => {
+      setWinnerUser("");
     });
   }, []);
 
@@ -38,7 +41,9 @@ export const PlayerTableMain = ({
         cardNumberActive={cardNumberActive}
         bingoActivate={handleBingoButton}
       />
-      <BingoButton isActive={bingoActive} userName={loginName.name} />
+      <BingoButton isActive={bingoActive} userName={loginUser.name} />
+      {loginUser.name}
+      {loginUser.color}
     </div>
   );
 };

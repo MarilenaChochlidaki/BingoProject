@@ -21,10 +21,14 @@ let winnerName = "";
 let currentNumber = 0;
 
 io.on("connection", (socket) => {
-  console.log(`User Connected ${socket.id}`);
-
   socket.on("send_login_name", (data) => {
-    users.push(data.loginUser);
+    const newUser = {
+      name: data.loginUser.name,
+      wins: 0, // Initialize wins to 0
+      color: data.loginUser.color,
+    };
+
+    users.push(newUser);
 
     socket.broadcast.emit("receiveUsers", users);
   });
@@ -41,19 +45,29 @@ io.on("connection", (socket) => {
 
   socket.on("send_winner_name", (data) => {
     winnerName = data.winnerName;
+
+    // Find the winner in the users array and update their wins
+    const winner = users.find((user) => user.name === winnerName);
+    if (winner) {
+      winner.wins += 1;
+      io.emit("receiveUsers", users); // Update all clients with the new user list
+    }
+
     socket.broadcast.emit("receive_winner_name", winnerName);
+  });
+
+  socket.on("send_clearBalls", () => {
+    io.emit("receive_clearBalls");
   });
 
   socket.on("sendNumber", (number) => {
     // Update the currentNumber and broadcast it to all clients
-    console.log("number received in backend" + currentNumber);
     currentNumber = number;
     io.emit("receiveNumber", currentNumber);
 
     // Reset the number to 0 after 5 seconds
     setTimeout(() => {
       currentNumber = 0;
-      console.log("reset number");
       io.emit("receiveNumber", currentNumber);
     }, 3000);
   });

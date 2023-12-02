@@ -13,7 +13,6 @@ const AugmentedTable = () => {
   useEffect(() => {
     // Listen for the "namesCleared" event
     socket.on("receiveNumber", (data) => {
-      console.log(data);
       setNumberActive(data); // Clear names on the client side
     });
 
@@ -22,35 +21,59 @@ const AugmentedTable = () => {
     });
   }, []);
 
-  const handleLogin = (playerName, index) => {
+  const handleLogin = (playerData, index) => {
     const updatedUsers = [...users];
-    updatedUsers[index] = playerName;
+    updatedUsers[index] = playerData;
     setUsers(updatedUsers);
+  };
+
+  const clearNames = () => {
+    socket.emit("clearNames");
+  };
+
+  const sendClearBalls = () => {
+    socket.emit("send_clearBalls");
+  };
+
+  const resetCards = () => {
+    socket.emit("resetCards");
+  };
+
+  const nextRound = () => {
+    sendClearBalls();
+    resetCards();
+  };
+
+  const endGame = () => {
+    clearNames();
+    sendClearBalls();
   };
 
   return (
     <div className={styles.tableContainer}>
+      <button onClick={nextRound}>Next Round</button>
+      <button onClick={endGame}>End Game</button>
       {numberActive}
       <div className={styles.midPlayereCards}>
         {" "}
         {users[0].length <= 1 ? (
           <PlayerTableLogin
-            loginNameButtonClick={(playerName) => handleLogin(playerName, 0)}
+            loginUserButtonClick={(playerData) => handleLogin(playerData, 0)}
           />
         ) : (
           <PlayerTableMain
-            loginName={users[0]}
+            loginUser={users[0]}
             rotation={90}
             cardNumberActive={numberActive}
           />
         )}
         {users[1].length <= 1 ? (
           <PlayerTableLogin
-            loginNameButtonClick={(playerName) => handleLogin(playerName, 1)}
+            loginUserButtonClick={(playerData) => handleLogin(playerData, 1)}
           />
         ) : (
           <PlayerTableMain
-            loginName={users[1]}
+            loginUser={users[1]}
             rotation={-90}
             cardNumberActive={numberActive}
           />
@@ -59,31 +82,31 @@ const AugmentedTable = () => {
       <div className={styles.bottomPlayereCards}>
         {users[2].length <= 1 ? (
           <PlayerTableLogin
-            loginNameButtonClick={(playerName) => handleLogin(playerName, 2)}
+            loginUserButtonClick={(playerData) => handleLogin(playerData, 2)}
           />
         ) : (
           <PlayerTableMain
-            loginName={users[2]}
+            loginUser={users[2]}
             cardNumberActive={numberActive}
           />
         )}
         {users[3].length <= 1 ? (
           <PlayerTableLogin
-            loginNameButtonClick={(playerName) => handleLogin(playerName, 3)}
+            loginUserButtonClick={(playerData) => handleLogin(playerData, 3)}
           />
         ) : (
           <PlayerTableMain
-            loginName={users[3]}
+            loginUser={users[3]}
             cardNumberActive={numberActive}
           />
         )}
         {users[4].length <= 1 ? (
           <PlayerTableLogin
-            loginNameButtonClick={(playerName) => handleLogin(playerName, 4)}
+            loginUserButtonClick={(playerData) => handleLogin(playerData, 4)}
           />
         ) : (
           <PlayerTableMain
-            loginName={users[4]}
+            loginUser={users[4]}
             cardNumberActive={numberActive}
           />
         )}

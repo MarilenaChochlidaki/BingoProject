@@ -6,7 +6,6 @@ const socket = io.connect("http://192.168.1.3:3001");
 function BingoButton({ isActive, userName }) {
   const handleButtonClick = () => {
     // Add your logic here for handling button click when active
-    console.log("Button clicked by" + userName);
 
     socket.emit("send_winner_name", { winnerName: userName });
   };
