@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import styles from "./SurroundWall.module.css";
 import { UserWallCard } from "../../components/UserWallCard/UserWallCard";
+import { BallDisplay } from "../../components/BallDisplay/BallDisplay";
 import MicrophoneSpeech from "../../components/MicrophoneSpeech/MicrophoneSpeech";
 const socket = io.connect("http://192.168.1.3:3001");
 
@@ -17,14 +18,21 @@ function SurroundWall() {
     .map((item, index) => {
       // map content to html elements
       return (
-        <div
+        // <div
+        //   key={index}
+        //   className={`${styles.ballContainer} ${
+        //     item.isDrawn ? styles.drawn : ""
+        //   }`}
+        // >
+        //   {index + 1}
+        // </div>
+        <BallDisplay
           key={index}
-          className={`${styles.ballContainer} ${
-            item.isDrawn ? styles.drawn : ""
-          }`}
-        >
-          {index + 1}
-        </div>
+          number={index + 1}
+          ballDimension={50}
+          numberSize={30}
+          isDrawn={item.isDrawn}
+        />
       );
     })
     .reduce(function (r, element, index) {

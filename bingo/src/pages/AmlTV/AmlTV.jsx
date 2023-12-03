@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import styles from "./AmlTV.module.css";
 import { RulesOverlayTV } from "../../components/RulesOverlayTV/RulesOverlayTV";
-import { BallDisplayTV } from "../../components/BallDisplayTV/BallDisplayTV";
+import { BallDisplay } from "../../components/BallDisplay/BallDisplay";
 const socket = io.connect("http://192.168.1.3:3001");
 
 export const AmlTV = () => {
@@ -34,7 +34,7 @@ export const AmlTV = () => {
       {winnerUser && winnerUser.length > 1
         ? winnerUser + " is the winner!"
         : ""}
-      <BallDisplayTV number={numberActive} />
+      <BallDisplay number={numberActive} ballDimension={100} numberSize={25} />
       <RulesOverlayTV trigger={showRules} />
     </div>
   );
