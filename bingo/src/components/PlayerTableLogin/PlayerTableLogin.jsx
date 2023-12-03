@@ -4,7 +4,10 @@ import io from "socket.io-client";
 
 const socket = io.connect("http://192.168.1.3:3001");
 
-export const PlayerTableLogin = ({ loginUserButtonClick }) => {
+export const PlayerTableLogin = ({
+  loginUserButtonClick,
+  disabledButtonColors,
+}) => {
   const [user, setUser] = useState({ name: "", color: "" });
 
   const logIn = () => {
@@ -26,7 +29,10 @@ export const PlayerTableLogin = ({ loginUserButtonClick }) => {
         }}
       ></input>
       <button onClick={logIn}>Login</button>
-      <ColorsBar onColorClick={handleColorClick} />
+      <ColorsBar
+        onColorClick={handleColorClick}
+        disabledColors={disabledButtonColors}
+      />
     </div>
   );
 };

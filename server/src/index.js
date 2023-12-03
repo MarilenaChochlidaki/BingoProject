@@ -60,6 +60,10 @@ io.on("connection", (socket) => {
     io.emit("receive_clearBalls");
   });
 
+  socket.on("send_showRules", (data) => {
+    io.emit("receive_showRules", data);
+  });
+
   socket.on("sendNumber", (number) => {
     // Update the currentNumber and broadcast it to all clients
     currentNumber = number;

@@ -9,6 +9,7 @@ const socket = io.connect("http://192.168.1.3:3001");
 const AugmentedTable = () => {
   const [users, setUsers] = useState(["", "", "", "", ""]);
   const [numberActive, setNumberActive] = useState(0);
+  const [showRules, setShowRules] = useState(false);
 
   useEffect(() => {
     // Listen for the "namesCleared" event
@@ -39,6 +40,12 @@ const AugmentedTable = () => {
     socket.emit("resetCards");
   };
 
+  const activateShowRules = () => {
+    setShowRules(!showRules);
+    console.log(showRules);
+    socket.emit("send_showRules", showRules);
+  };
+
   const nextRound = () => {
     sendClearBalls();
     resetCards();
@@ -49,16 +56,20 @@ const AugmentedTable = () => {
     sendClearBalls();
   };
 
+  const colorsChosen = users.map((obj) => obj.color);
+
   return (
     <div className={styles.tableContainer}>
       <button onClick={nextRound}>Next Round</button>
       <button onClick={endGame}>End Game</button>
+      <button onClick={activateShowRules}>Show Rules</button>
       {numberActive}
       <div className={styles.midPlayereCards}>
         {" "}
         {users[0].length <= 1 ? (
           <PlayerTableLogin
             loginUserButtonClick={(playerData) => handleLogin(playerData, 0)}
+            disabledButtonColors={colorsChosen}
           />
         ) : (
           <PlayerTableMain
@@ -70,6 +81,7 @@ const AugmentedTable = () => {
         {users[1].length <= 1 ? (
           <PlayerTableLogin
             loginUserButtonClick={(playerData) => handleLogin(playerData, 1)}
+            disabledButtonColors={colorsChosen}
           />
         ) : (
           <PlayerTableMain
@@ -83,6 +95,7 @@ const AugmentedTable = () => {
         {users[2].length <= 1 ? (
           <PlayerTableLogin
             loginUserButtonClick={(playerData) => handleLogin(playerData, 2)}
+            disabledButtonColors={colorsChosen}
           />
         ) : (
           <PlayerTableMain
@@ -93,6 +106,7 @@ const AugmentedTable = () => {
         {users[3].length <= 1 ? (
           <PlayerTableLogin
             loginUserButtonClick={(playerData) => handleLogin(playerData, 3)}
+            disabledButtonColors={colorsChosen}
           />
         ) : (
           <PlayerTableMain
@@ -103,6 +117,7 @@ const AugmentedTable = () => {
         {users[4].length <= 1 ? (
           <PlayerTableLogin
             loginUserButtonClick={(playerData) => handleLogin(playerData, 4)}
+            disabledButtonColors={colorsChosen}
           />
         ) : (
           <PlayerTableMain

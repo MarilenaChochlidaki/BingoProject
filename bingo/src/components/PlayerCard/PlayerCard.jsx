@@ -15,11 +15,13 @@ export const PlayerCard = ({
   rotation = 0,
   cardNumberActive = 0,
   bingoActivate,
+  color = "",
 }) => {
   const [ballColumns, setBallColumns] = useState([[], [], [], [], []]);
   const [win, setWin] = useState(false);
   const cardStyle = {
     transform: `rotate(${rotation}deg)`,
+    backgroundColor: color,
   };
 
   const initialBallColumns = () => {

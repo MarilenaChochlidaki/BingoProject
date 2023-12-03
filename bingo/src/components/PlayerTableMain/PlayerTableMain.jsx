@@ -40,6 +40,7 @@ export const PlayerTableMain = ({
         rotation={rotation}
         cardNumberActive={cardNumberActive}
         bingoActivate={handleBingoButton}
+        color={loginUser.color}
       />
       <BingoButton isActive={bingoActive} userName={loginUser.name} />
       {loginUser.name}
