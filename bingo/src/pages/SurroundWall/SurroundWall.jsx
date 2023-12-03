@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import styles from "./SurroundWall.module.css";
 import { UserWallCard } from "../../components/UserWallCard/UserWallCard";
+import MicrophoneSpeech from "../../components/MicrophoneSpeech/MicrophoneSpeech";
 const socket = io.connect("http://192.168.1.3:3001");
 
 function SurroundWall() {
@@ -87,6 +88,7 @@ function SurroundWall() {
 
   return (
     <div>
+      <MicrophoneSpeech />
       {usersReceived.length === 0 ? (
         <p>Waiting for Players...</p>
       ) : (
