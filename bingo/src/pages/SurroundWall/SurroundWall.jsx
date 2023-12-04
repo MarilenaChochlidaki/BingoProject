@@ -4,7 +4,7 @@ import styles from "./SurroundWall.module.css";
 import { UserWallCard } from "../../components/UserWallCard/UserWallCard";
 import { BallDisplay } from "../../components/BallDisplay/BallDisplay";
 import MicrophoneSpeech from "../../components/MicrophoneSpeech/MicrophoneSpeech";
-const socket = io.connect("http://192.168.1.3:3001");
+const socket = io.connect("http://192.168.1.13:3001");
 
 function SurroundWall() {
   const elementsPerRow = 15;
@@ -30,7 +30,7 @@ function SurroundWall() {
           key={index}
           number={index + 1}
           ballDimension={50}
-          numberSize={30}
+          numberSize={25}
           isDrawn={item.isDrawn}
         />
       );
@@ -95,16 +95,18 @@ function SurroundWall() {
   };
 
   return (
-    <div>
+    <div className={styles.align}>
       <MicrophoneSpeech />
       {usersReceived.length === 0 ? (
-        <p>Waiting for Players...</p>
+        <p></p>
       ) : (
-        <div>
+        <div className={styles.bingoPlayers}>
           {usersReceived.map((wall_user) => (
             <UserWallCard key={wall_user.name} user={wall_user} />
           ))}
-          <button onClick={sendNumberOnce}>Send Number Once</button>
+          <button className={styles.sendNumberButton} onClick={sendNumberOnce}>
+            Send Number Once
+          </button>
         </div>
       )}
       <div className={styles.bingoBoard}>{rows}</div>

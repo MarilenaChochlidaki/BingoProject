@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import MobileLogin from "./MobileLogin/MobileLogin";
 import MobileMain from "./MobileMain/MobileMain";
 
-const socket = io.connect("http://192.168.1.3:3001");
+const socket = io.connect("http://192.168.1.13:3001");
 
 export const Mobile = () => {
   const [user, setUser] = useState("");

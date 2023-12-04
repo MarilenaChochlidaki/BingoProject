@@ -1,5 +1,32 @@
+.playerContainer {
+  display: flex;
+  font-size: x-large;
+  flex-direction: column;
+}
+
+.playerName {
+  margin-bottom: -10px;
+  padding-right: 150px;
+  display: inline;
+}
+
+.circleContainer {
+  justify-content: center;
+  margin-left: 97.5%;
+}
+
 .circle {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.wins {
+  color: black;
+  font-size: x-large;
+  font-weight: bold;
 }

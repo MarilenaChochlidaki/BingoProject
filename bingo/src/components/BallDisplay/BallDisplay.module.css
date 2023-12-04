@@ -2,9 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  height: 100px;
-  background: yellow;
+  background: rgb(0, 0, 0);
   border-radius: 50%;
   font-weight: bold;
 }
