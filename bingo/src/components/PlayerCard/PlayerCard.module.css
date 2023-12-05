@@ -1,0 +1,33 @@
+.cardContainer {
+  width: 252px;
+  height: 335px;
+  background: #d9d9d9;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.columnContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ballButton {
+  display: flex;
+  padding: 5px 10px; /* Adjust the padding to make the buttons smaller */
+  width: 35px;
+  height: 35px;
+  background-color: #3498db; /* Example background color */
+  color: #fff; /* Example text color */
+  border: none;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
+
+.marked {
+  background-color: red;
+}

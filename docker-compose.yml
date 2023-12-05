@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  server:
+    build: ./server
+    container_name: server_c
+    ports:
+      - "3001:3001"
+    networks:
+      - test
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+
+  bingo:
+    build: ./bingo
+    container_name: bingo_c
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    networks:
+      - test
+    # volumes:
+    #   - ./bingo:/app
+    #   - .app/node_modules
+networks:
+  test:
+    name: "testtest"

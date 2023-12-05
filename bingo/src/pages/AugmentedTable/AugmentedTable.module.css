@@ -1,0 +1,27 @@
+.tableContainer {
+  width: 1920px;
+  height: 900px;
+  display: flex;
+  padding: 0px 0px 23px 0px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.midPlayereCards {
+  display: flex;
+  padding: 0px 0px 0px 50px;
+  justify-content: center;
+  align-items: center;
+  gap: 990px;
+}
+
+.bottomPlayereCards {
+  display: flex;
+  height: 335px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 402px;
+}

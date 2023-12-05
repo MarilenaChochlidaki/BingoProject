@@ -1,15 +1,31 @@
-import React, {useState} from 'react'
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import io from "socket.io-client";
+import MobileLogin from "./MobileLogin/MobileLogin";
+import MobileMain from "./MobileMain/MobileMain";
+
+const socket = io.connect("http://192.168.1.3:3001");
+
 export const Mobile = () => {
-    const [count, setCount] = useState(0);
-    const navigate = useNavigate();
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    socket.on("namesCleared", () => {
+      setUser(""); // Clear names on the client side
+    });
+  }, []);
+
+  const handleLogin = (loginUser) => {
+    setUser(loginUser);
+  };
+
   return (
     <div>
-      <h1>Home Page</h1>
-      <p>Count: {count}</p>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-      <button onClick={() => setCount(count - 1)}>Increment</button>
-      <button onClick={() => navigate("/")}> go Home </button>
+      <h1>Mobile</h1>
+      {user.length <= 1 ? (
+        <MobileLogin loginUserButtonClick={handleLogin} />
+      ) : (
+        <MobileMain loginUser={user} />
+      )}
     </div>
-  )
-}
+  );
+};
