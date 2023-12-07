@@ -1,10 +1,11 @@
+// export default SurroundWall;
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import styles from "./SurroundWall.module.css";
 import { UserWallCard } from "../../components/UserWallCard/UserWallCard";
 import { BallDisplay } from "../../components/BallDisplay/BallDisplay";
 import MicrophoneSpeech from "../../components/MicrophoneSpeech/MicrophoneSpeech";
-const socket = io.connect("http://192.168.1.3:3001");
+const socket = io.connect("http://192.168.1.13:3001");
 
 function SurroundWall() {
   const elementsPerRow = 15;
@@ -96,18 +97,44 @@ function SurroundWall() {
 
   return (
     <div>
+      <div className={styles.players}></div>
+      <p className={styles.playerstxt}>Players</p>
+      <div className={styles.ycircle}></div>
+      <p className={styles.ycircletxt}>BINGO</p>
+      <div className={styles.rect}></div>
       <MicrophoneSpeech />
       {usersReceived.length === 0 ? (
-        <p>Waiting for Players...</p>
+        <p></p>
       ) : (
         <div>
           {usersReceived.map((wall_user) => (
             <UserWallCard key={wall_user.name} user={wall_user} />
           ))}
-          <button onClick={sendNumberOnce}>Send Number Once</button>
+          <button className={styles.sno} onClick={sendNumberOnce}>
+            Send Number Once
+          </button>
         </div>
       )}
-      <div className={styles.bingoBoard}>{rows}</div>
+      <div className={styles.bingoBoard}>
+        {rows}
+        <div className={styles.bingocontainer}>
+          <div className={styles.circle}>
+            <div className={styles.letter}>B</div>
+          </div>
+          <div className={styles.circle}>
+            <div className={styles.letter}>I</div>
+          </div>
+          <div className={styles.circle}>
+            <div className={styles.letter}>N</div>
+          </div>
+          <div className={styles.circle}>
+            <div className={styles.letter}>G</div>
+          </div>
+          <div className={styles.circle}>
+            <div className={styles.letter}>O</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

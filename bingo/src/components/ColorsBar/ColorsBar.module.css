@@ -1,8 +1,16 @@
 .colorButton {
   width: 30px;
   height: 30px;
+  border-radius: 50%;
+  left: 75px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: relative;
+  top: 539px;
+  margin: 5px;
 }
 
 .colorButton:disabled {
-  opacity: 0.5;
+  opacity: 0.3;
 }

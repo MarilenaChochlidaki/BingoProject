@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 import MobileLogin from "./MobileLogin/MobileLogin";
 import MobileMain from "./MobileMain/MobileMain";
+import styles from "./Mobile.module.css";
 
-const socket = io.connect("http://192.168.1.3:3001");
+const socket = io.connect("http://192.168.1.13:3001");
 
 export const Mobile = () => {
   const [user, setUser] = useState("");
@@ -20,7 +21,6 @@ export const Mobile = () => {
 
   return (
     <div>
-      <h1>Mobile</h1>
       {user.length <= 1 ? (
         <MobileLogin loginUserButtonClick={handleLogin} />
       ) : (

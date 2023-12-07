@@ -8,7 +8,7 @@ export const BallDisplay = ({ number, ballDimension, numberSize, isDrawn }) => {
         width: `${ballDimension}px`,
         height: `${ballDimension}px`,
         fontSize: numberSize,
-        backgroundColor: isDrawn ? "red" : "yellow",
+        backgroundColor: isDrawn ? "yellow" : "black",
       }}
       className={styles.ballContainer}
     >

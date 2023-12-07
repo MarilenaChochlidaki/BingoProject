@@ -13,8 +13,11 @@
 
 .showPopupContent {
   position: relative;
-  padding: 32px;
-  width: 100%;
-  max-width: 640px;
-  background-color: white;
+  background: url("../../assets/images/bingo_rules_mobile.png");
+  width: 420px;
+  height: 600px;
+  background-size: cover;
+  background-position: center;
+  top: 145px;
+  z-index: 2;
 }

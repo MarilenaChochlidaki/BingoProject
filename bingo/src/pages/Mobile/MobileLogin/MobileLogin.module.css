@@ -1,0 +1,111 @@
+.input {
+  position: absolute;
+  top: 50%;
+  border-bottom-color: black;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  font-size: x-large;
+  font-family: "Quicksand";
+  left: 17%;
+}
+
+.txt {
+  font-size: x-large;
+  font-family: "Quicksand";
+  position: absolute;
+  left: 17%;
+  top: 56%;
+}
+
+.ybutton {
+  background-color: #ffe500;
+  border-radius: 8px;
+  width: 166px;
+  height: 46px;
+  font-size: x-large;
+  color: black;
+  font-weight: bold;
+  font-family: "Quicksand";
+  border-color: transparent;
+  position: absolute;
+  top: 83%;
+  left: 30%;
+  box-shadow: 2px 2px 5px rgba(113, 95, 28, 0.45);
+}
+
+.rules {
+  color: #165cbe;
+  border-color: transparent;
+  background-color: white;
+  font-size: larger;
+  position: absolute;
+  left: 26%;
+  top: 96%;
+}
+
+.icon {
+  width: 29px;
+  height: 27px;
+  top: 789px;
+  left: 278px;
+  z-index: -1;
+  position: relative;
+  background: url("../../../assets/images/icon_book_2.png");
+}
+
+.logo {
+  background: url("../../../assets/images/Group 681.png");
+  position: absolute;
+  width: 367px;
+  left: 17px;
+  top: 3px;
+  height: 304px;
+}
+
+.h {
+  font-family: "Quicksand";
+  font-weight: bold;
+  position: absolute;
+  left: 17%;
+  top: 295px;
+}
+
+/* .test {
+  width: 100px;
+  height: 100px;
+  background-color: #ffe500;
+  position: relative;
+  animation-name: example;
+  animation-duration: 5s;
+  border-radius: 50%;
+  animation-iteration-count: infinite;
+}
+
+@keyframes example {
+  0% {
+    background-color: #ffe500;
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    background-color: #ffe500;
+    left: 5px;
+    top: 2px;
+  }
+  50% {
+    background-color: #ffe500;
+    left: 5px;
+    top: 5px;
+  }
+  75% {
+    background-color: #ffe500;
+    left: 2px;
+    top: 5px;
+  }
+  100% {
+    background-color: #ffe500;
+    left: 0px;
+    top: 0px;
+  }
+} */
