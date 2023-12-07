@@ -21,9 +21,7 @@ export const RulesOverlayMobile = ({ trigger, setTrigger }) => {
 
   return trigger ? (
     <div className={styles.showPopupRules}>
-      <div className={styles.showPopupContent}>
-        <b>This are the Mobile rules</b>
-      </div>
+      <div className={styles.showPopupContent}></div>
     </div>
   ) : (
     ""

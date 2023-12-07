@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
+import styles from "./MicrophoneSpeech.module.css";
 
 const MicrophoneSpeech = () => {
   const {
@@ -30,7 +31,7 @@ const MicrophoneSpeech = () => {
   }
 
   return (
-    <div>
+    <div className={styles.micro}>
       <p>Microphone: {listening ? "on" : "off"}</p>
       <button onClick={SpeechRecognition.startListening}>Start</button>
       <button onClick={SpeechRecognition.stopListening}>Stop</button>
