@@ -29,11 +29,13 @@ export const AmlTV = () => {
   }, []);
 
   return (
-    <div>
-      <h1 className={styles.homeTitle}>Table</h1>
+    <div className={styles.back}>
       {winnerUser && winnerUser.length > 1
         ? winnerUser + " is the winner!"
         : ""}
+      <video autoplay playsinline muted loop controls className={styles.video}>
+        <source src="../assets/videos/videoBg.mp4" type="video/mp4" />
+      </video>
       <BallDisplay number={numberActive} ballDimension={100} numberSize={25} />
       <RulesOverlayTV trigger={showRules} />
     </div>
