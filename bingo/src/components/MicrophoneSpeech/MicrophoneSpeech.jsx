@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -11,29 +11,23 @@ const MicrophoneSpeech = () => {
     resetTranscript,
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
+  const [isListening, setIsListening] = useState(false);
 
-  useEffect(() => {
-    const getMicrophonePermission = async () => {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-          audio: true,
-        });
-        console.log("Microphone access granted:", stream);
-      } catch (error) {
-        console.error("Error accessing microphone:", error);
-      }
-    };
-
-    getMicrophonePermission();
-  }, []);
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
   }
 
+  const handleListening = () => {
+    setIsListening(true);
+    SpeechRecognition.startListening({
+      continuous: true,
+    });
+  };
+
   return (
-    <div className={styles.micro}>
+    <div>
       <p>Microphone: {listening ? "on" : "off"}</p>
-      <button onClick={SpeechRecognition.startListening}>Start</button>
+      <button onClick={handleListening}>Start</button>
       <button onClick={SpeechRecognition.stopListening}>Stop</button>
       <button onClick={resetTranscript}>Reset</button>
       <p>{transcript}</p>

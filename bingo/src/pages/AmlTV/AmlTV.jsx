@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import styles from "./AmlTV.module.css";
 import { RulesOverlayTV } from "../../components/RulesOverlayTV/RulesOverlayTV";
 import { BallDisplay } from "../../components/BallDisplay/BallDisplay";
-const socket = io.connect("http://192.168.1.13:3001");
+const socket = io.connect("http://192.168.1.3:3001");
 
 export const AmlTV = () => {
   const [winnerUser, setWinnerUser] = useState("");
