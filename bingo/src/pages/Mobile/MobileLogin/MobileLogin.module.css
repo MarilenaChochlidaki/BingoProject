@@ -1,4 +1,5 @@
 .input {
+  display: flex;
   position: absolute;
   top: 50%;
   border-bottom-color: black;
@@ -11,6 +12,7 @@
 }
 
 .txt {
+  display: flex;
   font-size: x-large;
   font-family: "Quicksand";
   position: absolute;
@@ -19,6 +21,7 @@
 }
 
 .ybutton {
+  display: flex;
   background-color: #ffe500;
   border-radius: 8px;
   width: 166px;
@@ -35,6 +38,7 @@
 }
 
 .rules {
+  display: flex;
   color: #165cbe;
   border-color: transparent;
   background-color: white;
@@ -45,6 +49,7 @@
 }
 
 .icon {
+  display: flex;
   width: 29px;
   height: 27px;
   top: 789px;
@@ -55,6 +60,7 @@
 }
 
 .logo {
+  display: flex;
   background: url("../../../assets/images/Group 681.png");
   position: absolute;
   width: 367px;
@@ -64,48 +70,10 @@
 }
 
 .h {
+  display: flex;
   font-family: "Quicksand";
   font-weight: bold;
   position: absolute;
   left: 17%;
   top: 295px;
 }
-
-/* .test {
-  width: 100px;
-  height: 100px;
-  background-color: #ffe500;
-  position: relative;
-  animation-name: example;
-  animation-duration: 5s;
-  border-radius: 50%;
-  animation-iteration-count: infinite;
-}
-
-@keyframes example {
-  0% {
-    background-color: #ffe500;
-    left: 0px;
-    top: 0px;
-  }
-  25% {
-    background-color: #ffe500;
-    left: 5px;
-    top: 2px;
-  }
-  50% {
-    background-color: #ffe500;
-    left: 5px;
-    top: 5px;
-  }
-  75% {
-    background-color: #ffe500;
-    left: 2px;
-    top: 5px;
-  }
-  100% {
-    background-color: #ffe500;
-    left: 0px;
-    top: 0px;
-  }
-} */

@@ -107,9 +107,9 @@ export const PlayerCard = ({
 
   return (
     <div>
-      PlayerCard
       {cardNumberActive}
       <div className={styles.cardContainer} style={cardStyle}>
+        <p className={styles.bingo}>BINGO</p>
         {ballColumns.map((column, columnIndex) => (
           <div key={columnIndex} className={styles.columnContainer}>
             {column.map((ball, ballIndex) => (

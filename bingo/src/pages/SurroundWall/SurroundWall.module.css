@@ -7,7 +7,7 @@
   flex-direction: column;
   gap: 38px;
   padding: 16px;
-  left: 311px;
+  left: 275px;
   border-radius: 16px;
   top: 101px;
 }
@@ -29,13 +29,15 @@
 }
 
 .drawn {
+  display: flex;
   background-color: red;
 }
 
 .sno {
+  display: flex;
   position: absolute;
   left: 300px;
-  bottom: 59px;
+  bottom: 70px;
 }
 
 .bingocontainer {
@@ -45,6 +47,7 @@
 }
 
 .circle {
+  display: flex;
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -62,6 +65,7 @@
 }
 
 .letter {
+  display: flex;
   font-weight: bold;
   font-size: 1.5em;
 }
@@ -77,6 +81,7 @@
 }
 
 .rect {
+  display: flex;
   background-color: black;
   width: 5px;
   height: 627px;
@@ -89,6 +94,7 @@
 }
 
 .players {
+  display: flex;
   background-color: #ffe500;
   position: relative;
   width: 197px;
@@ -97,6 +103,7 @@
 }
 
 .ycircle {
+  display: flex;
   background-color: #ffe500;
   border-radius: 50%;
   width: 76px;
@@ -107,6 +114,7 @@
 }
 
 .playerstxt {
+  display: flex;
   color: black;
   font-size: x-large;
   position: relative;
@@ -116,6 +124,7 @@
 }
 
 .ycircletxt {
+  display: flex;
   color: black;
   font-size: larger;
   position: relative;
