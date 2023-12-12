@@ -85,6 +85,13 @@ function SurroundWall() {
     socket.on("receive_clearBalls", () => {
       clearBalls(); // Clear names on the client side
     });
+
+    // Listen for the user logout event
+    socket.on("userLoggedOut", (logoutName) => {
+      setUsersReceived((currentUsers) =>
+        currentUsers.filter((user) => user.name !== logoutName)
+      );
+    });
   }, []);
 
   const sendNumberOnce = () => {

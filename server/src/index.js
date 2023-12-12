@@ -43,6 +43,12 @@ io.on("connection", (socket) => {
     io.emit("receive_resetCards");
   });
 
+  socket.on("send_logout_name", (data) => {
+    const logoutName = data.logoutName;
+    users = users.filter((user) => user.name !== logoutName);
+    io.emit("userLoggedOut", logoutName);
+  });
+
   socket.on("send_winner_name", (data) => {
     winnerName = data.winnerName;
 

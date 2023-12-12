@@ -23,6 +23,16 @@ const AugmentedTable = () => {
     socket.on("namesCleared", () => {
       setUsers([{}, {}, {}, {}, {}]); // Clear names on the client side
     });
+    socket.on("userLoggedOut", (logoutName) => {
+      setUsers((currentUsers) =>
+        currentUsers.filter((user) => user.name !== logoutName)
+      );
+    });
+
+    // Cleanup on unmount
+    return () => {
+      socket.off("userLoggedOut");
+    };
   }, []);
 
   const handleJoin = (playerData, index) => {
@@ -91,7 +101,7 @@ const AugmentedTable = () => {
       {numberActive}
       <div className={styles.midPlayereCards}>
         {" "}
-        {users[0].joined && profileGame ? (
+        {users[0] && users[0].joined && profileGame ? (
           startedGame ? (
             <PlayerTableMain
               loginUser={users[0]}
@@ -109,7 +119,7 @@ const AugmentedTable = () => {
             joinUserButtonClick={(playerData) => handleJoin(playerData, 0)}
           />
         )}
-        {users[1].joined && profileGame ? (
+        {users[1] && users[1].joined && profileGame ? (
           startedGame ? (
             <PlayerTableMain
               loginUser={users[1]}
@@ -129,7 +139,7 @@ const AugmentedTable = () => {
         )}
       </div>
       <div className={styles.bottomPlayereCards}>
-        {users[2].joined && profileGame ? (
+        {users[2] && users[2].joined && profileGame ? (
           startedGame ? (
             <PlayerTableMain
               loginUser={users[2]}
@@ -146,7 +156,7 @@ const AugmentedTable = () => {
             joinUserButtonClick={(playerData) => handleJoin(playerData, 2)}
           />
         )}
-        {users[3].joined && profileGame ? (
+        {users[3] && users[3].joined && profileGame ? (
           startedGame ? (
             <PlayerTableMain
               loginUser={users[3]}
@@ -163,7 +173,7 @@ const AugmentedTable = () => {
             joinUserButtonClick={(playerData) => handleJoin(playerData, 3)}
           />
         )}
-        {users[4].joined && profileGame ? (
+        {users[4] && users[4].joined && profileGame ? (
           startedGame ? (
             <PlayerTableMain
               loginUser={users[4]}
