@@ -31,7 +31,7 @@ function SurroundWall() {
           key={index}
           number={index + 1}
           ballDimension={50}
-          numberSize={30}
+          numberSize={25}
           isDrawn={item.isDrawn}
         />
       );
@@ -96,21 +96,16 @@ function SurroundWall() {
   };
 
   return (
-    <div>
-      <div className={styles.players}></div>
-      <p className={styles.playerstxt}>Players</p>
-      <div className={styles.ycircle}></div>
-      <p className={styles.ycircletxt}>BINGO</p>
-      <div className={styles.rect}></div>
+    <div className={styles.align}>
       <MicrophoneSpeech />
       {usersReceived.length === 0 ? (
         <p></p>
       ) : (
-        <div>
+        <div className={styles.bingoPlayers}>
           {usersReceived.map((wall_user) => (
             <UserWallCard key={wall_user.name} user={wall_user} />
           ))}
-          <button className={styles.sno} onClick={sendNumberOnce}>
+          <button className={styles.sendNumberButton} onClick={sendNumberOnce}>
             Send Number Once
           </button>
         </div>

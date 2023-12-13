@@ -6,17 +6,13 @@ import styles from "./UserWallCard.module.css";
 
 export const UserWallCard = ({ user }) => {
   return (
-    <div>
-      <p className={styles.name}>{user.name}</p>
-      <p className={styles.bingos}>{user.wins}</p>
-      <div
-        className={styles.line}
-        style={{ backgroundColor: user.color }}
-      ></div>
-      <div
-        className={styles.circle}
-        style={{ backgroundColor: user.color }}
-      ></div>
+    <div className={styles.playerContainer}>
+      <p className={styles.playerName}>{user.name}</p>
+      <div className={styles.circleContainer}>
+        <div className={styles.circle} style={{ backgroundColor: user.color }}>
+          <p className={styles.wins}>{user.wins}</p>
+        </div>
+      </div>
     </div>
   );
 };
