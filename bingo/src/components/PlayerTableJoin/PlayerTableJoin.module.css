@@ -1,8 +1,13 @@
 .joinButton {
-  background-color: #4336f4;
-  color: white;
+  background: url("../../assets/images/join.png");
+  width: 352px;
+  height: 394px;
+  border: none;
 }
 
 .joined {
-  background-color: #ff0e0e;
+  background: url("../../assets/images/exit.png");
+  width: 352px;
+  height: 394px;
+  border: none;
 }

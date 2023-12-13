@@ -21,8 +21,6 @@ export const PlayerTableJoin = ({ joinUserButtonClick }) => {
         userJoined.joined ? styles.joined : ""
       }`}
       onClick={handlePlayerJoin}
-    >
-      PlayerTableJoin
-    </button>
+    ></button>
   );
 };

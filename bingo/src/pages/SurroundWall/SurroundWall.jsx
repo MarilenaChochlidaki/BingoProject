@@ -103,7 +103,7 @@ function SurroundWall() {
   };
 
   return (
-    <div>
+    <div className={styles.dim}>
       <div className={styles.players}></div>
       <p className={styles.playerstxt}>Players</p>
       <div className={styles.ycircle}></div>
