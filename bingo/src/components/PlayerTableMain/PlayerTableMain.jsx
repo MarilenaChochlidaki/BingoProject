@@ -3,8 +3,9 @@ import styles from "./PlayerTableMain.module.css";
 import io from "socket.io-client";
 import { PlayerCard } from "../PlayerCard/PlayerCard";
 import BingoButton from "../BingoButton/BingoButton";
+import LogoutButton from "../LogoutButton/LogoutButton";
 
-const socket = io.connect("http://192.168.1.13:3001");
+const socket = io.connect("http://192.168.1.3:3001");
 
 export const PlayerTableMain = ({
   loginUser = { name: "", color: "" },
@@ -34,6 +35,8 @@ export const PlayerTableMain = ({
     setBingoActive(true);
   };
 
+  const handleLogout = () => {};
+
   return (
     <div>
       <PlayerCard
@@ -45,6 +48,7 @@ export const PlayerTableMain = ({
       <BingoButton isActive={bingoActive} userName={loginUser.name} />
       {loginUser.name}
       {loginUser.color}
+      <LogoutButton isMobile={false} userName={loginUser.name} />
     </div>
   );
 };

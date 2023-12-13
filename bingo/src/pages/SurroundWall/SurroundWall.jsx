@@ -5,7 +5,7 @@ import styles from "./SurroundWall.module.css";
 import { UserWallCard } from "../../components/UserWallCard/UserWallCard";
 import { BallDisplay } from "../../components/BallDisplay/BallDisplay";
 import MicrophoneSpeech from "../../components/MicrophoneSpeech/MicrophoneSpeech";
-const socket = io.connect("http://192.168.1.13:3001");
+const socket = io.connect("http://192.168.1.3:3001");
 
 function SurroundWall() {
   const elementsPerRow = 15;
@@ -85,6 +85,13 @@ function SurroundWall() {
     socket.on("receive_clearBalls", () => {
       clearBalls(); // Clear names on the client side
     });
+
+    // Listen for the user logout event
+    socket.on("userLoggedOut", (logoutName) => {
+      setUsersReceived((currentUsers) =>
+        currentUsers.filter((user) => user.name !== logoutName)
+      );
+    });
   }, []);
 
   const sendNumberOnce = () => {
@@ -96,20 +103,23 @@ function SurroundWall() {
   };
 
   return (
-    <div className={styles.align}>
-      <MicrophoneSpeech />
-      {usersReceived.length === 0 ? (
-        <p></p>
-      ) : (
-        <div className={styles.bingoPlayers}>
-          {usersReceived.map((wall_user) => (
-            <UserWallCard key={wall_user.name} user={wall_user} />
-          ))}
-          <button className={styles.sendNumberButton} onClick={sendNumberOnce}>
-            Send Number Once
-          </button>
-        </div>
-      )}
+    <div>
+      <div className={styles.players}></div>
+      <p className={styles.playerstxt}>Players</p>
+      <div className={styles.ycircle}></div>
+      <p className={styles.ycircletxt}>BINGO</p>
+      <div className={styles.rect}></div>
+      {/* <MicrophoneSpeech /> */}
+
+      <div>
+        {usersReceived.map((wall_user) => (
+          <UserWallCard key={wall_user.name} user={wall_user} />
+        ))}
+        <button className={styles.sno} onClick={sendNumberOnce}>
+          Send Number Once
+        </button>
+      </div>
+
       <div className={styles.bingoBoard}>
         {rows}
         <div className={styles.bingocontainer}>

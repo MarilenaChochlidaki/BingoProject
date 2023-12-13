@@ -11,7 +11,7 @@ app.use(cors());
 
 const io = new Server(server, {
   cors: {
-    origin: "http://192.168.1.13:3000",
+    origin: "http://192.168.1.3:3000",
     methods: ["GET", "POST"],
   },
 });
@@ -41,6 +41,12 @@ io.on("connection", (socket) => {
 
   socket.on("resetCards", () => {
     io.emit("receive_resetCards");
+  });
+
+  socket.on("send_logout_name", (data) => {
+    const logoutName = data.logoutName;
+    users = users.filter((user) => user.name !== logoutName);
+    io.emit("userLoggedOut", logoutName);
   });
 
   socket.on("send_winner_name", (data) => {
