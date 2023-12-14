@@ -31,7 +31,7 @@ function SurroundWall() {
           key={index}
           number={index + 1}
           ballDimension={50}
-          numberSize={30}
+          numberSize={25}
           isDrawn={item.isDrawn}
         />
       );
@@ -103,7 +103,7 @@ function SurroundWall() {
   };
 
   return (
-    <div>
+    <div className={styles.dim}>
       <div className={styles.players}></div>
       <p className={styles.playerstxt}>Players</p>
       <div className={styles.ycircle}></div>

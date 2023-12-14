@@ -1,5 +1,4 @@
 .input {
-  display: flex;
   position: absolute;
   top: 50%;
   border-bottom-color: black;
@@ -12,12 +11,16 @@
 }
 
 .txt {
-  display: flex;
   font-size: x-large;
   font-family: "Quicksand";
   position: absolute;
   left: 17%;
   top: 56%;
+}
+
+input::placeholder {
+  color: black;
+  text-align: left;
 }
 
 .ybutton {
@@ -35,6 +38,8 @@
   top: 83%;
   left: 30%;
   box-shadow: 2px 2px 5px rgba(113, 95, 28, 0.45);
+  align-items: center;
+  justify-content: center;
 }
 
 .rules {

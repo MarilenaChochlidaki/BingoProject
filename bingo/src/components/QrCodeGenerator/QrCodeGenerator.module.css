@@ -1,0 +1,8 @@
+.txt {
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  position: relative;
+  left: 6px;
+  font-family: "Quicksand";
+}

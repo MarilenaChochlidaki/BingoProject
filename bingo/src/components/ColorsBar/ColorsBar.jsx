@@ -24,7 +24,7 @@ export const ColorsBar = ({ onColorClick, disabledColors = [] }) => {
           key={index}
           style={{
             backgroundColor: button.color,
-            border: chosenColor === button.color ? "2px solid black" : "none",
+            border: chosenColor === button.color ? "3px solid black" : "none",
           }}
           className={styles.colorButton}
           onClick={() => handleColorClick(button.color)}

@@ -1,35 +1,32 @@
+.playerContainer {
+  display: flex;
+  font-size: x-large;
+  flex-direction: column;
+}
+
+.playerName {
+  margin-bottom: -10px;
+  padding-right: 150px;
+  display: inline;
+}
+
+.circleContainer {
+  justify-content: center;
+  margin-left: 97.5%;
+}
+
 .circle {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  position: absolute;
-  left: 181px;
-  margin-top: -299px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
 }
 
-.bingos {
+.wins {
   color: black;
   font-size: x-large;
-  position: relative;
-  top: -240px;
-  z-index: 2;
-  left: 194px;
   font-weight: bold;
-  z-index: 1;
-}
-
-.name {
-  color: black;
-  font-size: x-large;
-  position: relative;
-  font-weight: bold;
-  left: 11px;
-  bottom: 210px;
-}
-
-.line {
-  width: 197px;
-  margin-top: -284px;
-  height: 10px;
-  position: absolute;
 }

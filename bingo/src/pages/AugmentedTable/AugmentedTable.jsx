@@ -93,11 +93,17 @@ const AugmentedTable = () => {
 
   return (
     <div className={styles.tableContainer}>
+      <div className={styles.logo_join}></div>
       <button onClick={nextRound}>Next Round</button>
-      <button onClick={endGame}>End Game</button>
-      <button onClick={activateShowRules}>Show Rules</button>
-      <button onClick={handleNext}>Next</button>
-      <button onClick={handleStart}>Play</button>
+      {/* <div className={styles.logo_edit}></div> */}
+      <button className={styles.b_b} onClick={endGame}></button>
+      <button className={styles.rules} onClick={activateShowRules}></button>
+      <button className={styles.y_b} onClick={handleNext}>
+        Next
+      </button>
+      <button className={styles.p_b} onClick={handleStart}>
+        Play
+      </button>
       {numberActive}
       <div className={styles.midPlayereCards}>
         {" "}

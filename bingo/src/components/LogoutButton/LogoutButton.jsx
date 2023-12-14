@@ -13,9 +13,7 @@ function LogoutButton({ isMobile, userName }) {
     <button
       onClick={handleButtonClick}
       className={`${isMobile ? styles.buttonMobile : styles.buttonTable}`}
-    >
-      Logout
-    </button>
+    ></button>
   );
 }
 

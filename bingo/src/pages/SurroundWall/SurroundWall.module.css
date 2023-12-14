@@ -1,3 +1,8 @@
+.align {
+  display: flex;
+  padding-top: 30px;
+}
+
 .bingoBoard {
   position: absolute;
   background: #246bce;
@@ -18,11 +23,10 @@
   gap: 40px;
 }
 
-.ballContainer {
-  width: 60px;
-  height: 60px;
-  background-color: yellow;
-  border-radius: 50%;
+.bingoPlayers {
+  background: rgb(255, 255, 255);
+  width: 150px;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,6 +42,7 @@
   position: absolute;
   left: 300px;
   bottom: 70px;
+  z-index: 2;
 }
 
 .bingocontainer {
@@ -84,7 +89,7 @@
   display: flex;
   background-color: black;
   width: 5px;
-  height: 627px;
+  height: 655px;
   position: absolute;
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;

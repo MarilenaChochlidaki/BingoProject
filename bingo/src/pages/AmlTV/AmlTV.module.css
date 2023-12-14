@@ -1,9 +1,3 @@
-.homeTitle {
-  width: 100%;
-  text-align: center;
-  background: aqua;
-}
-
 .pageButtons {
   display: flex;
   flex-direction: row;
@@ -11,8 +5,25 @@
   gap: 10px;
 }
 
-.video {
-  pointer-events: none;
-  width: "750";
-  height: "500";
+.back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 15%;
+  flex-direction: column;
+}
+
+.qr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  background: url("../../assets/images/bingo_logo.png");
+  width: 480px;
+  height: 214px;
+  position: absolute;
+  top: 20px;
 }

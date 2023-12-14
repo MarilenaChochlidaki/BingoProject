@@ -53,12 +53,11 @@ io.on("connection", (socket) => {
     winnerName = data.winnerName;
 
     // Find the winner in the users array and update their wins
-    const winner = users.find((user) => user.name === winnerName);
-    if (winner) {
-      winner.wins += 1;
-      io.emit("receiveUsers", users); // Update all clients with the new user list
-    }
+    const updatedUsers = users.map((user) =>
+      user.name === winnerName ? { ...user, wins: user.wins + 1 } : user
+    );
 
+    io.emit("receiveUsers", updatedUsers); // Update all clients with the new user list
     socket.broadcast.emit("receive_winner_name", winnerName);
   });
 
@@ -79,7 +78,7 @@ io.on("connection", (socket) => {
     setTimeout(() => {
       currentNumber = 0;
       io.emit("receiveNumber", currentNumber);
-    }, 3000);
+    }, 30000);
   });
 });
 

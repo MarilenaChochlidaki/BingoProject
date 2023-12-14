@@ -31,15 +31,15 @@ export const AmlTV = () => {
 
   return (
     <div className={styles.back}>
+      <div className={styles.logo}> </div>
       {winnerUser && winnerUser.length > 1
         ? winnerUser + " is the winner!"
         : ""}
-      <video autoplay playsinline muted loop controls className={styles.video}>
-        <source src="../assets/videos/videoBg.mp4" type="video/mp4" />
-      </video>
       <BallDisplay number={numberActive} ballDimension={100} numberSize={25} />
       <RulesOverlayTV trigger={showRules} />
-      <QrCodeGenerator />
+      <div className={styles.qr}>
+        <QrCodeGenerator />
+      </div>
     </div>
   );
 };

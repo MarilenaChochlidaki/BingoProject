@@ -1,27 +1,88 @@
 .tableContainer {
   width: 1920px;
-  height: 900px;
+  height: 1080px;
   display: flex;
   padding: 0px 0px 23px 0px;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-  gap: 10px;
+  align-items: center;
+  gap: 41px;
+  background: url("../../assets/images/balls.png");
 }
 
 .midPlayereCards {
   display: flex;
-  padding: 0px 0px 0px 50px;
+  padding: 0px 0px 0px 0px;
   justify-content: center;
   align-items: center;
-  gap: 990px;
+  gap: 1208px;
+  position: absolute;
+  top: 25%;
+  align-items: stretch;
 }
 
 .bottomPlayereCards {
   display: flex;
-  height: 335px;
+  height: 282px;
   padding: 10px;
   justify-content: center;
   align-items: center;
-  gap: 402px;
+  gap: 430px;
+  position: absolute;
+  top: 67%;
+  align-items: stretch;
 }
+
+.y_b {
+  width: 241px;
+  border-radius: 20px;
+  border: none;
+  height: 81px;
+  font-size: xxx-large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  font-family: "Quicksand";
+  background-color: #ffe500;
+  top: 40%;
+  box-shadow: 2px 2px 10px rgba(113, 95, 28, 0.45);
+  z-index: 2;
+}
+
+.p_b {
+  z-index: 2;
+}
+
+.b_b {
+  border-radius: 50%;
+  width: 118px;
+  height: 115px;
+  background: url("../../assets/images/logout.png");
+  border: none;
+  position: absolute;
+  left: 8px;
+  top: 10px;
+}
+
+.rules {
+  background: url("../../assets/images/rules.png");
+  border-radius: 50%;
+  width: 118px;
+  height: 115px;
+  border: none;
+  position: absolute;
+  left: 94%;
+  top: 10px;
+}
+
+.logo_join {
+  background: url("../../assets/images/bingo_logo_join_game.png");
+  width: 372px;
+  height: 277px;
+}
+
+/* .logo_edit {
+  background: url("../../assets/images/set_prof.png");
+  width: 372px;
+  height: 277px;
+} */
