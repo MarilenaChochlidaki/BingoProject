@@ -1,3 +1,8 @@
+.dim {
+  width: 1920px;
+  height: 1080px;
+}
+
 .align {
   display: flex;
   padding-top: 30px;

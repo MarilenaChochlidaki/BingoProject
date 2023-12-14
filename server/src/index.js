@@ -11,7 +11,7 @@ app.use(cors());
 
 const io = new Server(server, {
   cors: {
-    origin: "http://192.168.1.3:3000",
+    origin: "http://147.52.221.194:3000",
     methods: ["GET", "POST"],
   },
 });
@@ -67,6 +67,10 @@ io.on("connection", (socket) => {
 
   socket.on("send_showRules", (data) => {
     io.emit("receive_showRules", data);
+  });
+
+  socket.on("send_startedGame", (data) => {
+    io.emit("receive_gameStarted", data);
   });
 
   socket.on("sendNumber", (number) => {

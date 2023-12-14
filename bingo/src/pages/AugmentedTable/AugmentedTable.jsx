@@ -5,7 +5,7 @@ import { PlayerTableMain } from "../../components/PlayerTableMain/PlayerTableMai
 import { PlayerTableLogin } from "../../components/PlayerTableLogin/PlayerTableLogin";
 import { PlayerTableJoin } from "../../components/PlayerTableJoin/PlayerTableJoin";
 
-const socket = io.connect("http://192.168.1.3:3001");
+const socket = io.connect("http://147.52.221.194:3001");
 
 const AugmentedTable = () => {
   const [users, setUsers] = useState([{}, {}, {}, {}, {}]);
@@ -34,6 +34,14 @@ const AugmentedTable = () => {
       socket.off("userLoggedOut");
     };
   }, []);
+
+  useEffect(() => {
+    socket.emit("send_showRules", showRules);
+  }, [showRules]);
+
+  useEffect(() => {
+    socket.emit("send_startedGame", startedGame);
+  }, [startedGame]);
 
   const handleJoin = (playerData, index) => {
     setUsers((currentUsers) => {
@@ -65,9 +73,7 @@ const AugmentedTable = () => {
   };
 
   const activateShowRules = () => {
-    setShowRules(!showRules);
-    console.log(showRules);
-    socket.emit("send_showRules", showRules);
+    setShowRules((prevShowRules) => !prevShowRules);
   };
 
   const nextRound = () => {

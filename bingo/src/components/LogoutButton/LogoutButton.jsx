@@ -1,7 +1,7 @@
 import React from "react";
 import io from "socket.io-client";
 import styles from "./LogoutButton.module.css";
-const socket = io.connect("http://192.168.1.3:3001");
+const socket = io.connect("http://147.52.221.194:3001");
 
 function LogoutButton({ isMobile, userName }) {
   const handleButtonClick = () => {

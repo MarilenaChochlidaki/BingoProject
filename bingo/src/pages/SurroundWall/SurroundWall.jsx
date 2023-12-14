@@ -5,7 +5,7 @@ import styles from "./SurroundWall.module.css";
 import { UserWallCard } from "../../components/UserWallCard/UserWallCard";
 import { BallDisplay } from "../../components/BallDisplay/BallDisplay";
 import MicrophoneSpeech from "../../components/MicrophoneSpeech/MicrophoneSpeech";
-const socket = io.connect("http://192.168.1.3:3001");
+const socket = io.connect("http://147.52.221.194:3001");
 
 function SurroundWall() {
   const elementsPerRow = 15;

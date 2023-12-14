@@ -3,7 +3,7 @@ import { ColorsBar } from "../ColorsBar/ColorsBar";
 import io from "socket.io-client";
 import styles from "./PlayerTableLogin.module.css";
 
-const socket = io.connect("http://192.168.1.3:3001");
+const socket = io.connect("http://147.52.221.194:3001");
 
 export const PlayerTableLogin = ({
   loginUserButtonClick,

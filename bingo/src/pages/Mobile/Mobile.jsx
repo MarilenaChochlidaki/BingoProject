@@ -3,15 +3,21 @@ import io from "socket.io-client";
 import MobileLogin from "./MobileLogin/MobileLogin";
 import MobileMain from "./MobileMain/MobileMain";
 import styles from "./Mobile.module.css";
+import { MobileWaiting } from "./MobileWaiting/MobileWaiting";
 
-const socket = io.connect("http://192.168.1.3:3001");
+const socket = io.connect("http://147.52.221.194:3001");
 
 export const Mobile = () => {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState({});
+  const [gameStarted, setGameStarted] = useState(false);
 
   useEffect(() => {
     socket.on("namesCleared", () => {
       setUser(""); // Clear names on the client side
+    });
+
+    socket.on("receive_gameStarted", () => {
+      setGameStarted(true);
     });
   }, []);
 
@@ -21,10 +27,15 @@ export const Mobile = () => {
 
   return (
     <div>
-      {user.length <= 1 ? (
-        <MobileLogin loginUserButtonClick={handleLogin} />
+      <p>{gameStarted ? "hello" : "no"}</p>
+      {user && user.name ? (
+        gameStarted ? (
+          <MobileMain loginUser={user} />
+        ) : (
+          <MobileWaiting />
+        )
       ) : (
-        <MobileMain loginUser={user} />
+        <MobileLogin loginUserButtonClick={handleLogin} />
       )}
     </div>
   );
