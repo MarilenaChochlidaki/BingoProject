@@ -25,7 +25,7 @@ export const MobileLogin = ({ loginUserButtonClick }) => {
   };
 
   return (
-    <div className="logIn">
+    <div className={styles.logIn}>
       <div className={styles.logo}></div>
       {/* <video width="320" height="240" controls autoplay muted>
         <source
@@ -34,15 +34,21 @@ export const MobileLogin = ({ loginUserButtonClick }) => {
         ></source>
       </video> */}
       <h1 className={styles.h}>Create your Profile</h1>
-      <input
-        className={styles.input}
-        placeholder="Enter your name"
-        onChange={(event) => {
-          setUser({ ...user, name: event.target.value });
-        }}
-      ></input>
-      <p className={styles.txt}>Choose theme color</p>
-      <ColorsBar onColorClick={handleColorClick} />
+      <div className={styles.nameContainer}>
+        <input
+          className={styles.input}
+          placeholder="Enter your name"
+          onChange={(event) => {
+            setUser({ ...user, name: event.target.value });
+          }}
+        ></input>
+      </div>
+
+      <div className={styles.colorContainer}>
+        <p className={styles.txt}>Choose theme color</p>
+        <ColorsBar onColorClick={handleColorClick} />
+      </div>
+
       <div className={styles.readyButtonContainer}>
         <button className={styles.readyButton} onClick={logIn}>
           Ready
