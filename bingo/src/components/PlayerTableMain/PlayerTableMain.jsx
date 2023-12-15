@@ -5,7 +5,7 @@ import { PlayerCard } from "../PlayerCard/PlayerCard";
 import BingoButton from "../BingoButton/BingoButton";
 import LogoutButton from "../LogoutButton/LogoutButton";
 
-const socket = io.connect("http://192.168.1.3:3001");
+const socket = io.connect("http://192.168.1.13:3001");
 
 export const PlayerTableMain = ({
   loginUser = { name: "", color: "" },

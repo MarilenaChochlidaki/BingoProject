@@ -5,7 +5,7 @@ import { PlayerTableMain } from "../../components/PlayerTableMain/PlayerTableMai
 import { PlayerTableLogin } from "../../components/PlayerTableLogin/PlayerTableLogin";
 import { PlayerTableJoin } from "../../components/PlayerTableJoin/PlayerTableJoin";
 
-const socket = io.connect("http://192.168.1.3:3001");
+const socket = io.connect("http://192.168.1.13:3001");
 
 const AugmentedTable = () => {
   const [users, setUsers] = useState([{}, {}, {}, {}, {}]);

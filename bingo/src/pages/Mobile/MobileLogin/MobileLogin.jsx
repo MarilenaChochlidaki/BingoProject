@@ -4,7 +4,7 @@ import { RulesOverlayMobile } from "../../../components/RulesOverlayMobile/Rules
 import { ColorsBar } from "../../../components/ColorsBar/ColorsBar";
 import styles from "./MobileLogin.module.css";
 
-const socket = io.connect("http://192.168.1.3:3001");
+const socket = io.connect("http://192.168.1.13:3001");
 
 export const MobileLogin = ({ loginUserButtonClick }) => {
   const [user, setUser] = useState({ name: "", color: "" });

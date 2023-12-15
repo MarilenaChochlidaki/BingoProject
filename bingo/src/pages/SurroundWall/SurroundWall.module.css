@@ -4,17 +4,15 @@
 }
 
 .bingoBoard {
-  position: absolute;
   background: #246bce;
-  width: 1313px;
-  height: 403px;
+  width: 1000px;
+  height: 330px;
   display: flex;
   flex-direction: column;
-  gap: 38px;
-  padding: 16px;
-  left: 275px;
-  border-radius: 16px;
-  top: 101px;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 2cap;
+  margin-left: 40px;
 }
 
 .ballsRow {
@@ -28,112 +26,11 @@
   width: 150px;
   height: auto;
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.drawn {
-  display: flex;
-  background-color: red;
-}
-
-.sno {
-  display: flex;
-  position: absolute;
-  left: 300px;
-  bottom: 70px;
-  z-index: 2;
-}
-
-.bingocontainer {
-  display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.circle {
-  display: flex;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background-color: yellow;
-  color: black;
-  margin: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  border-top-right-radius: 2cap;
+  border-bottom-right-radius: 2cap;
   font-weight: bold;
-  font-size: 1.5em;
-  position: relative;
-  left: 762px;
-  top: -463px;
-}
-
-.letter {
-  display: flex;
-  font-weight: bold;
-  font-size: 1.5em;
-}
-
-.circle::before {
-  content: "";
-  position: absolute;
-  width: 200px;
-  height: 60px;
-  left: -176px;
-  background-color: rgb(254, 254, 184);
-  z-index: -1;
-}
-
-.rect {
-  display: flex;
-  background-color: black;
-  width: 5px;
-  height: 655px;
-  position: absolute;
-  border-top-right-radius: 12px;
-  border-bottom-right-radius: 12px;
-  left: 197px;
-  top: -2px;
-  z-index: -1;
-}
-
-.players {
-  display: flex;
-  background-color: #ffe500;
-  position: relative;
-  width: 197px;
-  height: 10px;
-  bottom: -55px;
-}
-
-.ycircle {
-  display: flex;
-  background-color: #ffe500;
-  border-radius: 50%;
-  width: 76px;
-  position: relative;
-  bottom: 67px;
-  left: 162px;
-  height: 76px;
-}
-
-.playerstxt {
-  display: flex;
-  color: black;
-  font-size: x-large;
-  position: relative;
-  font-weight: bold;
-  bottom: 22px;
-  left: 21px;
-}
-
-.ycircletxt {
-  display: flex;
-  color: black;
-  font-size: larger;
-  position: relative;
-  font-weight: bold;
-  left: 172px;
-  bottom: 138px;
+  border: 4px solid black;
 }
