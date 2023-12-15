@@ -22,7 +22,7 @@ export const PlayerTableLogin = ({
   };
 
   return (
-    <div className="logIn">
+    <div className={styles.logIn}>
       <div className={styles.box}>
         <input
           className={styles.txt}
@@ -37,10 +37,12 @@ export const PlayerTableLogin = ({
         </button>
       </div>
 
-      <ColorsBar
-        onColorClick={handleColorClick}
-        disabledColors={disabledButtonColors}
-      />
+      <div className={styles.colorBar}>
+        <ColorsBar
+          onColorClick={handleColorClick}
+          disabledColors={disabledButtonColors}
+        />
+      </div>
     </div>
   );
 };

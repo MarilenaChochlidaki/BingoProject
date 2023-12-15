@@ -32,7 +32,8 @@
   align-items: stretch;
 }
 
-.y_b {
+.y_b,
+.p_b {
   width: 241px;
   border-radius: 20px;
   border: none;
@@ -46,10 +47,6 @@
   background-color: #ffe500;
   top: 40%;
   box-shadow: 2px 2px 10px rgba(113, 95, 28, 0.45);
-  z-index: 2;
-}
-
-.p_b {
   z-index: 2;
 }
 

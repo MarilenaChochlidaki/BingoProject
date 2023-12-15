@@ -1,3 +1,8 @@
+.logIn {
+  display: flex;
+  flex-direction: column;
+}
+
 .box {
   background: url("../../assets/images/edit.png");
   width: 352px;
@@ -41,4 +46,8 @@ input::placeholder {
   font-family: "Quicksand";
   border: none;
   background-color: #ffe500;
+}
+
+.colorBar {
+  text-align: center;
 }

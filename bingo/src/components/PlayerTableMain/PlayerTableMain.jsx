@@ -10,7 +10,6 @@ const socket = io.connect(SOCKET_URL);
 
 export const PlayerTableMain = ({
   loginUser = { name: "", color: "" },
-  rotation = 0,
   cardNumberActive = 0,
 }) => {
   const [bingoActive, setBingoActive] = useState(false);
@@ -39,17 +38,19 @@ export const PlayerTableMain = ({
   const handleLogout = () => {};
 
   return (
-    <div>
+    <div className={styles.playerTableContainer}>
+      <div className={styles.logoutContainer}>
+        <LogoutButton isMobile={false} userName={loginUser.name} />
+      </div>
+      <div className={styles.loginUserName}>{loginUser.name}</div>
+
       <PlayerCard
-        rotation={rotation}
         cardNumberActive={cardNumberActive}
         bingoActivate={handleBingoButton}
         color={loginUser.color}
       />
+
       <BingoButton isActive={bingoActive} userName={loginUser.name} />
-      {loginUser.name}
-      {loginUser.color}
-      <LogoutButton isMobile={false} userName={loginUser.name} />
     </div>
   );
 };

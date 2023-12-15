@@ -13,7 +13,6 @@ const generateBallColumn = (startIndex) => {
 };
 
 export const PlayerCard = ({
-  rotation = 0,
   cardNumberActive = 0,
   bingoActivate,
   color = "",
@@ -21,7 +20,6 @@ export const PlayerCard = ({
   const [ballColumns, setBallColumns] = useState([[], [], [], [], []]);
   const [win, setWin] = useState(false);
   const cardStyle = {
-    transform: `rotate(${rotation}deg)`,
     backgroundColor: color,
   };
 
@@ -111,21 +109,23 @@ export const PlayerCard = ({
       {cardNumberActive}
       <div className={styles.cardContainer} style={cardStyle}>
         <p className={styles.bingo}>BINGO</p>
-        {ballColumns.map((column, columnIndex) => (
-          <div key={columnIndex} className={styles.columnContainer}>
-            {column.map((ball, ballIndex) => (
-              <button
-                key={ballIndex}
-                className={`${styles.ballButton} ${
-                  ball.isMarked ? styles.marked : ""
-                }`}
-                onClick={() => handleButtonClick(ball.ballIndex, columnIndex)}
-              >
-                {ball.ballIndex}
-              </button>
-            ))}
-          </div>
-        ))}
+        <div className={styles.ballsContainer}>
+          {ballColumns.map((column, columnIndex) => (
+            <div key={columnIndex} className={styles.columnContainer}>
+              {column.map((ball, ballIndex) => (
+                <button
+                  key={ballIndex}
+                  className={`${styles.ballButton} ${
+                    ball.isMarked ? styles.marked : ""
+                  }`}
+                  onClick={() => handleButtonClick(ball.ballIndex, columnIndex)}
+                >
+                  {ball.ballIndex}
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
       {win && <p>BINGO!</p>}
     </div>

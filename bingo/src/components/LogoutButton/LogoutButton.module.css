@@ -1,18 +1,11 @@
-/* .buttonTable {
-  width: 45px;
-  height: 45px;
-  background-color: blue;
-  border: none;
-  border-radius: 50%;
-  position: relative;
-  left: 110px;
-  bottom: 56px;
-} */
 .buttonTable {
   width: 45px;
   height: 45px;
   background-color: blue;
-  /* background: url("../../assets/images/bingo_icon_logout_table.png"); */
+  background-image: url("../../assets/images/bingo_icon_logout_table.png");
+  background-size: 55%; /* Adjust this value as needed */
+  background-position: center; /* Center the image in the button */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
   border: none;
   border-radius: 50%;
 }

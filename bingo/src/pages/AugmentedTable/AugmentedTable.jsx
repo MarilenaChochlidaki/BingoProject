@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./AugmentedTable.module.css";
 import io from "socket.io-client";
+import { PlayerTable } from "../../components/PlayerTable/PlayerTable";
 import { PlayerTableMain } from "../../components/PlayerTableMain/PlayerTableMain";
 import { PlayerTableLogin } from "../../components/PlayerTableLogin/PlayerTableLogin";
 import { PlayerTableJoin } from "../../components/PlayerTableJoin/PlayerTableJoin";
@@ -23,6 +24,8 @@ const AugmentedTable = () => {
 
     socket.on("namesCleared", () => {
       setUsers([{}, {}, {}, {}, {}]); // Clear names on the client side
+      setStartedGame(false);
+      setProfileGame(false);
     });
     socket.on("userLoggedOut", (logoutName) => {
       setUsers((currentUsers) =>
@@ -105,104 +108,75 @@ const AugmentedTable = () => {
       {/* <div className={styles.logo_edit}></div> */}
       <button className={styles.b_b} onClick={endGame}></button>
       <button className={styles.rules} onClick={activateShowRules}></button>
-      <button className={styles.y_b} onClick={handleNext}>
-        Next
-      </button>
-      <button className={styles.p_b} onClick={handleStart}>
-        Play
-      </button>
+
+      {!profileGame && (
+        <button className={styles.y_b} onClick={handleNext}>
+          Next
+        </button>
+      )}
+
+      {profileGame && !startedGame && (
+        <button className={styles.p_b} onClick={handleStart}>
+          Play
+        </button>
+      )}
       {numberActive}
       <div className={styles.midPlayereCards}>
         {" "}
-        {users[0] && users[0].joined && profileGame ? (
-          startedGame ? (
-            <PlayerTableMain
-              loginUser={users[0]}
-              rotation={90}
-              cardNumberActive={numberActive}
-            />
-          ) : (
-            <PlayerTableLogin
-              loginUserButtonClick={(playerData) => handleLogin(playerData, 0)}
-              disabledButtonColors={colorsChosen}
-            />
-          )
-        ) : (
-          <PlayerTableJoin
-            joinUserButtonClick={(playerData) => handleJoin(playerData, 0)}
-          />
-        )}
-        {users[1] && users[1].joined && profileGame ? (
-          startedGame ? (
-            <PlayerTableMain
-              loginUser={users[1]}
-              rotation={-90}
-              cardNumberActive={numberActive}
-            />
-          ) : (
-            <PlayerTableLogin
-              loginUserButtonClick={(playerData) => handleLogin(playerData, 1)}
-              disabledButtonColors={colorsChosen}
-            />
-          )
-        ) : (
-          <PlayerTableJoin
-            joinUserButtonClick={(playerData) => handleJoin(playerData, 1)}
-          />
-        )}
+        <PlayerTable
+          user={users[0]}
+          index={0}
+          rotation={90}
+          profileGame={profileGame}
+          startedGame={startedGame}
+          numberActive={numberActive}
+          handleLogin={handleLogin}
+          handleJoin={handleJoin}
+          disabledButtonColors={colorsChosen}
+        />
+        <PlayerTable
+          user={users[1]}
+          index={1}
+          rotation={-90}
+          profileGame={profileGame}
+          startedGame={startedGame}
+          numberActive={numberActive}
+          handleLogin={handleLogin}
+          handleJoin={handleJoin}
+          disabledButtonColors={colorsChosen}
+        />
       </div>
       <div className={styles.bottomPlayereCards}>
-        {users[2] && users[2].joined && profileGame ? (
-          startedGame ? (
-            <PlayerTableMain
-              loginUser={users[2]}
-              cardNumberActive={numberActive}
-            />
-          ) : (
-            <PlayerTableLogin
-              loginUserButtonClick={(playerData) => handleLogin(playerData, 2)}
-              disabledButtonColors={colorsChosen}
-            />
-          )
-        ) : (
-          <PlayerTableJoin
-            joinUserButtonClick={(playerData) => handleJoin(playerData, 2)}
-          />
-        )}
-        {users[3] && users[3].joined && profileGame ? (
-          startedGame ? (
-            <PlayerTableMain
-              loginUser={users[3]}
-              cardNumberActive={numberActive}
-            />
-          ) : (
-            <PlayerTableLogin
-              loginUserButtonClick={(playerData) => handleLogin(playerData, 3)}
-              disabledButtonColors={colorsChosen}
-            />
-          )
-        ) : (
-          <PlayerTableJoin
-            joinUserButtonClick={(playerData) => handleJoin(playerData, 3)}
-          />
-        )}
-        {users[4] && users[4].joined && profileGame ? (
-          startedGame ? (
-            <PlayerTableMain
-              loginUser={users[4]}
-              cardNumberActive={numberActive}
-            />
-          ) : (
-            <PlayerTableLogin
-              loginUserButtonClick={(playerData) => handleLogin(playerData, 4)}
-              disabledButtonColors={colorsChosen}
-            />
-          )
-        ) : (
-          <PlayerTableJoin
-            joinUserButtonClick={(playerData) => handleJoin(playerData, 4)}
-          />
-        )}
+        <PlayerTable
+          user={users[2]}
+          index={2}
+          profileGame={profileGame}
+          startedGame={startedGame}
+          numberActive={numberActive}
+          handleLogin={handleLogin}
+          handleJoin={handleJoin}
+          disabledButtonColors={colorsChosen}
+        />
+        <PlayerTable
+          user={users[3]}
+          index={3}
+          profileGame={profileGame}
+          startedGame={startedGame}
+          numberActive={numberActive}
+          handleLogin={handleLogin}
+          handleJoin={handleJoin}
+          disabledButtonColors={colorsChosen}
+        />
+        <PlayerTable
+          user={users[4]}
+          index={4}
+          profileGame={profileGame}
+          startedGame={startedGame}
+          numberActive={numberActive}
+          handleLogin={handleLogin}
+          handleJoin={handleJoin}
+          disabledButtonColors={colorsChosen}
+        />
       </div>
     </div>
   );

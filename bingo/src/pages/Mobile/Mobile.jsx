@@ -17,8 +17,8 @@ export const Mobile = () => {
       setUser(""); // Clear names on the client side
     });
 
-    socket.on("receive_gameStarted", () => {
-      setGameStarted(true);
+    socket.on("receive_gameStarted", (data) => {
+      setGameStarted(data);
     });
   }, []);
 

@@ -1,8 +1,13 @@
+.colorBarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .colorButton {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  left: 65px;
   width: 30px;
   height: 30px;
   margin: 5px;
