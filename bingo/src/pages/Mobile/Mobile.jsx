@@ -5,7 +5,8 @@ import MobileMain from "./MobileMain/MobileMain";
 import styles from "./Mobile.module.css";
 import { MobileWaiting } from "./MobileWaiting/MobileWaiting";
 
-const socket = io.connect("http://147.52.221.194:3001");
+import { SOCKET_URL } from "../../config";
+const socket = io.connect(SOCKET_URL);
 
 export const Mobile = () => {
   const [user, setUser] = useState({});
@@ -27,7 +28,6 @@ export const Mobile = () => {
 
   return (
     <div>
-      <p>{gameStarted ? "hello" : "no"}</p>
       {user && user.name ? (
         gameStarted ? (
           <MobileMain loginUser={user} />

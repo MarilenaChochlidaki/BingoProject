@@ -4,7 +4,8 @@ import styles from "./AmlTV.module.css";
 import { RulesOverlayTV } from "../../components/RulesOverlayTV/RulesOverlayTV";
 import { BallDisplay } from "../../components/BallDisplay/BallDisplay";
 import QrCodeGenerator from "../../components/QrCodeGenerator/QrCodeGenerator";
-const socket = io.connect("http://147.52.221.194:3001");
+import { SOCKET_URL } from "../../config";
+const socket = io.connect(SOCKET_URL);
 
 export const AmlTV = () => {
   const [winnerUser, setWinnerUser] = useState("");

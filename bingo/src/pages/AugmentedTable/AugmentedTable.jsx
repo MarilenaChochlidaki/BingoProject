@@ -4,8 +4,9 @@ import io from "socket.io-client";
 import { PlayerTableMain } from "../../components/PlayerTableMain/PlayerTableMain";
 import { PlayerTableLogin } from "../../components/PlayerTableLogin/PlayerTableLogin";
 import { PlayerTableJoin } from "../../components/PlayerTableJoin/PlayerTableJoin";
+import { SOCKET_URL } from "../../config";
 
-const socket = io.connect("http://147.52.221.194:3001");
+const socket = io.connect(SOCKET_URL);
 
 const AugmentedTable = () => {
   const [users, setUsers] = useState([{}, {}, {}, {}, {}]);

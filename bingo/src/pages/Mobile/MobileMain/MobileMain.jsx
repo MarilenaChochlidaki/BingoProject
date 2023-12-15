@@ -4,7 +4,8 @@ import { RulesOverlayMobile } from "../../../components/RulesOverlayMobile/Rules
 import io from "socket.io-client";
 import styles from "./MobileMain.module.css";
 import BingoButton from "../../../components/BingoButton/BingoButton";
-const socket = io.connect("http://147.52.221.194:3001");
+import { SOCKET_URL } from "../../../config";
+const socket = io.connect(SOCKET_URL);
 
 function MobileMain({ loginUser }) {
   const [numberActive, setNumberActive] = useState(0);

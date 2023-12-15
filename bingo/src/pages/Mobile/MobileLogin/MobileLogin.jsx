@@ -4,7 +4,8 @@ import { RulesOverlayMobile } from "../../../components/RulesOverlayMobile/Rules
 import { ColorsBar } from "../../../components/ColorsBar/ColorsBar";
 import styles from "./MobileLogin.module.css";
 
-const socket = io.connect("http://147.52.221.194:3001");
+import { SOCKET_URL } from "../../../config";
+const socket = io.connect(SOCKET_URL);
 
 export const MobileLogin = ({ loginUserButtonClick }) => {
   const [user, setUser] = useState({ name: "", color: "" });
@@ -42,14 +43,20 @@ export const MobileLogin = ({ loginUserButtonClick }) => {
       ></input>
       <p className={styles.txt}>Choose theme color</p>
       <ColorsBar onColorClick={handleColorClick} />
-      <button className={styles.ybutton} onClick={logIn}>
-        Ready
-      </button>
-      <button className={styles.rules} onClick={activateShowRules}>
-        Learn how to play{" "}
-      </button>
+      <div className={styles.readyButtonContainer}>
+        <button className={styles.readyButton} onClick={logIn}>
+          Ready
+        </button>
+      </div>
+
+      <div className={styles.rulesButton}>
+        <div className={styles.icon}></div>
+        <button className={styles.rules} onClick={activateShowRules}>
+          Learn how to play{" "}
+        </button>
+      </div>
+
       <RulesOverlayMobile trigger={showRules} setTrigger={setShowRules} />
-      <div className={styles.icon}></div>
     </div>
   );
 };

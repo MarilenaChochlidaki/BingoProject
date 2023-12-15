@@ -1,0 +1,25 @@
+.containerStyle {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  box-sizing: border-box;
+}
+
+.circleStyle {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  border: 0.5rem solid #e9e9e9;
+  border-top: 0.5rem solid #3498db;
+  border-radius: 50%;
+  position: absolute;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+}
+
+.spinTransition {
+  loop: Infinity;
+  ease: linear;
+  duration: 1;
+}

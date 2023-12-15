@@ -11,7 +11,7 @@ app.use(cors());
 
 const io = new Server(server, {
   cors: {
-    origin: "http://147.52.221.194:3000",
+    origin: "http://192.168.1.62:3000",
     methods: ["GET", "POST"],
   },
 });
@@ -82,7 +82,7 @@ io.on("connection", (socket) => {
     setTimeout(() => {
       currentNumber = 0;
       io.emit("receiveNumber", currentNumber);
-    }, 30000);
+    }, 10000);
   });
 });
 

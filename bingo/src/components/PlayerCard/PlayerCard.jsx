@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./PlayerCard.module.css";
 import io from "socket.io-client";
 
-const socket = io.connect("http://147.52.221.194:3001");
+import { SOCKET_URL } from "../../config";
+const socket = io.connect(SOCKET_URL);
 
 const generateBallColumn = (startIndex) => {
   return Array.from({ length: 15 }, (_, index) => ({

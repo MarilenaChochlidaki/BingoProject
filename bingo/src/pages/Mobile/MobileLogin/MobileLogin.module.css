@@ -23,7 +23,23 @@ input::placeholder {
   text-align: left;
 }
 
-.ybutton {
+.rulesButton {
+  display: flex;
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+  justify-content: center;
+}
+
+.readyButtonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 15%;
+}
+
+.readyButton {
   display: flex;
   background-color: #ffe500;
   border-radius: 8px;
@@ -34,9 +50,6 @@ input::placeholder {
   font-weight: bold;
   font-family: "Quicksand";
   border-color: transparent;
-  position: absolute;
-  top: 83%;
-  left: 30%;
   box-shadow: 2px 2px 5px rgba(113, 95, 28, 0.45);
   align-items: center;
   justify-content: center;
@@ -48,19 +61,13 @@ input::placeholder {
   border-color: transparent;
   background-color: white;
   font-size: larger;
-  position: absolute;
-  left: 26%;
-  top: 96%;
 }
 
 .icon {
   display: flex;
   width: 29px;
   height: 27px;
-  top: 789px;
   left: 278px;
-  z-index: -1;
-  position: relative;
   background: url("../../../assets/images/icon_book_2.png");
 }
 
