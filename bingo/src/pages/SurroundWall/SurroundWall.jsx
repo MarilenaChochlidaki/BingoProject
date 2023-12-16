@@ -103,12 +103,7 @@ function SurroundWall() {
   };
 
   return (
-    <div className={styles.align}>
-      <MicrophoneSpeech />
-      {usersReceived.length === 0 ? (
-        <p></p>
-      ) : (
-        <div className={styles.bingoPlayers}>
+    <div className={styles.dim}>
           {usersReceived.map((wall_user) => (
             <UserWallCard key={wall_user.name} user={wall_user} />
           ))}
