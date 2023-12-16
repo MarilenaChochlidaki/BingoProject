@@ -1,0 +1,55 @@
+.logIn {
+  display: flex;
+  flex-direction: column;
+}
+
+.box {
+  background: url("../../assets/images/edit.png");
+  width: 352px;
+  height: 394px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.txt {
+  font-size: xx-large;
+  font-family: "Quicksand";
+  display: flex;
+  font-weight: bold;
+  background-color: transparent;
+  width: 247px;
+  height: 135px;
+  position: relative;
+  bottom: 60px;
+  border-radius: 20px;
+  border: none;
+  left: 40px;
+}
+
+input::placeholder {
+  color: black;
+  text-align: center;
+}
+
+.ready {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  bottom: 307px;
+  font-size: larger;
+  font-weight: bold;
+  font-family: "Quicksand";
+  border: none;
+  background-color: #ffe500;
+}
+
+.colorBar {
+  text-align: center;
+  position: relative;
+  top: -30px;
+}

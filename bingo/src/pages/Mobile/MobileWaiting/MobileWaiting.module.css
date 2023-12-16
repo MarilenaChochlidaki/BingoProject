@@ -1,0 +1,19 @@
+.mobileWaitingContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  background: url("../../../assets/images/Group 681.png");
+  width: 367px;
+  height: 304px;
+}
+
+.joinGameContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

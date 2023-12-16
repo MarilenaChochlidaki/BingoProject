@@ -4,7 +4,12 @@ import { RulesOverlayMobile } from "../../../components/RulesOverlayMobile/Rules
 import io from "socket.io-client";
 import styles from "./MobileMain.module.css";
 import BingoButton from "../../../components/BingoButton/BingoButton";
+<<<<<<< HEAD
 const socket = io.connect("http://192.168.1.13:3001");
+=======
+import { SOCKET_URL } from "../../../config";
+const socket = io.connect(SOCKET_URL);
+>>>>>>> b84a6d7dca4f9c91ad46d76b7dff27ec1440c144
 
 function MobileMain({ loginUser }) {
   const [numberActive, setNumberActive] = useState(0);
@@ -41,7 +46,7 @@ function MobileMain({ loginUser }) {
 
   return (
     <div>
-      {loginUser && loginUser.name + "---------"}
+      <div className={styles.name}>{loginUser && loginUser.name}</div>
       {numberActive}
       <PlayerCard
         cardNumberActive={numberActive}
@@ -53,7 +58,9 @@ function MobileMain({ loginUser }) {
         ? winnerUser + " is the winner!"
         : ""}
       {loginUser.color}
-      <button onClick={activateShowRules}>Show Rules</button>
+      <button className={styles.rules} onClick={activateShowRules}>
+        Show Rules
+      </button>
       <RulesOverlayMobile trigger={showRules} setTrigger={setShowRules} />
     </div>
   );

@@ -8,16 +8,6 @@ import SurroundWall from "./pages/SurroundWall/SurroundWall";
 function App() {
   return (
     <Router>
-      {/* <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/mobile">Mobile</Link>
-        </li>
-      </ul>
-    </nav> */}
       <Routes>
         <Route exact path="/" element={<AmlTV />} />
         <Route path="/mobile" element={<Mobile />} />

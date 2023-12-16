@@ -1,0 +1,17 @@
+.joinButton {
+  background: url("../../assets/images/join.png");
+  width: 352px;
+  height: 394px;
+  border: none;
+}
+
+.joined {
+  background: url("../../assets/images/exit.png");
+  width: 352px;
+  height: 394px;
+  border: none;
+}
+
+.inactiveButton {
+  opacity: 0.5;
+}

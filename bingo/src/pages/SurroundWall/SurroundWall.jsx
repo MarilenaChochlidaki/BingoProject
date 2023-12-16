@@ -1,10 +1,16 @@
+// export default SurroundWall;
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import styles from "./SurroundWall.module.css";
 import { UserWallCard } from "../../components/UserWallCard/UserWallCard";
 import { BallDisplay } from "../../components/BallDisplay/BallDisplay";
 import MicrophoneSpeech from "../../components/MicrophoneSpeech/MicrophoneSpeech";
+<<<<<<< HEAD
 const socket = io.connect("http://192.168.1.13:3001");
+=======
+import { SOCKET_URL } from "../../config";
+const socket = io.connect(SOCKET_URL);
+>>>>>>> b84a6d7dca4f9c91ad46d76b7dff27ec1440c144
 
 function SurroundWall() {
   const elementsPerRow = 15;
@@ -84,6 +90,13 @@ function SurroundWall() {
     socket.on("receive_clearBalls", () => {
       clearBalls(); // Clear names on the client side
     });
+
+    // Listen for the user logout event
+    socket.on("userLoggedOut", (logoutName) => {
+      setUsersReceived((currentUsers) =>
+        currentUsers.filter((user) => user.name !== logoutName)
+      );
+    });
   }, []);
 
   const sendNumberOnce = () => {
@@ -95,6 +108,7 @@ function SurroundWall() {
   };
 
   return (
+<<<<<<< HEAD
     <div className={styles.align}>
       <MicrophoneSpeech />
       {usersReceived.length === 0 ? (
@@ -107,9 +121,45 @@ function SurroundWall() {
           <button className={styles.sendNumberButton} onClick={sendNumberOnce}>
             Send Number Once
           </button>
+=======
+    <div className={styles.dim}>
+      <div className={styles.players}></div>
+      <p className={styles.playerstxt}>Players</p>
+      <div className={styles.ycircle}></div>
+      <p className={styles.ycircletxt}>BINGO</p>
+      <div className={styles.rect}></div>
+      {/* <MicrophoneSpeech /> */}
+
+      <div className={styles.wallPlayersContainer}>
+        {usersReceived.map((wall_user) => (
+          <UserWallCard key={wall_user.name} user={wall_user} />
+        ))}
+        <button className={styles.sno} onClick={sendNumberOnce}>
+          Send Number Once
+        </button>
+      </div>
+
+      <div className={styles.wallRightSide}>
+        <div className={styles.bingoBoard}>{rows}</div>
+        <div className={styles.bingocontainer}>
+          <div className={styles.circle}>
+            <div className={styles.letter}>B</div>
+          </div>
+          <div className={styles.circle}>
+            <div className={styles.letter}>I</div>
+          </div>
+          <div className={styles.circle}>
+            <div className={styles.letter}>N</div>
+          </div>
+          <div className={styles.circle}>
+            <div className={styles.letter}>G</div>
+          </div>
+          <div className={styles.circle}>
+            <div className={styles.letter}>O</div>
+          </div>
+>>>>>>> b84a6d7dca4f9c91ad46d76b7dff27ec1440c144
         </div>
-      )}
-      <div className={styles.bingoBoard}>{rows}</div>
+      </div>
     </div>
   );
 }

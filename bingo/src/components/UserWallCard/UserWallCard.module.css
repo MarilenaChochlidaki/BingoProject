@@ -1,6 +1,7 @@
 .playerContainer {
   display: flex;
   font-size: x-large;
+<<<<<<< HEAD
   flex-direction: column;
 }
 
@@ -13,6 +14,19 @@
 .circleContainer {
   justify-content: center;
   margin-left: 97.5%;
+=======
+  flex-direction: row;
+}
+
+.playerName {
+  display: inline;
+  width: 175px;
+}
+
+.circleContainer {
+  display: flex;
+  align-items: flex-end;
+>>>>>>> b84a6d7dca4f9c91ad46d76b7dff27ec1440c144
 }
 
 .circle {
@@ -22,7 +36,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+<<<<<<< HEAD
   margin-top: 15px;
+=======
+>>>>>>> b84a6d7dca4f9c91ad46d76b7dff27ec1440c144
 }
 
 .wins {

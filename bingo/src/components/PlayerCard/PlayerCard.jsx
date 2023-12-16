@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import styles from "./PlayerCard.module.css";
 import io from "socket.io-client";
 
+<<<<<<< HEAD
 const socket = io.connect("http://192.168.1.13:3001");
+=======
+import { SOCKET_URL } from "../../config";
+const socket = io.connect(SOCKET_URL);
+>>>>>>> b84a6d7dca4f9c91ad46d76b7dff27ec1440c144
 
 const generateBallColumn = (startIndex) => {
   return Array.from({ length: 15 }, (_, index) => ({
@@ -12,7 +17,6 @@ const generateBallColumn = (startIndex) => {
 };
 
 export const PlayerCard = ({
-  rotation = 0,
   cardNumberActive = 0,
   bingoActivate,
   color = "",
@@ -20,7 +24,6 @@ export const PlayerCard = ({
   const [ballColumns, setBallColumns] = useState([[], [], [], [], []]);
   const [win, setWin] = useState(false);
   const cardStyle = {
-    transform: `rotate(${rotation}deg)`,
     backgroundColor: color,
   };
 
@@ -107,26 +110,30 @@ export const PlayerCard = ({
 
   return (
     <div>
-      PlayerCard
       {cardNumberActive}
       <div className={styles.cardContainer} style={cardStyle}>
-        {ballColumns.map((column, columnIndex) => (
-          <div key={columnIndex} className={styles.columnContainer}>
-            {column.map((ball, ballIndex) => (
-              <button
-                key={ballIndex}
-                className={`${styles.ballButton} ${
-                  ball.isMarked ? styles.marked : ""
-                }`}
-                onClick={() => handleButtonClick(ball.ballIndex, columnIndex)}
-              >
-                {ball.ballIndex}
-              </button>
-            ))}
-          </div>
-        ))}
+        <p className={styles.bingo}>BINGO</p>
+        <div className={styles.ballsContainer}>
+          {ballColumns.map((column, columnIndex) => (
+            <div key={columnIndex} className={styles.columnContainer}>
+              {column.map((ball, ballIndex) => (
+                <button
+                  key={ballIndex}
+                  className={`${styles.ballButton} ${
+                    ball.isMarked ? styles.marked : ""
+                  }`}
+                  onClick={() => handleButtonClick(ball.ballIndex, columnIndex)}
+                >
+                  {ball.ballIndex}
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
       {win && <p>BINGO!</p>}
     </div>
   );
 };
+
+export default PlayerCard;

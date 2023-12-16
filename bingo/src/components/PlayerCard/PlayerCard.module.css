@@ -1,12 +1,23 @@
 .cardContainer {
-  width: 252px;
-  height: 335px;
-  background: #d9d9d9;
+  width: 260px;
+  height: 322px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  gap: 10px;
+}
+
+.ballsContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
 }
 
 .columnContainer {
@@ -18,16 +29,35 @@
 .ballButton {
   display: flex;
   padding: 5px 10px; /* Adjust the padding to make the buttons smaller */
-  width: 35px;
-  height: 35px;
-  background-color: #3498db; /* Example background color */
-  color: #fff; /* Example text color */
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff; /* Example background color */
+  color: #000000; /* Example text color */
   border: none;
   cursor: pointer;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
+  font-size: medium;
+  position: relative;
+  font-weight: bold;
 }
 
 .marked {
   background-color: red;
+}
+
+.bingo {
+  background-color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 20px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  color: black;
+  font-weight: bolder;
+  font-size: xxx-large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Quicksand";
+  margin: 0;
 }

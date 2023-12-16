@@ -43,6 +43,12 @@ io.on("connection", (socket) => {
     io.emit("receive_resetCards");
   });
 
+  socket.on("send_logout_name", (data) => {
+    const logoutName = data.logoutName;
+    users = users.filter((user) => user.name !== logoutName);
+    io.emit("userLoggedOut", logoutName);
+  });
+
   socket.on("send_winner_name", (data) => {
     winnerName = data.winnerName;
 
@@ -63,6 +69,10 @@ io.on("connection", (socket) => {
     io.emit("receive_showRules", data);
   });
 
+  socket.on("send_startedGame", (data) => {
+    io.emit("receive_gameStarted", data);
+  });
+
   socket.on("sendNumber", (number) => {
     // Update the currentNumber and broadcast it to all clients
     currentNumber = number;
@@ -72,7 +82,11 @@ io.on("connection", (socket) => {
     setTimeout(() => {
       currentNumber = 0;
       io.emit("receiveNumber", currentNumber);
+<<<<<<< HEAD
     }, 30000);
+=======
+    }, 10000);
+>>>>>>> b84a6d7dca4f9c91ad46d76b7dff27ec1440c144
   });
 });
 

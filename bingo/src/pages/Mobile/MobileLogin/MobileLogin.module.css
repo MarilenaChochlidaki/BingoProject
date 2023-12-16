@@ -1,0 +1,99 @@
+.logIn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.colorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input {
+  border-bottom-color: black;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  font-size: x-large;
+  font-family: "Quicksand";
+}
+
+.txt {
+  font-size: x-large;
+  font-family: "Quicksand";
+}
+
+.nameContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+input::placeholder {
+  color: black;
+  text-align: left;
+}
+
+.rulesButton {
+  display: flex;
+  position: absolute;
+  bottom: 2%;
+  width: 100%;
+  justify-content: center;
+}
+
+.readyButtonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 8%;
+}
+
+.readyButton {
+  display: flex;
+  background-color: #ffe500;
+  border-radius: 8px;
+  width: 166px;
+  height: 46px;
+  font-size: x-large;
+  color: black;
+  font-weight: bold;
+  font-family: "Quicksand";
+  border-color: transparent;
+  box-shadow: 2px 2px 5px rgba(113, 95, 28, 0.45);
+  align-items: center;
+  justify-content: center;
+}
+
+.rules {
+  display: flex;
+  color: #165cbe;
+  border-color: transparent;
+  background-color: white;
+  font-size: larger;
+}
+
+.icon {
+  display: flex;
+  width: 29px;
+  height: 27px;
+  left: 278px;
+  background: url("../../../assets/images/icon_book_2.png");
+}
+
+.logo {
+  display: flex;
+  background: url("../../../assets/images/Group 681.png");
+  width: 367px;
+  height: 304px;
+}
+
+.h {
+  display: flex;
+  font-family: "Quicksand";
+  font-weight: bold;
+  justify-content: center;
+}
