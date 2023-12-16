@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./AugmentedTable.module.css";
 import io from "socket.io-client";
 import { PlayerTable } from "../../components/PlayerTable/PlayerTable";
-import { PlayerTableMain } from "../../components/PlayerTableMain/PlayerTableMain";
-import { PlayerTableLogin } from "../../components/PlayerTableLogin/PlayerTableLogin";
-import { PlayerTableJoin } from "../../components/PlayerTableJoin/PlayerTableJoin";
 import { SOCKET_URL } from "../../config";
 
 const socket = io.connect(SOCKET_URL);

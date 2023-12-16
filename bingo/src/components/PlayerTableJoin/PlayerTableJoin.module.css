@@ -11,3 +11,7 @@
   height: 394px;
   border: none;
 }
+
+.inactiveButton {
+  opacity: 0.5;
+}

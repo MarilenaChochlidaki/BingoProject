@@ -11,8 +11,13 @@ export const PlayerTableLogin = ({
   disabledButtonColors,
 }) => {
   const [user, setUser] = useState({ name: "", color: "" });
+  const [isReady, setIsReady] = useState(false);
 
   const logIn = () => {
+    if (!user.name || !user.color) {
+      return;
+    }
+    setIsReady(true);
     socket.emit("send_login_name", { loginUser: user });
     loginUserButtonClick(user);
   };

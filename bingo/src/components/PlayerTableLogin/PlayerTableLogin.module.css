@@ -50,4 +50,6 @@ input::placeholder {
 
 .colorBar {
   text-align: center;
+  position: relative;
+  top: -30px;
 }

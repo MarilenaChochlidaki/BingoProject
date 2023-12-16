@@ -112,7 +112,7 @@ function SurroundWall() {
       <div className={styles.rect}></div>
       {/* <MicrophoneSpeech /> */}
 
-      <div>
+      <div className={styles.wallPlayersContainer}>
         {usersReceived.map((wall_user) => (
           <UserWallCard key={wall_user.name} user={wall_user} />
         ))}
@@ -121,8 +121,8 @@ function SurroundWall() {
         </button>
       </div>
 
-      <div className={styles.bingoBoard}>
-        {rows}
+      <div className={styles.wallRightSide}>
+        <div className={styles.bingoBoard}>{rows}</div>
         <div className={styles.bingocontainer}>
           <div className={styles.circle}>
             <div className={styles.letter}>B</div>

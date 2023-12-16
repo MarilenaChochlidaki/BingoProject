@@ -33,6 +33,7 @@ export const PlayerTable = ({
         )
       ) : (
         <PlayerTableJoin
+          disabledJoin={profileGame}
           joinUserButtonClick={(playerData) => handleJoin(playerData, index)}
         />
       )}

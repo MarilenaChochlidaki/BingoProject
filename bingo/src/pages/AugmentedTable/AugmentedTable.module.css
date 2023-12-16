@@ -7,6 +7,7 @@
   align-items: center;
   gap: 41px;
   background: url("../../assets/images/balls.png");
+  overflow: hidden;
 }
 
 .midPlayereCards {
@@ -14,9 +15,9 @@
   padding: 0px 0px 0px 0px;
   justify-content: center;
   align-items: center;
-  gap: 1208px;
+  gap: 1115px;
   position: absolute;
-  top: 25%;
+  top: 20%;
   align-items: stretch;
 }
 
@@ -26,9 +27,9 @@
   padding: 10px;
   justify-content: center;
   align-items: center;
-  gap: 430px;
+  gap: 410px;
   position: absolute;
-  top: 67%;
+  top: 60%;
   align-items: stretch;
 }
 
