@@ -1,8 +1,24 @@
+.qrcodeContainer {
+  /* Your styles for the QR code container */
+}
+
+.inctiveQrcodeContainer {
+  display: none;
+}
+
+.qrcodeContainerParent {
+  /* Your styles for the QR code parent container */
+}
+
+.qrcodeImage {
+  /* Your styles for the QR code image container */
+}
+
 .txt {
   align-self: center;
   justify-self: center;
   display: flex;
   position: relative;
   left: 6px;
-  font-family: "Quicksand";
+  font-family: "Open Sans", sans-serif;
 }

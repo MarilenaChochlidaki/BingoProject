@@ -44,7 +44,7 @@
 }
 
 .marked {
-  background-color: red;
+  background-color: yellow;
 }
 
 .bingo {
@@ -58,6 +58,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Quicksand";
+  font-family: "Open Sans", sans-serif;
   margin: 0;
+}
+
+.mobileContainer {
+  width: 400px;
+  height: 500px;
 }

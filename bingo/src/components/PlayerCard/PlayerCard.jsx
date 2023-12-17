@@ -16,6 +16,7 @@ export const PlayerCard = ({
   cardNumberActive = 0,
   bingoActivate,
   color = "",
+  isMobile = false,
 }) => {
   const [ballColumns, setBallColumns] = useState([[], [], [], [], []]);
   const [win, setWin] = useState(false);
@@ -106,15 +107,29 @@ export const PlayerCard = ({
 
   return (
     <div>
-      {cardNumberActive}
-      <div className={styles.cardContainer} style={cardStyle}>
-        <p className={styles.bingo}>BINGO</p>
-        <div className={styles.ballsContainer}>
+      <div
+        className={`${styles.cardContainer} ${
+          isMobile ? styles.mobileContainer : ""
+        }`}
+        style={cardStyle}
+      >
+        <p style={isMobile ? { width: "100%" } : {}} className={styles.bingo}>
+          BINGO
+        </p>
+        <div
+          style={isMobile ? { height: "100%" } : {}}
+          className={styles.ballsContainer}
+        >
           {ballColumns.map((column, columnIndex) => (
             <div key={columnIndex} className={styles.columnContainer}>
               {column.map((ball, ballIndex) => (
                 <button
                   key={ballIndex}
+                  style={
+                    isMobile
+                      ? { width: "65px", height: "65px", fontSize: "1.7rem" }
+                      : {}
+                  }
                   className={`${styles.ballButton} ${
                     ball.isMarked ? styles.marked : ""
                   }`}
@@ -127,7 +142,6 @@ export const PlayerCard = ({
           ))}
         </div>
       </div>
-      {win && <p>BINGO!</p>}
     </div>
   );
 };

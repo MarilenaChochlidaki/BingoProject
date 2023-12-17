@@ -1,3 +1,4 @@
+import styles from "./PlayerTable.module.css";
 import { PlayerTableMain } from "../PlayerTableMain/PlayerTableMain";
 import { PlayerTableLogin } from "../PlayerTableLogin/PlayerTableLogin";
 import { PlayerTableJoin } from "../PlayerTableJoin/PlayerTableJoin";
@@ -19,7 +20,7 @@ export const PlayerTable = ({
   };
 
   return (
-    <div style={rotationStyle}>
+    <div style={rotationStyle} className={styles.playerTableContainer}>
       {user && user.joined && profileGame ? (
         startedGame ? (
           <PlayerTableMain loginUser={user} cardNumberActive={numberActive} />
@@ -33,6 +34,7 @@ export const PlayerTable = ({
         )
       ) : (
         <PlayerTableJoin
+          disabledCompletelyJoin={startedGame}
           disabledJoin={profileGame}
           joinUserButtonClick={(playerData) => handleJoin(playerData, index)}
         />

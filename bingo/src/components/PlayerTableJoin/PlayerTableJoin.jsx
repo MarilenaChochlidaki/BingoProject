@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import styles from "./PlayerTableJoin.module.css";
 
-export const PlayerTableJoin = ({ disabledJoin, joinUserButtonClick }) => {
+export const PlayerTableJoin = ({
+  disabledJoin,
+  disabledCompletelyJoin,
+  joinUserButtonClick,
+}) => {
   const [userJoined, setUserJoined] = useState({ joined: false });
 
   const handlePlayerJoin = () => {
@@ -18,7 +22,9 @@ export const PlayerTableJoin = ({ disabledJoin, joinUserButtonClick }) => {
   return (
     <button
       className={`${styles.joinButton} ${userJoined.joined ? styles.joined : ""}
-      ${disabledJoin ? styles.inactiveButton : ""}`}
+      ${disabledJoin ? styles.inactiveButton : ""} ${
+        disabledCompletelyJoin ? styles.inactiveCompletelyButton : ""
+      }`}
       onClick={handlePlayerJoin}
       disabled={disabledJoin}
     ></button>

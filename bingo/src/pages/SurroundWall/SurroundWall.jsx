@@ -20,21 +20,15 @@ function SurroundWall() {
     .map((item, index) => {
       // map content to html elements
       return (
-        // <div
-        //   key={index}
-        //   className={`${styles.ballContainer} ${
-        //     item.isDrawn ? styles.drawn : ""
-        //   }`}
-        // >
-        //   {index + 1}
-        // </div>
-        <BallDisplay
-          key={index}
-          number={index + 1}
-          ballDimension={50}
-          numberSize={25}
-          isDrawn={item.isDrawn}
-        />
+        <div className={styles.blackBackground}>
+          <BallDisplay
+            key={index}
+            number={index + 1}
+            ballDimension={50}
+            numberSize={25}
+            isDrawn={item.isDrawn}
+          />
+        </div>
       );
     })
     .reduce(function (r, element, index) {

@@ -5,6 +5,9 @@
 
 .box {
   background: url("../../assets/images/edit.png");
+  background-size: cover; /* or 'contain', depending on your needs */
+  background-position: center;
+  background-repeat: no-repeat;
   width: 352px;
   height: 394px;
   display: flex;
@@ -14,7 +17,7 @@
 
 .txt {
   font-size: xx-large;
-  font-family: "Quicksand";
+  font-family: "Open Sans", sans-serif;
   display: flex;
   font-weight: bold;
   background-color: transparent;
@@ -43,7 +46,7 @@ input::placeholder {
   bottom: 307px;
   font-size: larger;
   font-weight: bold;
-  font-family: "Quicksand";
+  font-family: "Open Sans", sans-serif;
   border: none;
   background-color: #ffe500;
 }

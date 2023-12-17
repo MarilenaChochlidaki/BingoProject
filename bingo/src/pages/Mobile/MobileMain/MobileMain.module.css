@@ -1,9 +1,38 @@
+.mobileMainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .name {
   font-weight: bolder;
-  font-family: "Quicksand";
+  font-family: "Open Sans", sans-serif;
   font-size: xx-large;
 }
 
+.rulesButton {
+  display: flex;
+  position: absolute;
+  bottom: 2%;
+  width: 100%;
+  justify-content: center;
+}
+
+.rules {
+  display: flex;
+  color: #165cbe;
+  border-color: transparent;
+  background-color: white;
+  font-size: larger;
+}
+
+.icon {
+  display: flex;
+  width: 29px;
+  height: 27px;
+  left: 278px;
+  background: url("../../../assets/images/icon_book_2.png");
+}
 /* .card {
   position: absolute;
 } */

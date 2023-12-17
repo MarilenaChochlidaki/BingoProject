@@ -15,7 +15,7 @@
   padding: 0px 0px 0px 0px;
   justify-content: center;
   align-items: center;
-  gap: 1115px;
+  gap: 1050px;
   position: absolute;
   top: 20%;
   align-items: stretch;
@@ -27,10 +27,9 @@
   padding: 10px;
   justify-content: center;
   align-items: center;
-  gap: 410px;
+  gap: 330px;
   position: absolute;
-  top: 60%;
-  align-items: stretch;
+  top: 65%;
 }
 
 .y_b,
@@ -44,11 +43,16 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  font-family: "Quicksand";
+  font-family: "Open Sans", sans-serif;
   background-color: #ffe500;
   top: 40%;
   box-shadow: 2px 2px 10px rgba(113, 95, 28, 0.45);
   z-index: 2;
+}
+
+.p_b:disabled {
+  opacity: 0.5;
+  color: black;
 }
 
 .b_b {

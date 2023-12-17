@@ -17,12 +17,12 @@
   border-right-color: transparent;
   border-left-color: transparent;
   font-size: x-large;
-  font-family: "Quicksand";
+  font-family: "Open Sans", sans-serif;
 }
 
 .txt {
   font-size: x-large;
-  font-family: "Quicksand";
+  font-family: "Open Sans", sans-serif;
 }
 
 .nameContainer {
@@ -61,7 +61,7 @@ input::placeholder {
   font-size: x-large;
   color: black;
   font-weight: bold;
-  font-family: "Quicksand";
+  font-family: "Open Sans", sans-serif;
   border-color: transparent;
   box-shadow: 2px 2px 5px rgba(113, 95, 28, 0.45);
   align-items: center;
@@ -93,7 +93,7 @@ input::placeholder {
 
 .h {
   display: flex;
-  font-family: "Quicksand";
+  font-family: "Open Sans", sans-serif;
   font-weight: bold;
   justify-content: center;
 }

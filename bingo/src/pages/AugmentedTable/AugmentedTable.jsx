@@ -13,6 +13,18 @@ const AugmentedTable = () => {
   const [profileGame, setProfileGame] = useState(false);
   const [startedGame, setStartedGame] = useState(false);
 
+  const allPlayersLoggedIn = () => {
+    return users.every(
+      (user) =>
+        !user.joined ||
+        (user.joined &&
+          user.name &&
+          user.name !== "" &&
+          user.color &&
+          user.color !== "")
+    );
+  };
+
   useEffect(() => {
     // Listen for the "namesCleared" event
     socket.on("receiveNumber", (data) => {
@@ -113,7 +125,11 @@ const AugmentedTable = () => {
       )}
 
       {profileGame && !startedGame && (
-        <button className={styles.p_b} onClick={handleStart}>
+        <button
+          className={styles.p_b}
+          onClick={handleStart}
+          disabled={!allPlayersLoggedIn()}
+        >
           Play
         </button>
       )}

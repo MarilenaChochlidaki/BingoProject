@@ -1,3 +1,16 @@
+.ballDealtContainer {
+  background-color: #246bce;
+  padding: 50px;
+  border-radius: 20px;
+}
+
+.blackBackground {
+  background-color: black;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
 .pageButtons {
   display: flex;
   flex-direction: row;
@@ -26,4 +39,27 @@
   height: 214px;
   position: absolute;
   top: 20px;
+}
+
+.midContainer {
+  display: flex;
+  align-items: center;
+  gap: 200px;
+}
+
+.winnerLabel {
+  position: absolute;
+  top: 50%;
+  font-size: 100px;
+  color: yellow;
+  font-weight: bold;
+  text-shadow: -5px -5px 0 #000, 5px -5px 0 #000, -5px 5px 0 #000,
+    5px 5px 0 #000;
+}
+
+.inactiveVideo {
+  display: none;
+}
+
+.videoContainer {
 }

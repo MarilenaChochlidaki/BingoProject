@@ -16,3 +16,9 @@
   border: 5px solid #aaa;
   opacity: 0.5;
 }
+
+.mobileBingoContainer {
+  width: 100px;
+  height: 100px;
+  font-size: 20px;
+}
