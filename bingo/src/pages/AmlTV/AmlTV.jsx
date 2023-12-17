@@ -67,7 +67,7 @@ export const AmlTV = () => {
             <BallDisplay
               number={numberActive}
               ballDimension={200}
-              numberSize={25}
+              numberSize={70}
               isDrawn={numberActive}
             />
           </div>

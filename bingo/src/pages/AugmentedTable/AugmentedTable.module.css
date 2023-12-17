@@ -50,6 +50,28 @@
   z-index: 2;
 }
 
+.endGameButtons {
+  position: absolute;
+  top: 40%;
+  display: flex;
+  gap: 100px;
+}
+
+.nextRoundButton {
+  width: 241px;
+  border-radius: 20px;
+  border: none;
+  height: 81px;
+  font-size: xx-large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Open Sans", sans-serif;
+  background-color: #ffe500;
+  box-shadow: 2px 2px 10px rgba(113, 95, 28, 0.45);
+  z-index: 2;
+}
+
 .p_b:disabled {
   opacity: 0.5;
   color: black;
@@ -73,7 +95,7 @@
   height: 115px;
   border: none;
   position: absolute;
-  left: 94%;
+  right: 8px;
   top: 10px;
 }
 

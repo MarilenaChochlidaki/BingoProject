@@ -12,6 +12,7 @@ const AugmentedTable = () => {
   const [showRules, setShowRules] = useState(false);
   const [profileGame, setProfileGame] = useState(false);
   const [startedGame, setStartedGame] = useState(false);
+  const [winnerUser, setWinnerUser] = useState("");
 
   const allPlayersLoggedIn = () => {
     return users.every(
@@ -85,6 +86,10 @@ const AugmentedTable = () => {
     socket.emit("resetCards");
   };
 
+  socket.on("receive_winner_name", (data) => {
+    setWinnerUser(data);
+  });
+
   const activateShowRules = () => {
     setShowRules((prevShowRules) => !prevShowRules);
   };
@@ -112,8 +117,21 @@ const AugmentedTable = () => {
 
   return (
     <div className={styles.tableContainer}>
-      <div className={styles.logo_join}></div>
-      <button onClick={nextRound}>Next Round</button>
+      {!startedGame && (
+        <div className={styles.logo_join}></div> // Logo is shown only if the game has not started
+      )}
+      {winnerUser && winnerUser.length > 0 && (
+        <div className={styles.endGameButtons}>
+          {winnerUser}
+          <button className={styles.nextRoundButton} onClick={endGame}>
+            End Game
+          </button>
+          <button className={styles.nextRoundButton} onClick={nextRound}>
+            Next Round
+          </button>
+        </div>
+      )}
+
       {/* <div className={styles.logo_edit}></div> */}
       <button className={styles.b_b} onClick={endGame}></button>
       <button className={styles.rules} onClick={activateShowRules}></button>
@@ -133,7 +151,6 @@ const AugmentedTable = () => {
           Play
         </button>
       )}
-      {numberActive}
       <div className={styles.midPlayereCards}>
         {" "}
         <PlayerTable

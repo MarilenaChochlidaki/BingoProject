@@ -50,7 +50,7 @@ export const PlayerTableMain = ({
         color={loginUser.color}
       />
 
-      <BingoButton isActive={bingoActive} userName={loginUser.name} />
+      <BingoButton isActive={true} userName={loginUser.name} />
     </div>
   );
 };

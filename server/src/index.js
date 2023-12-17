@@ -41,6 +41,8 @@ io.on("connection", (socket) => {
 
   socket.on("resetCards", () => {
     io.emit("receive_resetCards");
+    winnerName = "";
+    socket.broadcast.emit("receive_winner_name", winnerName);
   });
 
   socket.on("send_logout_name", (data) => {
@@ -53,11 +55,17 @@ io.on("connection", (socket) => {
     winnerName = data.winnerName;
 
     // Find the winner in the users array and update their wins
-    const updatedUsers = users.map((user) =>
-      user.name === winnerName ? { ...user, wins: user.wins + 1 } : user
-    );
+    const updatedUsers = users.map((user) => {
+      if (user.name === winnerName) {
+        const wins = typeof user.wins === "number" ? user.wins : 0;
+        return { ...user, wins: wins + 1 };
+      } else {
+        return user;
+      }
+    });
 
-    io.emit("receiveUsers", updatedUsers); // Update all clients with the new user list
+    users = updatedUsers;
+    io.emit("receiveUsers", updatedUsers);
     socket.broadcast.emit("receive_winner_name", winnerName);
   });
 

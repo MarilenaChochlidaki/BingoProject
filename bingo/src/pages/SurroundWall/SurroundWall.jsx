@@ -5,6 +5,7 @@ import styles from "./SurroundWall.module.css";
 import { UserWallCard } from "../../components/UserWallCard/UserWallCard";
 import { BallDisplay } from "../../components/BallDisplay/BallDisplay";
 import MicrophoneSpeech from "../../components/MicrophoneSpeech/MicrophoneSpeech";
+import useSpeechRecognition from "../../components/useSpeechRecognition/useSpeechRecognition";
 import { SOCKET_URL } from "../../config";
 const socket = io.connect(SOCKET_URL);
 
@@ -66,10 +67,12 @@ function SurroundWall() {
 
   const [usersReceived, setUsersReceived] = useState([]);
   const [numberToSend, setNumberToSend] = useState(randomizeNumber);
+  const { transcript, startListening, stopListening } = useSpeechRecognition();
 
   useEffect(() => {
     socket.on("receiveUsers", (data) => {
       setUsersReceived(data);
+      console.log(usersReceived);
     });
 
     // Listen for the "namesCleared" event
@@ -134,6 +137,12 @@ function SurroundWall() {
             <div className={styles.letter}>O</div>
           </div>
         </div>
+      </div>
+
+      <div>
+        <button onClick={startListening}>Start</button>
+        <button onClick={stopListening}>Stop</button>
+        <p>Transcript: {transcript}</p>
       </div>
     </div>
   );
