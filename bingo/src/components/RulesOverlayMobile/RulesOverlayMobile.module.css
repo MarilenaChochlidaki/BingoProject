@@ -21,6 +21,7 @@
   bottom: -25%;
   overflow-y: auto; /* Enable scrolling within content area */
   margin: 10vh auto;
+  padding: 20px;
 }
 
 .imageContainer {

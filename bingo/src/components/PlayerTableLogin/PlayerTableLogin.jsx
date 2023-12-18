@@ -11,16 +11,11 @@ export const PlayerTableLogin = ({
   disabledButtonColors,
 }) => {
   const [user, setUser] = useState({ name: "", color: "" });
-  const [isReady, setIsReady] = useState(false);
 
-  const logIn = () => {
-    if (!user.name || !user.color) {
-      return;
-    }
-    setIsReady(true);
-    socket.emit("send_login_name", { loginUser: user });
+  useEffect(() => {
+    // Check if both name and color are set
     loginUserButtonClick(user);
-  };
+  }, [user]);
 
   const handleColorClick = (selectedColor) => {
     setUser({ ...user, color: selectedColor });
@@ -29,17 +24,13 @@ export const PlayerTableLogin = ({
   return (
     <div className={styles.logIn}>
       <div className={styles.box}>
-        <input
+        <textarea
           className={styles.txt}
-          placeholder="Tap to say your Name"
+          placeholder="Tap to say your&#10;Name"
           onChange={(event) => {
             setUser({ ...user, name: event.target.value });
           }}
-        ></input>
-
-        <button className={styles.ready} onClick={logIn}>
-          Ready
-        </button>
+        ></textarea>
       </div>
 
       <div className={styles.colorBar}>

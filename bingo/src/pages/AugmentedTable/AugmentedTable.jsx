@@ -110,6 +110,11 @@ const AugmentedTable = () => {
   };
 
   const handleStart = () => {
+    users.forEach((user) => {
+      if (user.name && user.color) {
+        socket.emit("send_login_name", { loginUser: user });
+      }
+    });
     setStartedGame(true);
   };
 
