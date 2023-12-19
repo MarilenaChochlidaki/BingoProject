@@ -58,8 +58,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Quicksand";
+  width: 100%;
   margin: 0;
+  position: relative; /* Make sure the parent is positioned */
+}
+
+.bingo::after {
+  content: ""; /* Empty string content */
+  margin-left: -20px; /* Negative margin to compensate for the last letter spacing */
+  flex: 0; /* Do not allow the pseudo-element to grow */
 }
 
 .mobileContainer {

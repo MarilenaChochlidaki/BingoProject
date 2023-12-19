@@ -9,7 +9,7 @@ export const BallDisplay = ({ number, ballDimension, numberSize, isDrawn }) => {
         width: `${ballDimension}px`,
         height: `${ballDimension}px`,
         fontSize: numberSize,
-        backgroundColor: "yellow",
+        backgroundColor: "#ffe500",
       }}
       className={`${styles.ballContainer} ${ballClass}`}
     >

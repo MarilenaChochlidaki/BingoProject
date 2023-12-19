@@ -1,11 +1,14 @@
 .buttonTable {
   width: 45px;
   height: 45px;
-  background-color: blue;
+  background-color: #165cbe;
   background-image: url("../../assets/images/bingo_icon_logout_table.png");
   background-size: 55%; /* Adjust this value as needed */
   background-position: center; /* Center the image in the button */
   background-repeat: no-repeat; /* Prevent the image from repeating */
   border: none;
   border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  bottom: 11px;
 }

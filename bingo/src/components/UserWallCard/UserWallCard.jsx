@@ -9,7 +9,7 @@ export const UserWallCard = ({ user }) => {
     <div className={styles.playerContainer}>
       <p
         className={styles.playerName}
-        style={{ borderBottom: `5px solid ${user.color}` }}
+        style={{ borderBottom: `8px solid ${user.color}` }}
       >
         {user.name}
       </p>
