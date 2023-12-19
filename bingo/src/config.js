@@ -1,1 +1,1 @@
-export const SOCKET_URL = "http://192.168.1.3:3001";
+export const SOCKET_URL = "http://139.91.96.245:3001";
