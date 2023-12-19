@@ -6,10 +6,9 @@ const socket = io.connect(SOCKET_URL);
 
 function LogoutButton({ isMobile, userName }) {
   const handleButtonClick = () => {
-    // Add your logic here for handling button click when active
-
     socket.emit("send_logout_name", { logoutName: userName });
   };
+
   return (
     <button
       onClick={handleButtonClick}

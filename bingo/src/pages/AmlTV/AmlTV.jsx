@@ -5,7 +5,7 @@ import { RulesOverlayTV } from "../../components/RulesOverlayTV/RulesOverlayTV";
 import { BallDisplay } from "../../components/BallDisplay/BallDisplay";
 import QrCodeGenerator from "../../components/QrCodeGenerator/QrCodeGenerator";
 import { SOCKET_URL } from "../../config";
-import wheelVideo from "../../assets/videos/wheel_cut.mp4";
+import wheelVideo from "../../assets/videos/wheel_2.mp4";
 const socket = io.connect(SOCKET_URL);
 
 export const AmlTV = () => {
@@ -55,7 +55,15 @@ export const AmlTV = () => {
             gameRunning ? "" : styles.inactiveVideo
           }`}
         >
-          <video src={wheelVideo} width="100%" controls autoPlay loop muted>
+          <video
+            src={wheelVideo}
+            width="100%"
+            controls
+            autoPlay
+            loop
+            muted
+            className={styles.video}
+          >
             Your browser does not support the video tag.
           </video>
         </div>

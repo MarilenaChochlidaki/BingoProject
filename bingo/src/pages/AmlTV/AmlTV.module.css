@@ -1,7 +1,10 @@
 .ballDealtContainer {
   background-color: #246bce;
   padding: 50px;
+  left: 380px;
+  bottom: 247px;
   border-radius: 20px;
+  position: relative;
 }
 
 .blackBackground {
@@ -25,6 +28,9 @@
   position: relative;
   padding: 15%;
   flex-direction: column;
+  background: url("../../assets/images/balls_2.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .qr {
@@ -51,7 +57,7 @@
   position: absolute;
   top: 50%;
   font-size: 100px;
-  color: yellow;
+  color: #ffe500;
   font-weight: bold;
   text-shadow: -5px -5px 0 #000, 5px -5px 0 #000, -5px 5px 0 #000,
     5px 5px 0 #000;
@@ -61,5 +67,7 @@
   display: none;
 }
 
-.videoContainer {
+.video {
+  position: relative;
+  left: 277px;
 }
