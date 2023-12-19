@@ -7,6 +7,7 @@
   display: flex;
   padding-top: 30px;
 }
+
 .wallPlayersContainer {
   display: flex;
   flex-direction: column;
@@ -21,6 +22,7 @@
   left: 300px;
   align-items: center;
 }
+
 .bingoBoard {
   background: #246bce;
   width: 1313px;
@@ -106,7 +108,7 @@
   position: absolute;
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
-  left: 197px;
+  left: 200px;
   top: -2px;
   z-index: -1;
 }
@@ -138,7 +140,7 @@
   position: relative;
   font-weight: bold;
   bottom: 22px;
-  left: 21px;
+  left: 5px;
 }
 
 .ycircletxt {

@@ -125,6 +125,9 @@ const AugmentedTable = () => {
       {!startedGame && (
         <div className={styles.logo_join}></div> // Logo is shown only if the game has not started
       )}
+      {startedGame && (
+        <div className={styles.logo}></div> // Logo is shown only if the game has started
+      )}
       {winnerUser && winnerUser.length > 0 && (
         <div className={styles.endGameButtons}>
           {winnerUser}

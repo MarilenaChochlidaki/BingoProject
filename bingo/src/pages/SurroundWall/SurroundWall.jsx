@@ -107,7 +107,6 @@ function SurroundWall() {
       <div className={styles.ycircle}></div>
       <p className={styles.ycircletxt}>BINGO</p>
       <div className={styles.rect}></div>
-      {/* <MicrophoneSpeech /> */}
 
       <div className={styles.wallPlayersContainer}>
         {usersReceived.map((wall_user) => (
