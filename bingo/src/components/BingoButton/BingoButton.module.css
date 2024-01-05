@@ -1,3 +1,26 @@
+.buttonContainer {
+  border-radius: 50%;
+  background-color: #ffe500; /* White background */
+  color: rgb(0, 0, 0); /* Text color */
+  font-weight: 700;
+  border: 5px solid rgb(0, 0, 0); /* Solid border with a color */
+  width: 70px;
+  height: 70px;
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Cursor to pointer to indicate it's clickable */
+  outline: none; /* Remove default focus outline */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
 .inactiveButton {
+  background-color: #ffffff;
+  border: 5px solid #aaa;
   opacity: 0.5;
+  position: relative;
+  top: 6px;
+}
+
+.mobileBingoContainer {
+  width: 100px;
+  height: 100px;
+  font-size: 20px;
 }

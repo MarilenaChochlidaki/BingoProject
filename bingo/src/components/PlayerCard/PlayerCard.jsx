@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./PlayerCard.module.css";
 import io from "socket.io-client";
 
-const socket = io.connect("http://192.168.1.13:3001");
+import { SOCKET_URL } from "../../config";
+const socket = io.connect(SOCKET_URL);
 
 const generateBallColumn = (startIndex) => {
   return Array.from({ length: 15 }, (_, index) => ({
@@ -12,15 +13,14 @@ const generateBallColumn = (startIndex) => {
 };
 
 export const PlayerCard = ({
-  rotation = 0,
   cardNumberActive = 0,
   bingoActivate,
   color = "",
+  isMobile = false,
 }) => {
   const [ballColumns, setBallColumns] = useState([[], [], [], [], []]);
   const [win, setWin] = useState(false);
   const cardStyle = {
-    transform: `rotate(${rotation}deg)`,
     backgroundColor: color,
   };
 
@@ -107,26 +107,41 @@ export const PlayerCard = ({
 
   return (
     <div>
-      {cardNumberActive}
-      <div className={styles.cardContainer} style={cardStyle}>
-        <p className={styles.bingo}>BINGO</p>
-        {ballColumns.map((column, columnIndex) => (
-          <div key={columnIndex} className={styles.columnContainer}>
-            {column.map((ball, ballIndex) => (
-              <button
-                key={ballIndex}
-                className={`${styles.ballButton} ${
-                  ball.isMarked ? styles.marked : ""
-                }`}
-                onClick={() => handleButtonClick(ball.ballIndex, columnIndex)}
-              >
-                {ball.ballIndex}
-              </button>
-            ))}
-          </div>
-        ))}
+      <div
+        className={`${styles.cardContainer} ${
+          isMobile ? styles.mobileContainer : ""
+        }`}
+        style={cardStyle}
+      >
+        <p style={isMobile ? { width: "100%" } : {}} className={styles.bingo}>
+          BINGO
+        </p>
+        <div
+          style={isMobile ? { height: "100%" } : {}}
+          className={styles.ballsContainer}
+        >
+          {ballColumns.map((column, columnIndex) => (
+            <div key={columnIndex} className={styles.columnContainer}>
+              {column.map((ball, ballIndex) => (
+                <button
+                  key={ballIndex}
+                  style={
+                    isMobile
+                      ? { width: "65px", height: "65px", fontSize: "1.7rem" }
+                      : {}
+                  }
+                  className={`${styles.ballButton} ${
+                    ball.isMarked ? styles.marked : ""
+                  }`}
+                  onClick={() => handleButtonClick(ball.ballIndex, columnIndex)}
+                >
+                  {ball.ballIndex}
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
-      {win && <p>BINGO!</p>}
     </div>
   );
 };

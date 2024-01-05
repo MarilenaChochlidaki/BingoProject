@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "./AugmentedTable.module.css";
 import io from "socket.io-client";
-import { PlayerTableMain } from "../../components/PlayerTableMain/PlayerTableMain";
-import { PlayerTableLogin } from "../../components/PlayerTableLogin/PlayerTableLogin";
-import { PlayerTableJoin } from "../../components/PlayerTableJoin/PlayerTableJoin";
+import { PlayerTable } from "../../components/PlayerTable/PlayerTable";
+import { SOCKET_URL } from "../../config";
 
-const socket = io.connect("http://192.168.1.13:3001");
+const socket = io.connect(SOCKET_URL);
 
 const AugmentedTable = () => {
   const [users, setUsers] = useState([{}, {}, {}, {}, {}]);
@@ -13,6 +12,19 @@ const AugmentedTable = () => {
   const [showRules, setShowRules] = useState(false);
   const [profileGame, setProfileGame] = useState(false);
   const [startedGame, setStartedGame] = useState(false);
+  const [winnerUser, setWinnerUser] = useState("");
+
+  const allPlayersLoggedIn = () => {
+    return users.every(
+      (user) =>
+        !user.joined ||
+        (user.joined &&
+          user.name &&
+          user.name !== "" &&
+          user.color &&
+          user.color !== "")
+    );
+  };
 
   useEffect(() => {
     // Listen for the "namesCleared" event
@@ -22,11 +34,34 @@ const AugmentedTable = () => {
 
     socket.on("namesCleared", () => {
       setUsers([{}, {}, {}, {}, {}]); // Clear names on the client side
+      setStartedGame(false);
+      setProfileGame(false);
     });
     socket.on("userLoggedOut", (logoutName) => {
       setUsers((currentUsers) =>
         currentUsers.filter((user) => user.name !== logoutName)
       );
+    });
+    socket.on("triggerNextRound", () => {
+      if (winnerUser && winnerUser.length > 0) {
+        nextRound();
+      }
+    });
+    socket.on("triggerNextStage", () => {
+      if (!profileGame) {
+        handleNext();
+      }
+    });
+    socket.on("triggerExitGame", () => {
+      endGame();
+    });
+    socket.on("triggerStartGame", () => {
+      if (profileGame && !startedGame) {
+        handleStart();
+      }
+    });
+    socket.on("triggerShowRules", () => {
+      activateShowRules();
     });
 
     // Cleanup on unmount
@@ -34,6 +69,14 @@ const AugmentedTable = () => {
       socket.off("userLoggedOut");
     };
   }, []);
+
+  useEffect(() => {
+    socket.emit("send_showRules", showRules);
+  }, [showRules]);
+
+  useEffect(() => {
+    socket.emit("send_startedGame", startedGame);
+  }, [startedGame]);
 
   const handleJoin = (playerData, index) => {
     setUsers((currentUsers) => {
@@ -64,10 +107,12 @@ const AugmentedTable = () => {
     socket.emit("resetCards");
   };
 
+  socket.on("receive_winner_name", (data) => {
+    setWinnerUser(data);
+  });
+
   const activateShowRules = () => {
-    setShowRules(!showRules);
-    console.log(showRules);
-    socket.emit("send_showRules", showRules);
+    setShowRules((prevShowRules) => !prevShowRules);
   };
 
   const nextRound = () => {
@@ -86,6 +131,11 @@ const AugmentedTable = () => {
   };
 
   const handleStart = () => {
+    users.forEach((user) => {
+      if (user.name && user.color) {
+        socket.emit("send_login_name", { loginUser: user });
+      }
+    });
     setStartedGame(true);
   };
 
@@ -93,109 +143,99 @@ const AugmentedTable = () => {
 
   return (
     <div className={styles.tableContainer}>
-      <div className={styles.logo_join}></div>
-      <button onClick={nextRound}>Next Round</button>
+      {!startedGame && (
+        <div className={styles.logo_join}></div> // Logo is shown only if the game has not started
+      )}
+      {startedGame && (
+        <div className={styles.logo}></div> // Logo is shown only if the game has started
+      )}
+      {winnerUser && winnerUser.length > 0 && (
+        <div className={styles.endGameButtons}>
+          {winnerUser}
+          <button className={styles.nextRoundButton} onClick={endGame}>
+            End Game
+          </button>
+          <button className={styles.nextRoundButton} onClick={nextRound}>
+            Next Round
+          </button>
+        </div>
+      )}
+
       {/* <div className={styles.logo_edit}></div> */}
       <button className={styles.b_b} onClick={endGame}></button>
       <button className={styles.rules} onClick={activateShowRules}></button>
-      <button className={styles.y_b} onClick={handleNext}>
-        Next
-      </button>
-      <button className={styles.p_b} onClick={handleStart}>
-        Play
-      </button>
-      {numberActive}
+
+      {!profileGame && (
+        <button className={styles.y_b} onClick={handleNext}>
+          Next
+        </button>
+      )}
+
+      {profileGame && !startedGame && (
+        <button
+          className={styles.p_b}
+          onClick={handleStart}
+          disabled={!allPlayersLoggedIn()}
+        >
+          Play
+        </button>
+      )}
       <div className={styles.midPlayereCards}>
         {" "}
-        {users[0] && users[0].joined && profileGame ? (
-          startedGame ? (
-            <PlayerTableMain
-              loginUser={users[0]}
-              rotation={90}
-              cardNumberActive={numberActive}
-            />
-          ) : (
-            <PlayerTableLogin
-              loginUserButtonClick={(playerData) => handleLogin(playerData, 0)}
-              disabledButtonColors={colorsChosen}
-            />
-          )
-        ) : (
-          <PlayerTableJoin
-            joinUserButtonClick={(playerData) => handleJoin(playerData, 0)}
-          />
-        )}
-        {users[1] && users[1].joined && profileGame ? (
-          startedGame ? (
-            <PlayerTableMain
-              loginUser={users[1]}
-              rotation={-90}
-              cardNumberActive={numberActive}
-            />
-          ) : (
-            <PlayerTableLogin
-              loginUserButtonClick={(playerData) => handleLogin(playerData, 1)}
-              disabledButtonColors={colorsChosen}
-            />
-          )
-        ) : (
-          <PlayerTableJoin
-            joinUserButtonClick={(playerData) => handleJoin(playerData, 1)}
-          />
-        )}
+        <PlayerTable
+          user={users[0]}
+          index={0}
+          rotation={90}
+          profileGame={profileGame}
+          startedGame={startedGame}
+          numberActive={numberActive}
+          handleLogin={handleLogin}
+          handleJoin={handleJoin}
+          disabledButtonColors={colorsChosen}
+        />
+        <PlayerTable
+          user={users[1]}
+          index={1}
+          rotation={-90}
+          profileGame={profileGame}
+          startedGame={startedGame}
+          numberActive={numberActive}
+          handleLogin={handleLogin}
+          handleJoin={handleJoin}
+          disabledButtonColors={colorsChosen}
+        />
       </div>
       <div className={styles.bottomPlayereCards}>
-        {users[2] && users[2].joined && profileGame ? (
-          startedGame ? (
-            <PlayerTableMain
-              loginUser={users[2]}
-              cardNumberActive={numberActive}
-            />
-          ) : (
-            <PlayerTableLogin
-              loginUserButtonClick={(playerData) => handleLogin(playerData, 2)}
-              disabledButtonColors={colorsChosen}
-            />
-          )
-        ) : (
-          <PlayerTableJoin
-            joinUserButtonClick={(playerData) => handleJoin(playerData, 2)}
-          />
-        )}
-        {users[3] && users[3].joined && profileGame ? (
-          startedGame ? (
-            <PlayerTableMain
-              loginUser={users[3]}
-              cardNumberActive={numberActive}
-            />
-          ) : (
-            <PlayerTableLogin
-              loginUserButtonClick={(playerData) => handleLogin(playerData, 3)}
-              disabledButtonColors={colorsChosen}
-            />
-          )
-        ) : (
-          <PlayerTableJoin
-            joinUserButtonClick={(playerData) => handleJoin(playerData, 3)}
-          />
-        )}
-        {users[4] && users[4].joined && profileGame ? (
-          startedGame ? (
-            <PlayerTableMain
-              loginUser={users[4]}
-              cardNumberActive={numberActive}
-            />
-          ) : (
-            <PlayerTableLogin
-              loginUserButtonClick={(playerData) => handleLogin(playerData, 4)}
-              disabledButtonColors={colorsChosen}
-            />
-          )
-        ) : (
-          <PlayerTableJoin
-            joinUserButtonClick={(playerData) => handleJoin(playerData, 4)}
-          />
-        )}
+        <PlayerTable
+          user={users[2]}
+          index={2}
+          profileGame={profileGame}
+          startedGame={startedGame}
+          numberActive={numberActive}
+          handleLogin={handleLogin}
+          handleJoin={handleJoin}
+          disabledButtonColors={colorsChosen}
+        />
+        <PlayerTable
+          user={users[3]}
+          index={3}
+          profileGame={profileGame}
+          startedGame={startedGame}
+          numberActive={numberActive}
+          handleLogin={handleLogin}
+          handleJoin={handleJoin}
+          disabledButtonColors={colorsChosen}
+        />
+        <PlayerTable
+          user={users[4]}
+          index={4}
+          profileGame={profileGame}
+          startedGame={startedGame}
+          numberActive={numberActive}
+          handleLogin={handleLogin}
+          handleJoin={handleJoin}
+          disabledButtonColors={colorsChosen}
+        />
       </div>
     </div>
   );

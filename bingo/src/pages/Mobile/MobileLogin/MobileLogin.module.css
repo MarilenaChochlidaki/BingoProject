@@ -1,21 +1,34 @@
+.logIn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.colorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .input {
-  position: absolute;
-  top: 50%;
   border-bottom-color: black;
   border-top-color: transparent;
   border-right-color: transparent;
   border-left-color: transparent;
   font-size: x-large;
-  font-family: "Quicksand";
-  left: 17%;
+  font-family: "Open Sans", sans-serif;
 }
 
 .txt {
   font-size: x-large;
-  font-family: "Quicksand";
-  position: absolute;
-  left: 17%;
-  top: 56%;
+  font-family: "Open Sans", sans-serif;
+}
+
+.nameContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 input::placeholder {
@@ -23,7 +36,23 @@ input::placeholder {
   text-align: left;
 }
 
-.ybutton {
+.rulesButton {
+  display: flex;
+  position: absolute;
+  bottom: 2%;
+  width: 100%;
+  justify-content: center;
+}
+
+.readyButtonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 8%;
+}
+
+.readyButton {
   display: flex;
   background-color: #ffe500;
   border-radius: 8px;
@@ -32,11 +61,8 @@ input::placeholder {
   font-size: x-large;
   color: black;
   font-weight: bold;
-  font-family: "Quicksand";
+  font-family: "Open Sans", sans-serif;
   border-color: transparent;
-  position: absolute;
-  top: 83%;
-  left: 30%;
   box-shadow: 2px 2px 5px rgba(113, 95, 28, 0.45);
   align-items: center;
   justify-content: center;
@@ -48,37 +74,26 @@ input::placeholder {
   border-color: transparent;
   background-color: white;
   font-size: larger;
-  position: absolute;
-  left: 26%;
-  top: 96%;
 }
 
 .icon {
   display: flex;
   width: 29px;
   height: 27px;
-  top: 789px;
   left: 278px;
-  z-index: -1;
-  position: relative;
   background: url("../../../assets/images/icon_book_2.png");
 }
 
 .logo {
   display: flex;
   background: url("../../../assets/images/Group 681.png");
-  position: absolute;
   width: 367px;
-  left: 17px;
-  top: 3px;
   height: 304px;
 }
 
 .h {
   display: flex;
-  font-family: "Quicksand";
+  font-family: "Open Sans", sans-serif;
   font-weight: bold;
-  position: absolute;
-  left: 17%;
-  top: 295px;
+  justify-content: center;
 }

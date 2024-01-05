@@ -1,5 +1,13 @@
+.logIn {
+  display: flex;
+  flex-direction: column;
+}
+
 .box {
   background: url("../../assets/images/edit.png");
+  background-size: cover; /* or 'contain', depending on your needs */
+  background-position: center;
+  background-repeat: no-repeat;
   width: 352px;
   height: 394px;
   display: flex;
@@ -9,17 +17,17 @@
 
 .txt {
   font-size: xx-large;
-  font-family: "Quicksand";
+  font-family: "Open Sans", sans-serif;
   display: flex;
   font-weight: bold;
   background-color: transparent;
   width: 247px;
-  height: 135px;
+  height: 100px;
   position: relative;
   bottom: 60px;
   border-radius: 20px;
   border: none;
-  left: 40px;
+  text-align: center;
 }
 
 input::placeholder {
@@ -38,7 +46,13 @@ input::placeholder {
   bottom: 307px;
   font-size: larger;
   font-weight: bold;
-  font-family: "Quicksand";
+  font-family: "Open Sans", sans-serif;
   border: none;
   background-color: #ffe500;
+}
+
+.colorBar {
+  text-align: center;
+  position: relative;
+  top: -30px;
 }

@@ -1,0 +1,21 @@
+.loginUserName {
+  text-align: center;
+  font-family: Nunito;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  font-family: "Quicksand";
+}
+
+.logoutContainer {
+  position: relative;
+  top: 70px;
+  right: -130px;
+}
+
+.playerTableContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -18,7 +18,7 @@ export const ColorsBar = ({ onColorClick, disabledColors = [] }) => {
   };
 
   return (
-    <div>
+    <div className={styles.colorBarContainer}>
       {colorButtons.map((button, index) => (
         <button
           key={index}

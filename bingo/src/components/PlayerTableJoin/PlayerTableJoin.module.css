@@ -1,5 +1,8 @@
 .joinButton {
   background: url("../../assets/images/join.png");
+  background-size: cover; /* or 'contain', depending on your needs */
+  background-position: center;
+  background-repeat: no-repeat;
   width: 352px;
   height: 394px;
   border: none;
@@ -7,7 +10,18 @@
 
 .joined {
   background: url("../../assets/images/exit.png");
+  background-size: cover; /* or 'contain', depending on your needs */
+  background-position: center;
+  background-repeat: no-repeat;
   width: 352px;
   height: 394px;
   border: none;
+}
+
+.inactiveButton {
+  opacity: 0.5;
+}
+
+.inactiveCompletelyButton {
+  opacity: 0;
 }

@@ -4,10 +4,20 @@ import io from "socket.io-client";
 import styles from "./SurroundWall.module.css";
 import { UserWallCard } from "../../components/UserWallCard/UserWallCard";
 import { BallDisplay } from "../../components/BallDisplay/BallDisplay";
-import MicrophoneSpeech from "../../components/MicrophoneSpeech/MicrophoneSpeech";
-const socket = io.connect("http://192.168.1.13:3001");
+import useSpeechRecognition from "../../components/useSpeechRecognition/useSpeechRecognition";
+import { SOCKET_URL } from "../../config";
+const socket = io.connect(SOCKET_URL);
 
 function SurroundWall() {
+  const wordActionsMap = {
+    "Bingo start game": () => sendStartGame(),
+    "next stage": () => sendNextStage(),
+    "exit game": () => sendExitGame(),
+    "next round": () => sendNextRound(),
+    "Bingo instructions": () => sendShowRules(),
+    "Bingo stop wheel": () => sendStopWheel(),
+  };
+
   const elementsPerRow = 15;
   const [data, setData] = useState(
     Array.from({ length: 75 }, (_, index) => ({
@@ -19,21 +29,15 @@ function SurroundWall() {
     .map((item, index) => {
       // map content to html elements
       return (
-        // <div
-        //   key={index}
-        //   className={`${styles.ballContainer} ${
-        //     item.isDrawn ? styles.drawn : ""
-        //   }`}
-        // >
-        //   {index + 1}
-        // </div>
-        <BallDisplay
-          key={index}
-          number={index + 1}
-          ballDimension={50}
-          numberSize={25}
-          isDrawn={item.isDrawn}
-        />
+        <div className={styles.blackBackground}>
+          <BallDisplay
+            key={index}
+            number={index + 1}
+            ballDimension={50}
+            numberSize={25}
+            isDrawn={item.isDrawn}
+          />
+        </div>
       );
     })
     .reduce(function (r, element, index) {
@@ -71,10 +75,13 @@ function SurroundWall() {
 
   const [usersReceived, setUsersReceived] = useState([]);
   const [numberToSend, setNumberToSend] = useState(randomizeNumber);
+  const { transcript, startListening, stopListening } =
+    useSpeechRecognition(wordActionsMap);
 
   useEffect(() => {
     socket.on("receiveUsers", (data) => {
       setUsersReceived(data);
+      console.log(usersReceived);
     });
 
     // Listen for the "namesCleared" event
@@ -102,6 +109,25 @@ function SurroundWall() {
     socket.emit("sendNumber", numberToSend);
   };
 
+  const sendNextRound = () => {
+    socket.emit("sendNextRound");
+  };
+  const sendNextStage = () => {
+    socket.emit("sendNextStage");
+  };
+  const sendExitGame = () => {
+    socket.emit("sendExitGame");
+  };
+  const sendStartGame = () => {
+    socket.emit("sendStartGame");
+  };
+  const sendShowRules = () => {
+    socket.emit("sendShowRules");
+  };
+  const sendStopWheel = () => {
+    sendNumberOnce();
+  };
+
   return (
     <div className={styles.dim}>
       <div className={styles.players}></div>
@@ -109,9 +135,8 @@ function SurroundWall() {
       <div className={styles.ycircle}></div>
       <p className={styles.ycircletxt}>BINGO</p>
       <div className={styles.rect}></div>
-      {/* <MicrophoneSpeech /> */}
 
-      <div>
+      <div className={styles.wallPlayersContainer}>
         {usersReceived.map((wall_user) => (
           <UserWallCard key={wall_user.name} user={wall_user} />
         ))}
@@ -120,8 +145,8 @@ function SurroundWall() {
         </button>
       </div>
 
-      <div className={styles.bingoBoard}>
-        {rows}
+      <div className={styles.wallRightSide}>
+        <div className={styles.bingoBoard}>{rows}</div>
         <div className={styles.bingocontainer}>
           <div className={styles.circle}>
             <div className={styles.letter}>B</div>
@@ -139,6 +164,12 @@ function SurroundWall() {
             <div className={styles.letter}>O</div>
           </div>
         </div>
+      </div>
+
+      <div className={styles.microphone}>
+        <button onClick={startListening}>Start</button>
+        <button onClick={stopListening}>Stop</button>
+        <p>Transcript: {transcript}</p>
       </div>
     </div>
   );

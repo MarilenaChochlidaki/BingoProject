@@ -1,14 +1,14 @@
 import React from "react";
 import io from "socket.io-client";
 import styles from "./LogoutButton.module.css";
-const socket = io.connect("http://192.168.1.3:3001");
+import { SOCKET_URL } from "../../config";
+const socket = io.connect(SOCKET_URL);
 
 function LogoutButton({ isMobile, userName }) {
   const handleButtonClick = () => {
-    // Add your logic here for handling button click when active
-
     socket.emit("send_logout_name", { logoutName: userName });
   };
+
   return (
     <button
       onClick={handleButtonClick}

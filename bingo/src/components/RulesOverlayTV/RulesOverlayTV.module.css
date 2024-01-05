@@ -9,12 +9,68 @@
   display: flex;
   align-items: center;
   justify-content: center; /* Center horizontally */
+  z-index: 10;
 }
 
 .showPopupContent {
   position: relative;
   padding: 32px;
   width: 100%;
-  max-width: 640px;
-  background-color: rgba(0, 0, 0, 0.2);
+  max-width: 1000px;
+  background-color: white;
+  border-radius: 50px;
+}
+
+.instructionsHeader {
+  font-size: 2em; /* Increase font size */
+  margin-bottom: 20px; /* Add some space between sections */
+  font-weight: bold; /* Make the font bold */
+  text-align: center;
+}
+
+.bingoRules {
+  font-size: 1.5em; /* Increase font size */
+  margin-bottom: 20px; /* Add some space between sections */
+}
+
+.bingoVoiceCommands {
+  font-size: 1.5em; /* Increase font size */
+  margin-bottom: 20px; /* Add some space between sections */
+}
+
+.bingoGestures {
+  list-style-type: none; /* Remove the default list style */
+  padding-left: 0; /* Remove default padding if needed */
+  position: absolute;
+  right: 100px;
+  top: 570px;
+}
+.bingoGestures ul {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 1.5em; /* Increase font size */
+}
+
+.bingoGestures li {
+  display: flex; /* Aligns image and text horizontally */
+  align-items: center; /* Aligns image and text vertically */
+  gap: 10px; /* Adjust the space between the image and text */
+}
+
+.bingoGestures img {
+  width: 50px; /* Adjust the image size as needed */
+  height: auto; /* Maintain the aspect ratio */
+}
+
+.bingoVisual {
+  position: absolute;
+  top: 570px;
+  left: 400px;
+}
+
+.bingoVisual img {
+  width: 200px; /* Set a fixed width for the image */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Image is a block to allow margin auto to work */
+  margin: 0 auto; /* Center image within its container */
 }

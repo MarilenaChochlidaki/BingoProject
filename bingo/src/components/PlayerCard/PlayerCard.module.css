@@ -2,15 +2,22 @@
   width: 260px;
   height: 322px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
-  gap: 9px;
+  flex-direction: column;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  gap: 10px;
+}
+
+.ballsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
 }
 
 .columnContainer {
@@ -34,20 +41,15 @@
   font-size: medium;
   position: relative;
   font-weight: bold;
-  top: 33px;
 }
 
 .marked {
-  background-color: red;
+  background-color: yellow;
 }
 
 .bingo {
-  position: absolute;
   background-color: rgba(255, 255, 255, 0.6);
-  width: 260px;
   letter-spacing: 20px;
-  height: 64px;
-  bottom: 210px;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
   color: black;
@@ -57,11 +59,18 @@
   justify-content: center;
   align-items: center;
   font-family: "Quicksand";
+  width: 100%;
+  margin: 0;
+  position: relative; /* Make sure the parent is positioned */
 }
 
 .bingo::after {
-  content: "";
-  margin-left: -17px;
-  display: inline-block;
-  width: 0;
+  content: ""; /* Empty string content */
+  margin-left: -20px; /* Negative margin to compensate for the last letter spacing */
+  flex: 0; /* Do not allow the pseudo-element to grow */
+}
+
+.mobileContainer {
+  width: 400px;
+  height: 500px;
 }

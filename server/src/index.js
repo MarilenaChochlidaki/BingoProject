@@ -11,7 +11,7 @@ app.use(cors());
 
 const io = new Server(server, {
   cors: {
-    origin: "http://192.168.1.13:3000",
+    origin: "http://192.168.1.62:3000",
     methods: ["GET", "POST"],
   },
 });
@@ -41,6 +41,8 @@ io.on("connection", (socket) => {
 
   socket.on("resetCards", () => {
     io.emit("receive_resetCards");
+    winnerName = "";
+    socket.broadcast.emit("receive_winner_name", winnerName);
   });
 
   socket.on("send_logout_name", (data) => {
@@ -53,11 +55,17 @@ io.on("connection", (socket) => {
     winnerName = data.winnerName;
 
     // Find the winner in the users array and update their wins
-    const updatedUsers = users.map((user) =>
-      user.name === winnerName ? { ...user, wins: user.wins + 1 } : user
-    );
+    const updatedUsers = users.map((user) => {
+      if (user.name === winnerName) {
+        const wins = typeof user.wins === "number" ? user.wins : 0;
+        return { ...user, wins: wins + 1 };
+      } else {
+        return user;
+      }
+    });
 
-    io.emit("receiveUsers", updatedUsers); // Update all clients with the new user list
+    users = updatedUsers;
+    io.emit("receiveUsers", updatedUsers);
     socket.broadcast.emit("receive_winner_name", winnerName);
   });
 
@@ -69,6 +77,26 @@ io.on("connection", (socket) => {
     io.emit("receive_showRules", data);
   });
 
+  socket.on("send_startedGame", (data) => {
+    io.emit("receive_gameStarted", data);
+  });
+
+  socket.on("sendNextRound", () => {
+    io.emit("triggerNextRound"); // Broadcasting to all clients
+  });
+  socket.on("sendNextStage", () => {
+    io.emit("triggerNextStage"); // Broadcasting to all clients
+  });
+  socket.on("sendExitGame", () => {
+    io.emit("triggerExitGame"); // Broadcasting to all clients
+  });
+  socket.on("sendStartGame", () => {
+    io.emit("triggerStartGame"); // Broadcasting to all clients
+  });
+  socket.on("sendShowRules", () => {
+    io.emit("triggerShowRules"); // Broadcasting to all clients
+  });
+
   socket.on("sendNumber", (number) => {
     // Update the currentNumber and broadcast it to all clients
     currentNumber = number;
@@ -78,7 +106,7 @@ io.on("connection", (socket) => {
     setTimeout(() => {
       currentNumber = 0;
       io.emit("receiveNumber", currentNumber);
-    }, 30000);
+    }, 10000);
   });
 });
 

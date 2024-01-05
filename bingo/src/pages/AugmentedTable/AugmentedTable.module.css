@@ -7,6 +7,7 @@
   align-items: center;
   gap: 41px;
   background: url("../../assets/images/balls.png");
+  overflow: hidden;
 }
 
 .midPlayereCards {
@@ -14,9 +15,9 @@
   padding: 0px 0px 0px 0px;
   justify-content: center;
   align-items: center;
-  gap: 1208px;
+  gap: 1050px;
   position: absolute;
-  top: 25%;
+  top: 20%;
   align-items: stretch;
 }
 
@@ -26,13 +27,13 @@
   padding: 10px;
   justify-content: center;
   align-items: center;
-  gap: 430px;
+  gap: 330px;
   position: absolute;
-  top: 67%;
-  align-items: stretch;
+  top: 65%;
 }
 
-.y_b {
+.y_b,
+.p_b {
   width: 241px;
   border-radius: 20px;
   border: none;
@@ -42,15 +43,38 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  font-family: "Quicksand";
+  font-family: "Open Sans", sans-serif;
   background-color: #ffe500;
   top: 40%;
   box-shadow: 2px 2px 10px rgba(113, 95, 28, 0.45);
   z-index: 2;
 }
 
-.p_b {
+.endGameButtons {
+  position: absolute;
+  top: 40%;
+  display: flex;
+  gap: 100px;
+}
+
+.nextRoundButton {
+  width: 241px;
+  border-radius: 20px;
+  border: none;
+  height: 81px;
+  font-size: xx-large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Open Sans", sans-serif;
+  background-color: #ffe500;
+  box-shadow: 2px 2px 10px rgba(113, 95, 28, 0.45);
   z-index: 2;
+}
+
+.p_b:disabled {
+  opacity: 0.5;
+  color: black;
 }
 
 .b_b {
@@ -71,7 +95,7 @@
   height: 115px;
   border: none;
   position: absolute;
-  left: 94%;
+  right: 8px;
   top: 10px;
 }
 
@@ -81,8 +105,8 @@
   height: 277px;
 }
 
-/* .logo_edit {
-  background: url("../../assets/images/set_prof.png");
+.logo {
+  background: url("../../assets/images/bingo_logo_join_game.png");
   width: 372px;
-  height: 277px;
-} */
+  height: 198px;
+}
