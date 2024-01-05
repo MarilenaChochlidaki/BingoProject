@@ -25,8 +25,8 @@
 
 .bingoBoard {
   background: #246bce;
-  width: 1000px;
-  height: 330px;
+  width: 1313px;
+  height: 403px;
   display: flex;
   flex-direction: column;
   gap: 38px;
