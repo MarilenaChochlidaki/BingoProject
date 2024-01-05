@@ -42,6 +42,27 @@ const AugmentedTable = () => {
         currentUsers.filter((user) => user.name !== logoutName)
       );
     });
+    socket.on("triggerNextRound", () => {
+      if (winnerUser && winnerUser.length > 0) {
+        nextRound();
+      }
+    });
+    socket.on("triggerNextStage", () => {
+      if (!profileGame) {
+        handleNext();
+      }
+    });
+    socket.on("triggerExitGame", () => {
+      endGame();
+    });
+    socket.on("triggerStartGame", () => {
+      if (profileGame && !startedGame) {
+        handleStart();
+      }
+    });
+    socket.on("triggerShowRules", () => {
+      activateShowRules();
+    });
 
     // Cleanup on unmount
     return () => {

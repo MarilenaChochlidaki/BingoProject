@@ -4,12 +4,20 @@ import io from "socket.io-client";
 import styles from "./SurroundWall.module.css";
 import { UserWallCard } from "../../components/UserWallCard/UserWallCard";
 import { BallDisplay } from "../../components/BallDisplay/BallDisplay";
-import MicrophoneSpeech from "../../components/MicrophoneSpeech/MicrophoneSpeech";
 import useSpeechRecognition from "../../components/useSpeechRecognition/useSpeechRecognition";
 import { SOCKET_URL } from "../../config";
 const socket = io.connect(SOCKET_URL);
 
 function SurroundWall() {
+  const wordActionsMap = {
+    "Bingo start game": () => sendStartGame(),
+    "next stage": () => sendNextStage(),
+    "exit game": () => sendExitGame(),
+    "next round": () => sendNextRound(),
+    "Bingo instructions": () => sendShowRules(),
+    "Bingo stop wheel": () => sendStopWheel(),
+  };
+
   const elementsPerRow = 15;
   const [data, setData] = useState(
     Array.from({ length: 75 }, (_, index) => ({
@@ -67,7 +75,8 @@ function SurroundWall() {
 
   const [usersReceived, setUsersReceived] = useState([]);
   const [numberToSend, setNumberToSend] = useState(randomizeNumber);
-  const { transcript, startListening, stopListening } = useSpeechRecognition();
+  const { transcript, startListening, stopListening } =
+    useSpeechRecognition(wordActionsMap);
 
   useEffect(() => {
     socket.on("receiveUsers", (data) => {
@@ -98,6 +107,25 @@ function SurroundWall() {
     const randnumber = randomizeNumber();
     setNumberToSend(randnumber);
     socket.emit("sendNumber", numberToSend);
+  };
+
+  const sendNextRound = () => {
+    socket.emit("sendNextRound");
+  };
+  const sendNextStage = () => {
+    socket.emit("sendNextStage");
+  };
+  const sendExitGame = () => {
+    socket.emit("sendExitGame");
+  };
+  const sendStartGame = () => {
+    socket.emit("sendStartGame");
+  };
+  const sendShowRules = () => {
+    socket.emit("sendShowRules");
+  };
+  const sendStopWheel = () => {
+    sendNumberOnce();
   };
 
   return (
@@ -138,7 +166,7 @@ function SurroundWall() {
         </div>
       </div>
 
-      <div>
+      <div className={styles.microphone}>
         <button onClick={startListening}>Start</button>
         <button onClick={stopListening}>Stop</button>
         <p>Transcript: {transcript}</p>

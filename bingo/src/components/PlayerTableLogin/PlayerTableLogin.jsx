@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { ColorsBar } from "../ColorsBar/ColorsBar";
 import io from "socket.io-client";
 import styles from "./PlayerTableLogin.module.css";
-
 import { SOCKET_URL } from "../../config";
 const socket = io.connect(SOCKET_URL);
 

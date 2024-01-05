@@ -152,3 +152,8 @@
   left: 172px;
   bottom: 138px;
 }
+
+.microphone {
+  position: absolute;
+  top: 90%;
+}
