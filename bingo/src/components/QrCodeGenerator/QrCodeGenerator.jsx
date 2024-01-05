@@ -3,7 +3,7 @@ import QRCode from "react-qr-code"; // Correct import for react-qr-code
 import styles from "./QrCodeGenerator.module.css";
 
 function QrCodeGenerator({ isInactive }) {
-  const url = "http://192.168.1.62:3000/mobile"; // Hardcoded URL
+  const url = "http://139.91.80.12:3000/mobile"; // Hardcoded URL
 
   return (
     <div
