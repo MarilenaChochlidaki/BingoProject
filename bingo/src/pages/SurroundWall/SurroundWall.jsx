@@ -10,7 +10,7 @@ const socket = io.connect(SOCKET_URL);
 
 function SurroundWall() {
   const wordActionsMap = {
-    "Bingo start game": () => sendStartGame(),
+    "start game": () => sendStartGame(),
     "next stage": () => sendNextStage(),
     "exit game": () => sendExitGame(),
     "next round": () => sendNextRound(),
@@ -91,6 +91,10 @@ function SurroundWall() {
 
     socket.on("receive_clearBalls", () => {
       clearBalls(); // Clear names on the client side
+    });
+
+    socket.on("triggerSpinWheel", () => {
+      sendStopWheel(); // Clear names on the client side
     });
 
     // Listen for the user logout event

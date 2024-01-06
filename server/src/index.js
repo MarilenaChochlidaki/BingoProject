@@ -11,7 +11,7 @@ app.use(cors());
 
 const io = new Server(server, {
   cors: {
-    origin: "http://139.91.80.12:3000",
+    origin: "http://192.168.1.2:3000",
     methods: ["GET", "POST"],
   },
 });
@@ -95,6 +95,29 @@ io.on("connection", (socket) => {
   });
   socket.on("sendShowRules", () => {
     io.emit("triggerShowRules"); // Broadcasting to all clients
+  });
+
+  socket.on("sendGestureEvent", (gesture) => {
+    switch (gesture) {
+      case "SWIPE_LEFT":
+        io.emit("triggerNextRound");
+        break;
+      case "SWIPE_UP":
+      case "SWIPE_DOWN":
+        io.emit("triggerShowRules");
+        break;
+      case "SWIPE_RIGHT":
+        io.emit("triggerExitGame");
+        break;
+      case "CIRCLE_CLOCKWISE":
+      case "CIRCLE_COUNTERCLOCKWISE":
+        io.emit("triggerSpinWheel");
+        break;
+      case "PINCH":
+        break;
+      default:
+        break;
+    }
   });
 
   socket.on("sendNumber", (number) => {
