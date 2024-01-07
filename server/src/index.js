@@ -11,7 +11,7 @@ app.use(cors());
 
 const io = new Server(server, {
   cors: {
-    origin: "http://139.91.80.12:3000",
+    origin: "http://192.168.1.96:3000",
     methods: ["GET", "POST"],
   },
 });
