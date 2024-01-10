@@ -97,6 +97,14 @@ io.on("connection", (socket) => {
     io.emit("triggerShowRules"); // Broadcasting to all clients
   });
 
+  socket.on("sendVoiceInputName", (user_index) => {
+    io.emit("receiveVoiceInputName", user_index); // Broadcasting to all clients
+  });
+
+  socket.on("sendVoiceOutputName", (user_index, transcript) => {
+    io.emit("receiveVoiceOutputName", user_index, transcript); // Broadcasting to all clients
+  });
+
   socket.on("sendGestureEvent", (gesture) => {
     switch (gesture) {
       case "SWIPE_LEFT":

@@ -14,6 +14,12 @@ const AugmentedTable = () => {
   const [startedGame, setStartedGame] = useState(false);
   const [winnerUser, setWinnerUser] = useState("");
 
+  const [parentVariable, setParentVariable] = useState(0);
+
+  const handlePlayerInputting = (newValue) => {
+    setParentVariable(newValue);
+  };
+
   const allPlayersLoggedIn = () => {
     return users.every(
       (user) =>
@@ -192,6 +198,8 @@ const AugmentedTable = () => {
           handleLogin={handleLogin}
           handleJoin={handleJoin}
           disabledButtonColors={colorsChosen}
+          playerInputtingPT={handlePlayerInputting}
+          indexInputting={parentVariable}
         />
         <PlayerTable
           user={users[1]}
@@ -203,6 +211,8 @@ const AugmentedTable = () => {
           handleLogin={handleLogin}
           handleJoin={handleJoin}
           disabledButtonColors={colorsChosen}
+          playerInputtingPT={handlePlayerInputting}
+          indexInputting={parentVariable}
         />
       </div>
       <div className={styles.bottomPlayereCards}>
@@ -215,6 +225,8 @@ const AugmentedTable = () => {
           handleLogin={handleLogin}
           handleJoin={handleJoin}
           disabledButtonColors={colorsChosen}
+          playerInputtingPT={handlePlayerInputting}
+          indexInputting={parentVariable}
         />
         <PlayerTable
           user={users[3]}
@@ -225,6 +237,8 @@ const AugmentedTable = () => {
           handleLogin={handleLogin}
           handleJoin={handleJoin}
           disabledButtonColors={colorsChosen}
+          playerInputtingPT={handlePlayerInputting}
+          indexInputting={parentVariable}
         />
         <PlayerTable
           user={users[4]}
@@ -235,6 +249,8 @@ const AugmentedTable = () => {
           handleLogin={handleLogin}
           handleJoin={handleJoin}
           disabledButtonColors={colorsChosen}
+          playerInputtingPT={handlePlayerInputting}
+          indexInputting={parentVariable}
         />
       </div>
     </div>

@@ -14,8 +14,8 @@ function SurroundWall() {
     "next stage": () => sendNextStage(),
     "exit game": () => sendExitGame(),
     "next round": () => sendNextRound(),
-    "Bingo instructions": () => sendShowRules(),
-    "Bingo stop wheel": () => sendStopWheel(),
+    instructions: () => sendShowRules(),
+    draw: () => sendNumberOnce(),
   };
 
   const elementsPerRow = 15;
@@ -75,10 +75,17 @@ function SurroundWall() {
 
   const [usersReceived, setUsersReceived] = useState([]);
   const [numberToSend, setNumberToSend] = useState(randomizeNumber);
-  const { transcript, startListening, stopListening } =
+  const { transcript, startListening, stopListening, setTranscript } =
     useSpeechRecognition(wordActionsMap);
 
+  const [userNameIndex, setUserNameIndex] = useState(0);
+  const [canSendNumber, setCanSendNumber] = useState(true);
+
   useEffect(() => {
+    socket.on("receiveNumber", (number) => {
+      if (number === 0) setCanSendNumber(true); // Clear names on the client side
+    });
+
     socket.on("receiveUsers", (data) => {
       setUsersReceived(data);
       console.log(usersReceived);
@@ -103,14 +110,34 @@ function SurroundWall() {
         currentUsers.filter((user) => user.name !== logoutName)
       );
     });
+
+    socket.on("receiveVoiceInputName", (userIndexInput) => {
+      setUserNameIndex(userIndexInput);
+      setTranscript("");
+    });
   }, []);
+
+  useEffect(() => {
+    if (userNameIndex && transcript.length > 0) {
+      console.log(transcript); // Now this will log the updated transcript
+      socket.emit("sendVoiceOutputName", userNameIndex, transcript);
+      setUserNameIndex(0);
+    }
+  }, [transcript]);
+
+  useEffect(() => {
+    if (numberToSend && canSendNumber) {
+      console.log(numberToSend);
+      setCanSendNumber(false);
+      socket.emit("sendNumber", numberToSend);
+    }
+  }, [numberToSend]);
 
   const sendNumberOnce = () => {
     data[numberToSend - 1].isDrawn = true;
-    // Send the number to the backend
+    console.log("hello");
     const randnumber = randomizeNumber();
     setNumberToSend(randnumber);
-    socket.emit("sendNumber", numberToSend);
   };
 
   const sendNextRound = () => {
