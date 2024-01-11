@@ -6,6 +6,9 @@ import { UserWallCard } from "../../components/UserWallCard/UserWallCard";
 import { BallDisplay } from "../../components/BallDisplay/BallDisplay";
 import useSpeechRecognition from "../../components/useSpeechRecognition/useSpeechRecognition";
 import { SOCKET_URL } from "../../config";
+import useSound from "use-sound";
+import soundSample1 from "../../assets/sounds/bingo_ball.mp3";
+
 const socket = io.connect(SOCKET_URL);
 
 function SurroundWall() {
@@ -17,7 +20,7 @@ function SurroundWall() {
     instructions: () => sendShowRules(),
     draw: () => sendNumberOnce(),
   };
-
+  const [playSound] = useSound(soundSample1);
   const elementsPerRow = 15;
   const [data, setData] = useState(
     Array.from({ length: 75 }, (_, index) => ({
@@ -134,6 +137,7 @@ function SurroundWall() {
   }, [numberToSend]);
 
   const sendNumberOnce = () => {
+    playSound();
     data[numberToSend - 1].isDrawn = true;
     console.log("hello");
     const randnumber = randomizeNumber();
