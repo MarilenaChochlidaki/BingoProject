@@ -11,7 +11,11 @@ app.use(cors());
 
 const io = new Server(server, {
   cors: {
+<<<<<<< HEAD
     origin: "http://192.168.1.96:3000",
+=======
+    origin: "http://192.168.1.62:3000",
+>>>>>>> origin/master
     methods: ["GET", "POST"],
   },
 });
@@ -95,6 +99,37 @@ io.on("connection", (socket) => {
   });
   socket.on("sendShowRules", () => {
     io.emit("triggerShowRules"); // Broadcasting to all clients
+  });
+
+  socket.on("sendVoiceInputName", (user_index) => {
+    io.emit("receiveVoiceInputName", user_index); // Broadcasting to all clients
+  });
+
+  socket.on("sendVoiceOutputName", (user_index, transcript) => {
+    io.emit("receiveVoiceOutputName", user_index, transcript); // Broadcasting to all clients
+  });
+
+  socket.on("sendGestureEvent", (gesture) => {
+    switch (gesture) {
+      case "SWIPE_LEFT":
+        io.emit("triggerNextRound");
+        break;
+      case "SWIPE_UP":
+      case "SWIPE_DOWN":
+        io.emit("triggerShowRules");
+        break;
+      case "SWIPE_RIGHT":
+        io.emit("triggerExitGame");
+        break;
+      case "CIRCLE_CLOCKWISE":
+      case "CIRCLE_COUNTERCLOCKWISE":
+        io.emit("triggerSpinWheel");
+        break;
+      case "PINCH":
+        break;
+      default:
+        break;
+    }
   });
 
   socket.on("sendNumber", (number) => {

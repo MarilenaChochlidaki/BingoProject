@@ -4,7 +4,7 @@
 }
 
 .box {
-  background: url("../../assets/images/edit.png");
+  background: url("../../assets/images/edit_defaultpng.png");
   background-size: cover; /* or 'contain', depending on your needs */
   background-position: center;
   background-repeat: no-repeat;
@@ -13,6 +13,21 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  border: none;
+}
+
+.box:hover,
+.box:focus,
+.box:active {
+  border: none;
+}
+
+.boxWaitingForName {
+  background: url("../../assets/images/edit_disabled.png");
+}
+
+.boxDisabled {
+  background: url("../../assets/images/edit_defaultpng.png"); /* New background image */
 }
 
 .txt {
@@ -28,6 +43,7 @@
   border-radius: 20px;
   border: none;
   text-align: center;
+  justify-content: center;
 }
 
 input::placeholder {

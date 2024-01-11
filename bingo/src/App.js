@@ -5,18 +5,22 @@ import AugmentedTable from "./pages/AugmentedTable/AugmentedTable";
 import { Mobile } from "./pages/Mobile/Mobile";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SurroundWall from "./pages/SurroundWall/SurroundWall";
+import io from "socket.io-client";
+import { SOCKET_URL } from "./config";
+
+const socket = io.connect(SOCKET_URL);
 
 function App() {
   const [title] = useState("frontend");
   const cursorReplacementRef = useRef(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const GesturesStr = [
-    "SWIPE_LEFT",
-    "SWIPE_UP",
-    "SWIPE_DOWN",
-    "SWIPE_RIGHT",
-    "CIRCLE_CLOCKWISE",
-    "CIRCLE_COUNTERCLOCKWISE",
+    "SWIPE_LEFT", //Next Round
+    "SWIPE_UP", // Show/Hide Rules
+    "SWIPE_DOWN", // Show/Hide Rules
+    "SWIPE_RIGHT", // Finish Game
+    "CIRCLE_CLOCKWISE", //Spin the Wheel
+    "CIRCLE_COUNTERCLOCKWISE", // Spin the Wheel
     "PINCH",
   ];
 
@@ -28,6 +32,7 @@ function App() {
 
     window["electronAPI"]?.onGesture((arg) => {
       console.log("Gesture recognised: ", GesturesStr[arg]);
+      socket.emit("sendGestureEvent", GesturesStr[arg]);
     });
 
     return () => {

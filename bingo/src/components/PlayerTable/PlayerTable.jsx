@@ -13,6 +13,8 @@ export const PlayerTable = ({
   handleLogin,
   handleJoin,
   disabledButtonColors,
+  playerInputtingPT,
+  indexInputting,
 }) => {
   const rotationStyle = {
     transform: `rotate(${rotation}deg)`,
@@ -26,10 +28,13 @@ export const PlayerTable = ({
           <PlayerTableMain loginUser={user} cardNumberActive={numberActive} />
         ) : (
           <PlayerTableLogin
+            userIndex={index}
             loginUserButtonClick={(playerData) =>
               handleLogin(playerData, index)
             }
             disabledButtonColors={disabledButtonColors}
+            playerInputting={playerInputtingPT}
+            indexInputting={indexInputting}
           />
         )
       ) : (

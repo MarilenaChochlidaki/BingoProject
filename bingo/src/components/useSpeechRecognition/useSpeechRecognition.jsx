@@ -58,7 +58,13 @@ const useSpeechRecognition = (wordActionsMap) => {
   const startListening = () => setIsListening(true);
   const stopListening = () => setIsListening(false);
 
-  return { transcript, startListening, stopListening, resetTranscript };
+  return {
+    transcript,
+    startListening,
+    stopListening,
+    resetTranscript,
+    setTranscript,
+  };
 };
 
 export default useSpeechRecognition;
