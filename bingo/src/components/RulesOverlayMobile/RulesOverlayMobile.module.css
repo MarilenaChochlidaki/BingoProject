@@ -5,7 +5,6 @@
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.2);
-
   display: flex;
   align-items: center;
   justify-content: center; /* Center horizontally */
@@ -15,17 +14,30 @@
 .showPopupContent {
   position: relative;
   width: 100%;
-  height: 50%;
+  height: 100%;
   background-color: white;
   z-index: 2;
-  bottom: -25%;
+  bottom: -22%;
   overflow-y: auto; /* Enable scrolling within content area */
   margin: 10vh auto;
   padding: 20px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .imageContainer {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.yellow_line {
+  width: 58px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: #ffe500;
 }

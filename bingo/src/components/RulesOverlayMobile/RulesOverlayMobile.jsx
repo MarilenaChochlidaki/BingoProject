@@ -1,28 +1,56 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "./RulesOverlayMobile.module.css";
 import fiveInRowImage from "../../assets/images/five_in_row.png";
 
 export const RulesOverlayMobile = ({ trigger, setTrigger }) => {
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  // Minimum swipe distance (downwards)
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientY);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientY);
+  };
+
+  const onTouchEnd = useCallback(() => {
+    if (touchEnd && touchStart && touchEnd - touchStart > minSwipeDistance) {
+      setTrigger(false);
+    }
+  }, [touchStart, touchEnd, setTrigger]);
+
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      // Close the popup if the click is outside the popup
-      if (trigger && !event.target.closest(".popup-rules")) {
-        setTrigger(false);
+    const popupElement = document.querySelector(".popup-rules");
+
+    if (trigger && popupElement) {
+      popupElement.addEventListener("touchstart", onTouchStart);
+      popupElement.addEventListener("touchmove", onTouchMove);
+      popupElement.addEventListener("touchend", onTouchEnd);
+    }
+
+    return () => {
+      if (popupElement) {
+        popupElement.removeEventListener("touchstart", onTouchStart);
+        popupElement.removeEventListener("touchmove", onTouchMove);
+        popupElement.removeEventListener("touchend", onTouchEnd);
       }
     };
-
-    // Add event listener on mount
-    document.addEventListener("mousedown", handleClickOutside);
-
-    // Remove event listener on unmount
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [trigger, setTrigger]);
+  }, [trigger, onTouchEnd]);
 
   return trigger ? (
-    <div className={styles.showPopupRules}>
+    <div
+      className={styles.showPopupRules}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
       <div className={styles.showPopupContent}>
+        <div className={styles.yellow_line}></div>
         <p>
           <strong>1.</strong> Bingo Card: Each player has a 5x5 bingo card with
           25 spaces filled with random numbers.
