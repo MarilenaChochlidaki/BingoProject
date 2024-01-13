@@ -50,6 +50,7 @@ input::placeholder {
   justify-content: center;
   position: absolute;
   bottom: 8%;
+  bottom: calc(2% + 60px);
 }
 
 .readyButton {
@@ -87,8 +88,11 @@ input::placeholder {
 .logo {
   display: flex;
   background: url("../../../assets/images/Group 681.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   width: 367px;
-  height: 304px;
+  height: 200px; /* Adjusted height */
 }
 
 .h {

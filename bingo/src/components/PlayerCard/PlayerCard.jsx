@@ -125,14 +125,9 @@ export const PlayerCard = ({
               {column.map((ball, ballIndex) => (
                 <button
                   key={ballIndex}
-                  style={
-                    isMobile
-                      ? { width: "65px", height: "65px", fontSize: "1.7rem" }
-                      : {}
-                  }
                   className={`${styles.ballButton} ${
                     ball.isMarked ? styles.marked : ""
-                  }`}
+                  } ${isMobile ? styles.ballButtonMobile : ""}`}
                   onClick={() => handleButtonClick(ball.ballIndex, columnIndex)}
                 >
                   {ball.ballIndex}

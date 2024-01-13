@@ -20,6 +20,14 @@ export const Mobile = () => {
     socket.on("receive_gameStarted", (data) => {
       setGameStarted(data);
     });
+
+    socket.on("userLoggedOut", (logoutName) => {
+      console.log(user.name);
+      console.log(logoutName);
+      if (user.name === logoutName) {
+        setUser("");
+      }
+    });
   }, []);
 
   const handleLogin = (loginUser) => {

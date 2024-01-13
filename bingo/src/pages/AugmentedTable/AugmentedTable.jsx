@@ -157,7 +157,6 @@ const AugmentedTable = () => {
       )}
       {winnerUser && winnerUser.length > 0 && (
         <div className={styles.endGameButtons}>
-          {winnerUser}
           <button className={styles.nextRoundButton} onClick={endGame}>
             End Game
           </button>

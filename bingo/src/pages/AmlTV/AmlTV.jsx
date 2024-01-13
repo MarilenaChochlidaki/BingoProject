@@ -6,6 +6,9 @@ import { BallDisplay } from "../../components/BallDisplay/BallDisplay";
 import QrCodeGenerator from "../../components/QrCodeGenerator/QrCodeGenerator";
 import { SOCKET_URL } from "../../config";
 import wheelVideo from "../../assets/videos/wheel_2.mp4";
+import useSound from "use-sound";
+import winnerSound from "../../assets/sounds/winner.mp3";
+
 const socket = io.connect(SOCKET_URL);
 
 export const AmlTV = () => {
@@ -13,9 +16,11 @@ export const AmlTV = () => {
   const [showRules, setShowRules] = useState(false);
   const [numberActive, setNumberActive] = useState(0);
   const [gameRunning, setGameRunning] = useState(false);
+  const [playWinnerSound] = useSound(winnerSound);
 
   useEffect(() => {
     socket.on("receive_winner_name", (data) => {
+      playWinnerSound();
       setWinnerUser(data);
     });
 
@@ -80,6 +85,11 @@ export const AmlTV = () => {
             />
           </div>
         </div>
+      </div>
+      <div className={styles.winnerLabel}>
+        {winnerUser && winnerUser.length > 1
+          ? winnerUser + " is the winner!"
+          : ""}
       </div>
     </div>
   );

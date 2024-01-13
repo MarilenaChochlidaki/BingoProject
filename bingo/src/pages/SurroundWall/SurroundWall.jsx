@@ -61,6 +61,11 @@ function SurroundWall() {
   const randomizeNumber = () => {
     // Filter data to get only objects with value 0
     const dataNotDrawn = data.filter((item) => item.isDrawn === false);
+    if (dataNotDrawn.length === 0) {
+      console.log("All balls are drawn. No more numbers to send.");
+      // You can also call a function here to handle this situation, like resetting the game
+      return;
+    }
     const randomIndex = Math.floor(Math.random() * dataNotDrawn.length);
     const randomObject = dataNotDrawn[randomIndex];
     // Set the number you want to send
@@ -77,7 +82,7 @@ function SurroundWall() {
   };
 
   const [usersReceived, setUsersReceived] = useState([]);
-  const [numberToSend, setNumberToSend] = useState(randomizeNumber);
+  const [numberToSend, setNumberToSend] = useState(0);
   const { transcript, startListening, stopListening, setTranscript } =
     useSpeechRecognition(wordActionsMap);
 
@@ -104,7 +109,9 @@ function SurroundWall() {
     });
 
     socket.on("triggerSpinWheel", () => {
-      sendStopWheel(); // Clear names on the client side
+      console.log("triggerSpinWheel");
+
+      sendNumberOnce(); // Clear names on the client side
     });
 
     // Listen for the user logout event
@@ -130,18 +137,18 @@ function SurroundWall() {
 
   useEffect(() => {
     if (numberToSend && canSendNumber) {
-      console.log(numberToSend);
+      playSound();
+      data[numberToSend - 1].isDrawn = true;
       setCanSendNumber(false);
       socket.emit("sendNumber", numberToSend);
     }
   }, [numberToSend]);
 
   const sendNumberOnce = () => {
-    playSound();
-    data[numberToSend - 1].isDrawn = true;
-    console.log("hello");
-    const randnumber = randomizeNumber();
-    setNumberToSend(randnumber);
+    if (canSendNumber) {
+      const randnumber = randomizeNumber();
+      setNumberToSend(randnumber);
+    }
   };
 
   const sendNextRound = () => {
@@ -158,9 +165,6 @@ function SurroundWall() {
   };
   const sendShowRules = () => {
     socket.emit("sendShowRules");
-  };
-  const sendStopWheel = () => {
-    sendNumberOnce();
   };
 
   return (
