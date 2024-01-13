@@ -137,7 +137,7 @@ io.on("connection", (socket) => {
     setTimeout(() => {
       currentNumber = 0;
       io.emit("receiveNumber", currentNumber);
-    }, 10000);
+    }, 3000);
   });
 });
 
