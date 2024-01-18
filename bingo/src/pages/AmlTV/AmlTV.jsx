@@ -6,6 +6,7 @@ import { BallDisplay } from "../../components/BallDisplay/BallDisplay";
 import QrCodeGenerator from "../../components/QrCodeGenerator/QrCodeGenerator";
 import { SOCKET_URL } from "../../config";
 import wheelVideo from "../../assets/videos/wheel_2.mp4";
+
 const socket = io.connect(SOCKET_URL);
 
 export const AmlTV = () => {
