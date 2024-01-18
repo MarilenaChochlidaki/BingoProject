@@ -4,6 +4,7 @@ import { RulesOverlayMobile } from "../../../components/RulesOverlayMobile/Rules
 import io from "socket.io-client";
 import styles from "./MobileMain.module.css";
 import BingoButton from "../../../components/BingoButton/BingoButton";
+import LogoutButton from "../../../components/LogoutButton/LogoutButton";
 import { SOCKET_URL } from "../../../config";
 const socket = io.connect(SOCKET_URL);
 
@@ -42,6 +43,9 @@ function MobileMain({ loginUser }) {
 
   return (
     <div className={styles.mobileMainContainer}>
+      <div className={styles.logoutContainer}>
+        <LogoutButton isMobile={true} userName={loginUser.name} />
+      </div>
       <div className={styles.name}>{loginUser && loginUser.name}</div>
       <PlayerCard
         cardNumberActive={numberActive}

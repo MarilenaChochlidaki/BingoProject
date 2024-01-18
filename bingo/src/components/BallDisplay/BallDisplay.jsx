@@ -13,7 +13,7 @@ export const BallDisplay = ({ number, ballDimension, numberSize, isDrawn }) => {
       }}
       className={`${styles.ballContainer} ${ballClass}`}
     >
-      {isDrawn && number}
+      {isDrawn && number !== 0 && number}
     </div>
   );
 };

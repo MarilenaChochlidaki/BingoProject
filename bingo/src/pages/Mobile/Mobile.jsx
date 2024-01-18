@@ -13,14 +13,31 @@ export const Mobile = () => {
   const [gameStarted, setGameStarted] = useState(false);
 
   useEffect(() => {
-    socket.on("namesCleared", () => {
-      setUser(""); // Clear names on the client side
-    });
+    const handleNamesCleared = () => {
+      setUser({}); // Clear user data
+    };
 
-    socket.on("receive_gameStarted", (data) => {
+    const handleGameStarted = (data) => {
       setGameStarted(data);
-    });
-  }, []);
+    };
+
+    const handleUserLoggedOut = (logoutName) => {
+      if (user.name === logoutName) {
+        setUser({});
+      }
+    };
+
+    socket.on("namesCleared", handleNamesCleared);
+    socket.on("receive_gameStarted", handleGameStarted);
+    socket.on("userLoggedOut", handleUserLoggedOut);
+
+    // Cleanup function to remove event listeners
+    return () => {
+      socket.off("namesCleared", handleNamesCleared);
+      socket.off("receive_gameStarted", handleGameStarted);
+      socket.off("userLoggedOut", handleUserLoggedOut);
+    };
+  }, [user]);
 
   const handleLogin = (loginUser) => {
     setUser(loginUser);

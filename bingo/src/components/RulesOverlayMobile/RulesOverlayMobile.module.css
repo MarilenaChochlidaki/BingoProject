@@ -17,7 +17,7 @@
   height: 100%;
   background-color: white;
   z-index: 2;
-  bottom: -22%;
+  bottom: -10%;
   overflow-y: auto; /* Enable scrolling within content area */
   margin: 10vh auto;
   padding: 20px;

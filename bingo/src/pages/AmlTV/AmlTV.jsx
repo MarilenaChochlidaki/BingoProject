@@ -14,6 +14,7 @@ export const AmlTV = () => {
   const [showRules, setShowRules] = useState(false);
   const [numberActive, setNumberActive] = useState(0);
   const [gameRunning, setGameRunning] = useState(false);
+  const [timer, setTimer] = useState(0);
 
   useEffect(() => {
     socket.on("receive_winner_name", (data) => {
@@ -30,12 +31,32 @@ export const AmlTV = () => {
 
     socket.on("receiveNumber", (data) => {
       setNumberActive(data); // Clear names on the client side
+      if (data != 0) {
+        console.log(data);
+        setTimer(10);
+      }
     });
 
     socket.on("receive_gameStarted", (data) => {
       setGameRunning(data);
     });
   }, []);
+
+  useEffect(() => {
+    let interval;
+
+    if (timer > 0) {
+      interval = setInterval(() => {
+        setTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+    } else if (timer === 0) {
+      // Handle what happens when the timer reaches 0
+      // For example, hide the ball display or reset the number
+      clearInterval(interval);
+    }
+
+    return () => clearInterval(interval);
+  }, [timer]);
 
   return (
     <div className={styles.back}>
@@ -47,6 +68,7 @@ export const AmlTV = () => {
       </div>
 
       <RulesOverlayTV trigger={showRules} />
+      <div className={styles.timerShow}>{timer > 0 ? timer : ""}</div>
       <div className={styles.qr}>
         <QrCodeGenerator isInactive={gameRunning} />
       </div>
@@ -81,6 +103,11 @@ export const AmlTV = () => {
             />
           </div>
         </div>
+      </div>
+      <div className={styles.winnerLabel}>
+        {winnerUser && winnerUser.length > 1
+          ? winnerUser + " is the winner!"
+          : ""}
       </div>
     </div>
   );

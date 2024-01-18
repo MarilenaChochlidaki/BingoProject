@@ -11,7 +11,11 @@ app.use(cors());
 
 const io = new Server(server, {
   cors: {
+<<<<<<< HEAD
     origin: "http://192.168.1.108:3000",
+=======
+    origin: "http://192.168.1.2:3000",
+>>>>>>> origin/master
     methods: ["GET", "POST"],
   },
 });
@@ -133,11 +137,11 @@ io.on("connection", (socket) => {
     currentNumber = number;
     io.emit("receiveNumber", currentNumber);
 
-    // Reset the number to 0 after 5 seconds
+    // Reset the number to 0 after 10 seconds
     setTimeout(() => {
       currentNumber = 0;
       io.emit("receiveNumber", currentNumber);
-    }, 10000);
+    }, 12000);
   });
 });
 

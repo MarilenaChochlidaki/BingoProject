@@ -15,6 +15,8 @@ const AugmentedTable = () => {
   const [winnerUser, setWinnerUser] = useState("");
 
   const [parentVariable, setParentVariable] = useState(0);
+  const [isRulesCooldownActive, setIsRulesCooldownActive] = useState(false);
+  const rulesCooldownPeriod = 10000; // 10 seconds cooldown
 
   const handlePlayerInputting = (newValue) => {
     setParentVariable(newValue);
@@ -49,9 +51,8 @@ const AugmentedTable = () => {
       );
     });
     socket.on("triggerNextRound", () => {
-      if (winnerUser && winnerUser.length > 0) {
-        nextRound();
-      }
+      console.log("calling next Round");
+      nextRound();
     });
     socket.on("triggerNextStage", () => {
       if (!profileGame) {
@@ -66,8 +67,9 @@ const AugmentedTable = () => {
         handleStart();
       }
     });
-    socket.on("triggerShowRules", () => {
-      activateShowRules();
+
+    socket.on("receive_resetCards", () => {
+      setWinnerUser("");
     });
 
     // Cleanup on unmount
@@ -75,6 +77,21 @@ const AugmentedTable = () => {
       socket.off("userLoggedOut");
     };
   }, []);
+
+  useEffect(() => {
+    socket.on("triggerShowRules", () => {
+      if (!isRulesCooldownActive) {
+        activateShowRules();
+        setIsRulesCooldownActive(true);
+
+        setTimeout(() => {
+          setIsRulesCooldownActive(false);
+        }, rulesCooldownPeriod);
+      } else {
+        console.log("Show Rules is on cooldown, please wait.");
+      }
+    });
+  }, [isRulesCooldownActive]);
 
   useEffect(() => {
     socket.emit("send_showRules", showRules);
@@ -127,6 +144,7 @@ const AugmentedTable = () => {
   };
 
   const endGame = () => {
+    resetCards();
     clearNames();
     sendClearBalls();
   };
@@ -157,7 +175,6 @@ const AugmentedTable = () => {
       )}
       {winnerUser && winnerUser.length > 0 && (
         <div className={styles.endGameButtons}>
-          {winnerUser}
           <button className={styles.nextRoundButton} onClick={endGame}>
             End Game
           </button>

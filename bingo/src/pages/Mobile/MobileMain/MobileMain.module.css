@@ -34,6 +34,9 @@
   left: 278px;
   background: url("../../../assets/images/icon_book_2.png");
 }
-/* .card {
-  position: absolute;
-} */
+
+.logoutContainer {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}

@@ -71,3 +71,10 @@
   position: relative;
   left: 277px;
 }
+
+.timerShow {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  font-size: 12rem;
+}

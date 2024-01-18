@@ -75,3 +75,25 @@
   height: 500px;
   margin-top: 25%;
 }
+@media (max-width: 420px) {
+  .mobileContainer {
+    width: 320px; /* Adjust width for smaller screens */
+    height: 400px; /* Adjust height for smaller screens */
+    margin-top: 10%; /* Adjust top margin for smaller screens */
+  }
+}
+
+.ballButtonMobile {
+  width: 65px;
+  height: 65px;
+  font-size: 1.7rem;
+}
+
+@media (max-width: 420px) {
+  .ballButtonMobile {
+    /* mobile styles */
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+}
