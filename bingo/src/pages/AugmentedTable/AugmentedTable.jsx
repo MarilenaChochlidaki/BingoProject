@@ -79,8 +79,9 @@ const AugmentedTable = () => {
   }, []);
 
   useEffect(() => {
-    socket.on("triggerShowRules", () => {
+    socket.on("triggerShowRules", (flag) => {
       if (!isRulesCooldownActive) {
+        setShowRules(flag);
         activateShowRules();
         setIsRulesCooldownActive(true);
 
